@@ -1,1 +1,77 @@
 //Product List Style
+.productList {
+  // background-color: skyblue;
+  header {
+    // background-color: brown;
+    height: 9rem;
+  }
+  .sectionLayout {
+    margin-left: 8%;
+    margin-right: 8%;
+
+    .imgSlide {
+      // background-color: rgb(199, 184, 23);
+
+      .petSlideImg {
+        width: 100%;
+        height: 25rem;
+      }
+    }
+
+    .productSideSection {
+      // background-color: palevioletred;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 5rem;
+
+      .sideSection {
+        // background-color: orange;
+
+        .petMainSide {
+          font-size: 1.5rem;
+          border-bottom: 0.2rem solid;
+          padding-right: 7rem;
+          padding-bottom: 0.5rem;
+        }
+
+        .petSubSide {
+          ul > li {
+            font-size: 1.2rem;
+            padding-top: 1rem;
+          }
+        }
+      }
+
+      .productSection {
+        // background-color: yellow;
+        width: 75%;
+        .filter {
+          select:focus {
+            outline: none;
+          }
+          .selectFilter {
+            font-size: 0.9rem;
+            border: 0;
+            border-radius: 0;
+          }
+          // background-color: cadetblue;
+          display: flex;
+          justify-content: right;
+        }
+        .productSide > ul {
+          display: flex;
+          flex-wrap: wrap;
+          li {
+            margin: 2rem;
+          }
+        }
+
+        .showMore {
+          font-size: 1rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
