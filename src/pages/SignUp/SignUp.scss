@@ -1,1 +1,175 @@
-//SignUp Style
+// find how to import style variables from common.scss
+
+@mixin flex-box(
+  $direction: column,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 10px;
+  // remove bgc after common style variables import
+  background-color: #f2f2f2;
+
+  .SignUp {
+    @include flex-box(column, center, center);
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+
+    .pageTitle {
+      margin: 50px 0;
+      font-size: 2.1rem;
+      font-weight: bolder;
+    }
+
+    .form {
+      @include flex-box(column);
+      width: 100%;
+      max-width: 600px;
+      box-sizing: border-box;
+      margin: 0 0 160px;
+      padding: 0 40px 72px;
+      background-color: #fff;
+      border: 1px solid #d0d0d0;
+      border-radius: 3px;
+
+      .section {
+        box-sizing: border-box;
+        margin: 40px 0 0;
+        padding: 20px 0;
+
+        .title {
+          margin-bottom: 20px;
+          padding-bottom: 15px;
+          border-bottom: 2px solid #000;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+
+      .userFormInput {
+        width: 100%;
+        .inputControl {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.8rem;
+
+          .label {
+            width: 130px;
+          }
+
+          input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid #a0a0a0;
+            outline: none;
+          }
+
+          #verification {
+            width: max-content;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 0;
+          }
+
+          .verificationInputWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-content: flex-end;
+            width: 100%;
+          }
+
+          .phoneNumWrapper {
+            @include flex-box(row, flex-start, baseline);
+            display: flex;
+            width: 100%;
+          }
+        }
+      }
+
+      .pickCategory {
+        width: 100%;
+
+        div > p {
+          margin-bottom: 10px;
+          color: #c0c0c0;
+          font-size: 14px;
+        }
+        article {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+          row-gap: 25px;
+          justify-items: center;
+          margin-top: 15px;
+
+          .petCategoryInput {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #f0f0f0;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            background-color: transparent;
+          }
+        }
+      }
+
+      .policyAgreement {
+        .policyType {
+          h4 {
+            padding: 10px 0;
+            font-size: 1rem;
+          }
+          &.notRequired .textContent {
+            padding-right: 50px;
+          }
+          .textContent {
+            height: max-content;
+            max-height: 300px;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+            overflow: auto;
+            color: #a0a0a0;
+            text-align: justify;
+
+            article + article h5 {
+              margin-top: 15px;
+            }
+            div {
+              line-height: 1.1rem;
+            }
+          }
+        }
+      }
+
+      .formButtons {
+        @include flex-box(row, space-between, -items);
+        width: 100%;
+
+        button {
+          width: 48%;
+          padding: 15px 40px;
+          border: none;
+          border-radius: 50px;
+          background-color: #3d435f;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
