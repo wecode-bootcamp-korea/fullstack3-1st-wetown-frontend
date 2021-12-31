@@ -31,6 +31,28 @@ const SignUp = () => {
 
   const validateInput = e => {};
 
+  function goSignUp(e) {
+    e.preventDefault();
+
+    fetch("http://localhost:8000/signup", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: nameInput,
+        nickname: nicknameInput,
+        password: passwordInput,
+        email: emailInput,
+        phone_number: phoneNumInput,
+        gender: genderInput,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }
+
   return (
     <div className="SignUp">
       <h2 className="pageTitle">Join Us</h2>
@@ -294,7 +316,7 @@ const SignUp = () => {
         <Policy />
         <section className="section formButtons">
           <button>CANCEL</button>
-          <button>JOIN</button>
+          <button onClick={goSignUp}>JOIN</button>
         </section>
       </form>
     </div>
