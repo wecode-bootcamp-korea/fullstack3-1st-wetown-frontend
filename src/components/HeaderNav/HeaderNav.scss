@@ -1,0 +1,86 @@
+.HeaderNav {
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+
+  .headerTop {
+    width: 1200px;
+    margin-top: 3px;
+    height: 30px;
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 2rem;
+
+      .globalStore {
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
+
+        &:hover ul {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .globalStoreList {
+          position: absolute;
+          padding-bottom: 3px;
+          width: 50px;
+          top: 15px;
+          right: -12px;
+          background-color: antiquewhite;
+          gap: 0.5rem;
+          box-shadow: 0 0 10px #e1e5ee;
+          display: flex;
+          flex-direction: column;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 200ms ease-in-out;
+
+          li {
+            list-style: none;
+            padding: 0px 10px;
+            transition: background-color 200ms ease-in-out;
+
+            &:hover,
+            &:focus {
+              background-color: gray;
+              a {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .headerBottom {
+    width: 100%;
+    margin-top: 5px;
+
+    .headerBottomInner {
+      width: 1200px;
+      margin: 0 auto;
+
+      .headerMenu ul {
+        align-items: center;
+        padding-right: 5px;
+
+        li {
+          float: left;
+        }
+      }
+
+      .userMenu ul li {
+        float: left;
+      }
+    }
+  }
+}
