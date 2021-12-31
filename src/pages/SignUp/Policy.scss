@@ -1,0 +1,41 @@
+// find how to import style variables from common.scss
+
+@mixin flex-box(
+  $direction: column,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+.policyAgreement {
+  .policyType {
+    h4 {
+      padding: 10px 0;
+      font-size: 1rem;
+    }
+    &.notRequired .textContent {
+      padding-right: 50px;
+    }
+    .textContent {
+      height: max-content;
+      max-height: 300px;
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid #f0f0f0;
+      overflow: auto;
+      color: #a0a0a0;
+      text-align: justify;
+
+      article + article h5 {
+        margin-top: 15px;
+      }
+      div {
+        line-height: 1.1rem;
+      }
+    }
+  }
+}
