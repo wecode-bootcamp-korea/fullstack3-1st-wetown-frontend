@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
 
 const SignUp = () => {
+  const [categoryList, setCategoryList] = useState([]);
   const [userInput, setUserInput] = useState({
-    nameInput: "",
-    nicknameInput: "",
-    passwordInput: "",
-    emailInput: "",
+    nameInput: "", //required
+    nicknameInput: "", //required
+    passwordInput: "", //required
+    emailInput: "", //required
+    phoneNumInput: "010-1234-5678", //optional
+    genderInput: "여자", //optional
     bdayInput: "2022-01-01", //age validation only
-    phoneNumInput: "010-1234-5678",
-    genderInput: "여자",
-    // petCategoryInput: "Dog",
+    petCategoryInput: "", // object
   });
 
   const {
@@ -21,15 +23,28 @@ const SignUp = () => {
     emailInput,
     phoneNumInput,
     genderInput,
+    petCategoryInput,
   } = userInput;
 
   const handleInput = e => {
-    const { name, value } = e.target;
+    e.preventDefault();
+    let { name, value } = e.target;
+
+    if (name === "petCategoryInput") {
+      const [petChoice] = categoryList.filter(pet => pet.category === value);
+      value = { ...petChoice };
+    }
+
     setUserInput({ ...userInput, [name]: value });
     validateInput();
   };
 
-  const validateInput = e => {};
+  const validateInput = e => {
+    // [ ] email address
+    // [ ] password length and character types
+    // [ ] password and password check match
+    // [ ] policy agreement mandatory fields checked
+  };
 
   function goSignUp(e) {
     e.preventDefault();
@@ -53,6 +68,12 @@ const SignUp = () => {
       .then(data => console.log(data));
   }
 
+  useEffect(() => {
+    fetch("http://localhost:3000/data/mockCategory.json")
+      .then(res => res.json())
+      .then(data => setCategoryList(data));
+  }, []);
+
   return (
     <div className="SignUp">
       <h2 className="pageTitle">Join Us</h2>
@@ -63,7 +84,6 @@ const SignUp = () => {
             <label className="label" htmlFor="verification">
               본인인증
             </label>
-            ``
             <div className="verificationInputWrapper">
               <div className="inputWrapper">
                 <span>휴대폰 인증</span>
@@ -201,8 +221,6 @@ const SignUp = () => {
         </section>
         <section className="section pickCategory">
           <h3 className="title">PET 선택</h3>
-          {/* <PetButton/> */}
-          {/* make button a component and pass props */}
           <div>
             <p>좋아하는 PET을 선택해주세요!</p>
             <p>
@@ -211,106 +229,23 @@ const SignUp = () => {
             </p>
           </div>
           <article>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Dog"
-              id="pickDog"
-              onClick={handleInput}
-            >
-              Dog
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Cat"
-              id="pickCat"
-              onClick={handleInput}
-            >
-              Cat
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Turtle"
-              id="pickTurtle"
-              onClick={handleInput}
-            >
-              Turtle
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Hamster"
-              id="pickHamster"
-              onClick={handleInput}
-            >
-              Hamster
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Parrot"
-              id="pickParrot"
-              onClick={handleInput}
-            >
-              Parrot
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Lion"
-              id="pickLion"
-              onClick={handleInput}
-            >
-              Lion
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Tiger"
-              id="pickTiger"
-              onClick={handleInput}
-            >
-              Tiger
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Cheetah"
-              id="pickCheetah"
-              onClick={handleInput}
-            >
-              Cheetah
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Jaguar"
-              id="pickJaguar"
-              onClick={handleInput}
-            >
-              Jaguar
-            </button>
-            <button
-              type="radio"
-              name="petCategoryInput"
-              className="petCategoryInput"
-              value="Eagle"
-              id="pickEagle"
-              onClick={handleInput}
-            >
-              Eagle
-            </button>
+            {categoryList.map(pet => (
+              <CircleButton
+                key={pet.id}
+                type="radio"
+                name="petCategoryInput"
+                value={pet.category}
+                style={{
+                  width: "120px",
+                  height: "120px",
+                  backgroundColor:
+                    petCategoryInput.category === pet.category
+                      ? petCategoryInput.color
+                      : "",
+                }}
+                onClick={e => handleInput(e)}
+              />
+            ))}
           </article>
         </section>
         <Policy />

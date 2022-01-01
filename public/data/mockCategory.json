@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "category": "Dog",
+    "color": "#fccf1d"
+  },
+  {
+    "id": 2,
+    "category": "Cat",
+    "color": "#c81a20"
+  },
+  {
+    "id": 3,
+    "category": "Turtle",
+    "color": "#016ad5"
+  },
+  {
+    "id": 4,
+    "category": "Hamster",
+    "color": "#cda5e0"
+  },
+  {
+    "id": 5,
+    "category": "Bird",
+    "color": "#d8e22d"
+  }
+]
