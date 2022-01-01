@@ -59,14 +59,24 @@ body {
 
       .userFormInput {
         width: 100%;
+
         .inputControl {
+          position: relative;
           display: flex;
           justify-content: space-between;
           align-items: center;
           font-size: 0.8rem;
 
+          &.requiredField > label::before {
+            position: absolute;
+            left: 0;
+            content: "*";
+            color: red;
+            font-size: 1rem;
+          }
           .label {
             width: 130px;
+            padding-left: 15px;
           }
 
           input {
