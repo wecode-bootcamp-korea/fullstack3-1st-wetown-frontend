@@ -6,9 +6,8 @@
     height: 9rem;
   }
   .sectionLayout {
-    margin-left: 8%;
-    margin-right: 8%;
-
+    width: 1200px;
+    margin: 0 auto;
     .imgSlide {
       // background-color: rgb(199, 184, 23);
 
@@ -36,9 +35,13 @@
         }
 
         .petSubSide {
-          ul > li {
+          li {
             font-size: 1.2rem;
             padding-top: 1rem;
+            a {
+              color: black;
+              text-decoration: none;
+            }
           }
         }
       }

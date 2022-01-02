@@ -1,10 +1,11 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router";
-import "./ProductList.scss";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import ProductCard from "../../components/ProductCard";
+import "./ProductList.scss";
 
-const ProductList = () => {
+function ProductList() {
+  const [categoryState, setCategoryState] = userState("");
   return (
     <div className="productList">
       {/* <HeaderNav /> */}
@@ -51,9 +52,7 @@ const ProductList = () => {
               </select>
             </section>
             <section className="productSide">
-              <ul>
-                <ProductCard data={notYet} />
-              </ul>
+              <ul>{/* <ProductCard data={notYet} /> */}</ul>
             </section>
             <section className="showMore">더보기 +</section>
           </section>
@@ -61,6 +60,6 @@ const ProductList = () => {
       </section>
     </div>
   );
-};
+}
 
 export default ProductList;
