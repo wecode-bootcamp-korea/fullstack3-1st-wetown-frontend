@@ -8,10 +8,30 @@ const SignIn = () => {
     passwordInput: "",
   });
 
+  let { emailInput, passwordInput } = signInInput;
+
   const handleInput = e => {
     let { name, value } = e.target;
     setSignInInput({ ...signInInput, [name]: value });
   };
+
+  function goSignIn(e) {
+    e.preventDefault();
+
+    fetch("http://localhost:8000/user/signin", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailInput,
+        password: passwordInput,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
 
   return (
     <div className="SignIn">
@@ -47,7 +67,9 @@ const SignIn = () => {
           </div>
         </form>
         <section className="section formButtons">
-          <button className="signInButton">LOGIN</button>
+          <button className="signInButton" onClick={goSignIn}>
+            LOGIN
+          </button>
 
           <button className="signInButton">JOIN US</button>
         </section>
