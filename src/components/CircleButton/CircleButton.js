@@ -17,7 +17,12 @@ const CircleButton = ({ type, name, value, style, onClick }) => {
 };
 
 CircleButton.defaultProps = {
-  style: { width: "73px", height: "73px" },
+  style: {
+    width: "73px",
+    height: "73px",
+    backgroundColor: "transparent",
+    borderColor: "#f0f0f0",
+  },
 };
 
 CircleButton.propTypes = {
@@ -25,7 +30,7 @@ CircleButton.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   style: PropTypes.object,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default CircleButton;
