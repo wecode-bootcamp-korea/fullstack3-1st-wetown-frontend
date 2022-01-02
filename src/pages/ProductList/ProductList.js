@@ -52,7 +52,7 @@ const ProductList = () => {
             </section>
             <section className="productSide">
               <ul>
-                <ProductCard />
+                <ProductCard data={notYet} />
               </ul>
             </section>
             <section className="showMore">더보기 +</section>
