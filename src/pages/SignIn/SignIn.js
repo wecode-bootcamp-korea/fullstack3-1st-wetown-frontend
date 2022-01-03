@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
