@@ -1,13 +1,31 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { Link, useParams } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 
 function ProductList() {
-  const [categoryState, setCategoryState] = userState("");
+  //url에 담긴 parameter 가져오기
+  const params = useParams();
+  console.log(params);
+
+  //카테고리 입력된 값 상태 관리
+  const [categoryList, setCategoryList] = useState([]);
+
+  //navigate 할당
+  const navigate = useNavigate();
+
+  // 카테고리 입력값 받아오기
+  //"/product/filter/dog/?subcategory=food&sortMethod=1"
+  useEffect(() => {
+    fetch(`http://localhost:8000/product/filter/${params.category}`)
+      .then(res => res.json())
+      .then(data => setCategoryList(data));
+  }, []);
+
   return (
-    <div className="productList">
+    <section className="productList">
       {/* <HeaderNav /> */}
       <header></header>
       <section className="sectionLayout">
@@ -23,20 +41,30 @@ function ProductList() {
         <section className="productSideSection">
           <section className="sideSection">
             <nav className="petSide">
-              <section className="petMainSide">PET NAME</section>
+              <section className="petMainSide">PRODUCT</section>
               <section className="petSubSide">
                 <ul>
                   <li>
-                    <a href="/">FOOD</a>
+                    <Link
+                      to={"/product/filter/dog/?subcategory=toy&sortMethod=1"}
+                    >
+                      FOOD
+                    </Link>
                   </li>
                   <li>
-                    <a href="/">TOY</a>
+                    <Link to="/product/filter/dog/?subcategory=toy&sortMethod=1">
+                      TOY
+                    </Link>
                   </li>
                   <li>
-                    <a href="/">HOUSE</a>
+                    <Link to="/product/filter/dog/?subcategory=house&sortMethod=1">
+                      HOUSE
+                    </Link>
                   </li>
                   <li>
-                    <a href="/">HEALTH</a>
+                    <Link to="/product/filter/dog/?subcategory=health&sortMethod=1">
+                      HEALTH
+                    </Link>
                   </li>
                 </ul>
               </section>
@@ -52,14 +80,18 @@ function ProductList() {
               </select>
             </section>
             <section className="productSide">
-              <ul>{/* <ProductCard data={notYet} /> */}</ul>
+              <ul>
+                {categoryList[0] &&
+                  categoryList.map(categoryList => (
+                    <ProductCard data={categoryList} key={categoryList.id} />
+                  ))}
+              </ul>
             </section>
             <section className="showMore">더보기 +</section>
           </section>
         </section>
       </section>
-    </div>
+    </section>
   );
 }
-
 export default ProductList;

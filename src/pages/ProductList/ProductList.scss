@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
+
 //Product List Style
 .productList {
   // background-color: skyblue;
@@ -13,7 +15,7 @@
 
       .petSlideImg {
         width: 100%;
-        height: 25rem;
+        height: 400px;
       }
     }
 
@@ -30,7 +32,7 @@
         .petMainSide {
           font-size: 1.5rem;
           border-bottom: 0.2rem solid;
-          padding-right: 7rem;
+          width: 200px;
           padding-bottom: 0.5rem;
         }
 
@@ -48,7 +50,7 @@
 
       .productSection {
         // background-color: yellow;
-        width: 75%;
+        margin-left: 60px;
         .filter {
           select:focus {
             outline: none;
@@ -65,8 +67,42 @@
         .productSide > ul {
           display: flex;
           flex-wrap: wrap;
+
           li {
-            margin: 2rem;
+            margin: 20px 0 0 15px;
+            .listImg {
+              background-color: brown;
+              width: 298px;
+              height: 402px;
+            }
+
+            .cateName {
+              margin: 10px 0 5px 0;
+              color: lightgray;
+              font-size: 13px;
+            }
+
+            .engName-cartIcon {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              .engName {
+                width: 75%;
+                font-size: 1rem;
+              }
+
+              .cartIcon {
+                width: 35px;
+                height: 35px;
+                margin: -10px 0 0 -3rem;
+              }
+            }
+
+            .prices {
+              font-size: 1rem;
+              margin: 7px 0 7px 0;
+            }
           }
         }
 
