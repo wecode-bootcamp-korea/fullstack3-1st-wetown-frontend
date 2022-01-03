@@ -5,24 +5,30 @@ import "./SignUp.scss";
 
 const SignUp = () => {
   const [categoryList, setCategoryList] = useState([]);
+  const [validSignUp, setValidSignUp] = useState(false);
   const [userInput, setUserInput] = useState({
+    //필수항목은 db저장
     nameInput: "", //required
     nicknameInput: "", //required
     passwordInput: "", //required
+    pwCheckInput: "", //required
     emailInput: "", //required
+    bdayInput: "", // required for age validation
+    //선택항목
     phoneNumInput: "010-1234-5678", //optional
     genderInput: "여자", //optional
-    bdayInput: "2022-01-01", //age validation only
-    petCategoryInput: "", // object
+    petCategoryInput: "", // optional -> type: object
   });
 
   const {
     nameInput,
     nicknameInput,
     passwordInput,
+    pwCheckInput,
     emailInput,
     phoneNumInput,
     genderInput,
+    bdayInput,
     petCategoryInput,
   } = userInput;
 
@@ -35,21 +41,33 @@ const SignUp = () => {
       value = { ...petChoice };
     }
 
+    if (name === "bdayInput") {
+      value = Date.parse(value);
+    }
+
     setUserInput({ ...userInput, [name]: value });
-    validateInput();
   };
 
-  const validateInput = e => {
-    // [ ] email address
-    // [ ] password length and character types
-    // [ ] password and password check match
-    // [ ] policy agreement mandatory fields checked
-  };
+  useEffect(() => {
+    const validateEmail = emailInput.includes("@");
+
+    const validatePassword =
+      passwordInput.length > 8 && passwordInput === pwCheckInput;
+
+    const fourteenYearsInSec = 14 * 365 * 24 * 60 * 60 * 1000;
+    const validateAge = Date.now() - bdayInput > fourteenYearsInSec;
+
+    if (validateEmail && validatePassword && validateAge) {
+      setValidSignUp(true);
+    } else {
+      setValidSignUp(false);
+    }
+  }, [emailInput, passwordInput, pwCheckInput, bdayInput, validSignUp]);
 
   function goSignUp(e) {
     e.preventDefault();
 
-    fetch("http://localhost:8000/signup", {
+    fetch("http://localhost:8000/user/signup", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -75,7 +93,12 @@ const SignUp = () => {
   }, []);
 
   return (
-    <div className="SignUp">
+    <div
+      className="SignUp"
+      // 개발 과정에서 유효성 검사 작동 확인을 위해 배경화면 스타일 적용
+      // 추후 스타일 어트리뷰트는 삭제
+      style={{ backgroundColor: validSignUp ? "green" : "orange" }}
+    >
       <h2 className="pageTitle">Join Us</h2>
       <form className="form " action="#">
         <section className="section userFormInput">
@@ -104,18 +127,19 @@ const SignUp = () => {
               onChange={handleInput}
             />
           </div>
-          <div className="inputControl">
+          <div className="inputControl requiredField">
             <label className="label" htmlFor="bdayInput">
               생년월일
             </label>
             <input
               type="date"
               id="bdayInput"
-              name="birthdayInput"
+              name="bdayInput"
+              required
               onChange={handleInput}
             />
           </div>
-          <div className="inputControl requiredField">
+          <div className="inputControl">
             <label className="label">성별</label>
             <div>
               <input
@@ -160,7 +184,7 @@ const SignUp = () => {
               type="password"
               id="passwordInput"
               name="passwordInput"
-              placeholder="영문/숫자/특수문자 중 2가지 이상 조합, 10자~16자"
+              placeholder="영문/숫자/특수문자 중 2가지 이상 조합, 8자~16자"
               required
               autoComplete="new-password"
               onChange={handleInput}
