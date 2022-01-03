@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
 const SignIn = () => {
+  const [validLogin, setValidLogin] = useState(false);
   const [signInInput, setSignInInput] = useState({
     emailInput: "",
     passwordInput: "",
@@ -15,9 +18,17 @@ const SignIn = () => {
     setSignInInput({ ...signInInput, [name]: value });
   };
 
+  useEffect(() => {
+    const emailCheck = emailInput.includes("@");
+    const passwordCheck = passwordInput.length > 8;
+
+    if (emailCheck && passwordCheck) {
+      setValidLogin(true);
+    } else setValidLogin(false);
+  }, [emailInput, passwordInput, validLogin]);
+
   function goSignIn(e) {
     e.preventDefault();
-
     fetch("http://localhost:8000/user/signin", {
       method: "POST",
       mode: "cors",
@@ -32,7 +43,6 @@ const SignIn = () => {
       .then(response => response.json())
       .then(data => console.log(data));
   }
-
   return (
     <div className="SignIn">
       <h2 className="pageTitle">Login</h2>
@@ -67,11 +77,20 @@ const SignIn = () => {
           </div>
         </form>
         <section className="section formButtons">
-          <button className="signInButton" onClick={goSignIn}>
+          <button
+            className="signInButton"
+            onClick={goSignIn}
+            // 개발과정에서 유효성 검사 진행확인 위해 색 표시
+            // 추후 style 어트리뷰트는 삭제
+            style={{ backgroundColor: validLogin ? "blue" : "red" }}
+            disabled={validLogin ? false : true}
+          >
             LOGIN
           </button>
 
-          <button className="signInButton">JOIN US</button>
+          <Link to="/signup" style={{ width: "100%", textDecoration: "none" }}>
+            <button className="signInButton">JOIN US</button>
+          </Link>
         </section>
         <section className="section userFind">
           <ul>
