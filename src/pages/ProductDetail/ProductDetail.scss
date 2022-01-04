@@ -1,1 +1,92 @@
-//Product Detail Style
+.ProductDetail {
+  .detailArea {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    .mainArea {
+      position: relative;
+      width: 900px;
+      .newBox {
+        position: absolute;
+        top: -50px;
+        left: -30px;
+        z-index: 1000;
+      }
+      .slideBackground {
+        position: relative;
+        width: 900px;
+        height: 900px;
+        background-color: #ecebeb;
+        .slideBox {
+          display: flex;
+          width: 700px;
+          height: 700px;
+          overflow: hidden;
+          position: relative;
+          top: 100px;
+          left: 100px;
+          .slideList {
+            transition: 0.5s;
+            width: 700px;
+            height: 700px;
+            img {
+              width: 700px;
+              height: 700px;
+              object-fit: fill;
+            }
+          }
+        }
+        .dot {
+          font-size: 1.4em;
+          position: absolute;
+          top: 93%;
+          left: 46%;
+          .on {
+            font-weight: 900;
+          }
+        }
+        #goLeft {
+          position: absolute;
+          top: 50%;
+          left: 20px;
+          background-image: url(./images/left.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          border: none;
+          width: 30px;
+          height: 30px;
+          opacity: 0.4;
+          &:hover {
+            opacity: 0.8;
+            transition: all 0.5s;
+          }
+        }
+        #goRight {
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          background-image: url(./images/right.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          border: none;
+          width: 30px;
+          height: 30px;
+          opacity: 0.4;
+          &:hover {
+            opacity: 0.8;
+            transition: all 0.5s;
+          }
+        }
+      }
+    }
+  }
+  .sidebarArea {
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 500px;
+    height: 500px;
+    border: 1px solid red;
+  }
+}
