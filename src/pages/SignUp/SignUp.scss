@@ -74,6 +74,7 @@
             color: red;
             font-size: 1rem;
           }
+
           .label {
             width: 130px;
             padding-left: 15px;
@@ -86,13 +87,9 @@
             border: none;
             border-bottom: 1px solid #a0a0a0;
             outline: none;
-          }
-
-          #verification {
-            width: max-content;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin: 0;
+            &[disabled] {
+              background-color: #fff;
+            }
           }
 
           .verificationInputWrapper {
@@ -101,12 +98,49 @@
             justify-content: left;
             align-content: flex-end;
             width: 100%;
-          }
 
+            .verificationInput.verificationInput {
+              margin: 0 15px 10px 0;
+            }
+
+            #verification {
+              width: max-content;
+              padding: 5px 10px;
+              cursor: pointer;
+              border: none;
+              border-radius: 50px;
+              background-color: #3d435f;
+              color: #fff;
+            }
+          }
+          .genderOptions {
+            display: flex;
+            width: 50%;
+            justify-content: flex-start;
+            align-items: center;
+            input {
+              width: 10%;
+            }
+            label {
+              width: 30%;
+            }
+          }
           .phoneNumWrapper {
-            @include flex-box(row, flex-start, baseline);
+            @include flex-box(row, space-between, center);
             display: flex;
             width: 100%;
+
+            select {
+              padding: 15px;
+              border: none;
+              outline: none;
+            }
+
+            .areaCodeInput,
+            .phoneNumInput {
+              width: 30%;
+              border-bottom: 1px solid #a0a0a0;
+            }
           }
         }
       }

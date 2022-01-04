@@ -110,8 +110,19 @@ const SignUp = () => {
               </label>
               <div className="verificationInputWrapper">
                 <div className="inputWrapper">
-                  <span>휴대폰 인증</span>
-                  <input type="button" id="verification" value="인증하기" />
+                  <span className="verificationInput">휴대폰 인증</span>
+                  <button
+                    className="verificationInput"
+                    type="button"
+                    id="verification"
+                    style={{
+                      color: "#3d435f",
+                      backgroundColor: "#fff",
+                      border: "1px solid #4d435f",
+                    }}
+                  >
+                    인증하기
+                  </button>
                 </div>
                 <div>본인 명의의 휴대폰으로 본인인증을 진행합니다.</div>
               </div>
@@ -142,20 +153,20 @@ const SignUp = () => {
             </div>
             <div className="inputControl">
               <label className="label">성별</label>
-              <div>
+              <div className="genderOptions">
                 <input
                   type="radio"
-                  id="genderMaleInput"
+                  id="male"
                   name="genderInput"
                   value="남자"
                   onClick={handleInput}
                 />
                 <label htmlFor="genderMaleInput">남자</label>
               </div>
-              <div>
+              <div className="genderOptions">
                 <input
                   type="radio"
-                  id="genderFemaleInput"
+                  id="female"
                   name="genderInput"
                   value="여자"
                   onClick={handleInput}
@@ -208,14 +219,19 @@ const SignUp = () => {
               <label className="label" htmlFor="addressInput">
                 주소
               </label>
-              <input type="text" id="addressInput" name="addressInput" />
+              <input
+                type="text"
+                id="addressInput"
+                name="addressInput"
+                disabled
+              />
             </div>
             <div className="inputControl">
               <label className="label" htmlFor="phoneNumInput">
                 일반전화
               </label>
               <div className="phoneNumWrapper">
-                <select id="phoneNumInput" name="areaCode">
+                <select className="areaCodeInput">
                   <option value="02">02</option>
                   <option value="010">010</option>
                   <option value="031">031</option>
@@ -228,8 +244,8 @@ const SignUp = () => {
                   <option value="051">051</option>
                   <option value="052">052</option>
                 </select>
-                <input type="tel" id="phoneNum1" />
-                <input type="tel" id="phoneNum2" />
+                <input type="tel" className="phoneNumInput" disabled />
+                <input type="tel" className="phoneNumInput" disabled />
               </div>
             </div>
             <div className="inputControl requiredField">
