@@ -70,6 +70,20 @@
 
           li {
             margin: 20px 0 0 15px;
+            position: relative;
+            .isNew {
+              border-top-right-radius: 1rem;
+              border-bottom-right-radius: 1rem;
+              color: white;
+              font-size: 0.8rem;
+              background-color: cadetblue;
+              position: absolute;
+              width: 40px;
+              height: 20px;
+              margin-top: 1rem;
+              padding: 0.1rem 0 0 0.3rem;
+            }
+
             .listImg {
               background-color: brown;
               width: 298px;

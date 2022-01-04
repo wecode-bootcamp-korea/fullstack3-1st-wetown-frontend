@@ -7,6 +7,11 @@ const ProductCard = props => {
   return (
     <li className="productCardList">
       <a href=" ">
+        {props.data.is_new ? (
+          <section className="isNew">new</section>
+        ) : (
+          <section></section>
+        )}
         <img class="listImg" src={props.data.url} alt={props.data.eng_name} />
       </a>
       <section className="productDescription">
