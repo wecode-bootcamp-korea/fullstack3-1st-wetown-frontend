@@ -1,1 +1,143 @@
-// SignIn Style
+@mixin flex-box(
+  $direction: column,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 10px;
+  background-color: #f2f2f2;
+}
+
+.SignIn {
+  @include flex-box(column, center, center);
+  width: 100%;
+  margin: 0 auto;
+
+  .pageTitle {
+    margin: 50px 0;
+    font-size: 2.5rem;
+    font-weight: bolder;
+  }
+
+  .signInBox {
+    @include flex-box(column, space-evenly, center);
+    width: max-content;
+    max-width: 600px;
+    background-color: #fff;
+    border: 1px solid #d8d9de;
+    padding: 50px 40px;
+
+    .section + section {
+      margin-top: 40px;
+    }
+    .form {
+      @include flex-box(column, space-between, space-between);
+      width: 100%;
+
+      .inputControl {
+        @include flex-box(row, flex-start, baseline);
+
+        .label {
+          width: 130px;
+          font-weight: bold;
+        }
+
+        input {
+          width: 100%;
+          margin: 10px 0;
+          padding-bottom: 15px;
+          border: none;
+          outline: none;
+          border-bottom: 1px solid #d8d9de;
+        }
+      }
+    }
+
+    .formButtons {
+      @include flex-box(column, space-between, center);
+      width: 100%;
+
+      .signInButton {
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        background-color: #3d435f;
+        cursor: pointer;
+        color: #fff;
+      }
+    }
+    .userFind ul {
+      @include flex-box(row, -content, baseline);
+
+      li {
+        // margin: 25px 0;
+        padding: 0 10px;
+
+        + li {
+          border-left: 1px solid black;
+        }
+      }
+    }
+
+    .socialSignIn {
+      text-align: center;
+
+      h3 {
+        position: relative;
+        width: 100%;
+        display: block;
+        font-size: 1rem;
+        background-color: white;
+        text-align: center;
+        height: 20px;
+        z-index: 2999999;
+
+        .test {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: -1;
+          transform: translate(-50%, -50%);
+          display: block;
+          width: 100px;
+          height: 20px;
+          background-color: #fff;
+        }
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          z-index: -1;
+
+          display: block;
+          content: "";
+          overflow: hidden;
+
+          width: 100%;
+          height: 1px;
+          background-color: #d8d9de;
+        }
+      }
+
+      .socialLinkButtons {
+        margin-top: 25px;
+
+        a + a {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
