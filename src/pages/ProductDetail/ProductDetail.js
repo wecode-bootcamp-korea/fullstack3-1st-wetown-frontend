@@ -6,7 +6,7 @@ import "./ProductDetail.scss";
 const ProductDetail = () => {
   useEffect(() => {
     fetch(`http://localhost:8000/product/9`, {
-      methrod: "GET",
+      method: "GET",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
