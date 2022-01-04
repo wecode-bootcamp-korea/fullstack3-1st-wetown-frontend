@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
@@ -28,21 +29,26 @@ const SignIn = () => {
 
   function goSignIn(e) {
     e.preventDefault();
-    fetch("http://localhost:8000/user/signin", {
-      method: "POST",
-      mode: "cors",
+
+    const options = {
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
       withCredentials: true,
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => localStorage.setItem("token", data.token));
+    };
+    axios
+      .post(
+        "http://localhost:8000/user/signin",
+        {
+          email: emailInput,
+          password: passwordInput,
+        },
+        options
+      )
+      .then(response => response);
   }
+
   return (
     <div className="SignIn">
       <div className="SignInContainer">
