@@ -1,0 +1,23 @@
+.Slider {
+  margin: 0 auto;
+  ul {
+    box-sizing: border-box;
+    width: 700px;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid red;
+    .sliderList {
+      box-sizing: border-box;
+      width: 700px;
+      border: 1px solid green;
+      transition: transform 0.5s;
+
+      .image {
+        width: 700px;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.MainSlider {
+  width: 700px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  top: 0px;
+  //overflow: hidden;
+  ul {
+    display: flex;
+
+    .slide-active {
+      width: 700px;
+      height: 500px;
+      object-fit: cover;
+      opacity: 1;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+    }
+  }
+}
+
+.image {
+  width: 700px;
+  height: 500px;
+}
+
+.next {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prev {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}

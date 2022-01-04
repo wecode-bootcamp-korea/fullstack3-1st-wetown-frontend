@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import Router from "./Router";
 import "./styles/reset.scss";
 import "./styles/common.scss";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <CookiesProvider>
     <Router />
-  </React.StrictMode>,
+  </CookiesProvider>,
   document.getElementById("root")
 );
