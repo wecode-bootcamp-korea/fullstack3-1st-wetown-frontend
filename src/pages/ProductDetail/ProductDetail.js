@@ -5,7 +5,7 @@ import "./ProductDetail.scss";
 
 const ProductDetail = () => {
   useEffect(() => {
-    fetch(`http://localhost:8000/product/9`, {
+    fetch(`http://localhost:8000/product/7`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -36,6 +36,7 @@ const ProductDetail = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [addCart, setAddCart] = useState(false);
+  const [noticeNum, setNoticeNum] = useState(1);
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
@@ -80,6 +81,82 @@ const ProductDetail = () => {
             originalImg={originalImg}
             originalSize={originalSize}
           />
+          <div className="productDetailArea">
+            <div className="detailHeading">
+              <ul className="noticeInfo">
+                <li>
+                  ▪️ WETOWN & STORE는 WE ENTERTAINMENT 공식 온라인 스토어입니다.
+                </li>
+                <li>
+                  ▪️ WETOWN & STORE는 콘텐츠 저작권법에 따라 보호받으며,
+                  무단복제 및 도용을 금지합니다
+                </li>
+                <li>
+                  ▪️ WETOWN & STORE는 음반 판매 수량은 🎼차트와 ⚜️차트에
+                  반영됩니다.
+                </li>
+              </ul>
+              <div className="noticeIcon">
+                <span>🎼</span> <span>⚜️</span>
+              </div>
+              <div className="noticeImg">
+                <div className="ad">
+                  <img src="/images/ad.png" alt="ad" />
+                </div>
+                <div className="corona">
+                  <img src="/images/corona.png" alt="corona" />
+                </div>
+              </div>
+            </div>
+            <div className="detailImg">
+              {originalImg.map((e, i) => {
+                return (
+                  <div className="productImg" key={i}>
+                    <img src={e} alt="productImg" />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="policyNotice">
+              <div className="policyBox">
+                <span
+                  className={noticeNum === 1 ? "on" : undefined}
+                  onClick={() => {
+                    setNoticeNum(1);
+                  }}
+                >
+                  상품정보
+                </span>
+                <span
+                  className={noticeNum === 2 ? "on" : undefined}
+                  onClick={() => {
+                    setNoticeNum(2);
+                  }}
+                >
+                  주문 및 배송 안내
+                </span>
+                <span
+                  className={noticeNum === 3 ? "on" : undefined}
+                  onClick={() => {
+                    setNoticeNum(3);
+                  }}
+                >
+                  교환 및 환불 안내
+                </span>
+                <span
+                  className={noticeNum === 4 ? "on" : undefined}
+                  onClick={() => {
+                    setNoticeNum(4);
+                  }}
+                >
+                  품질보증기준
+                </span>
+              </div>
+              <div className="imgInfo">
+                <SelectNotice num={noticeNum} />
+              </div>
+            </div>
+          </div>
         </div>
         <div className="sidebarArea">
           <div className="sideHeading">
@@ -286,8 +363,19 @@ const ViewCart = ({ cate, setAddCart }) => {
   );
 };
 
-export default ProductDetail;
+const SelectNotice = ({ num }) => {
+  switch (num) {
+    case 1:
+      return <img src="/images/info.png" alt="info" />;
+    case 2:
+      return <img src="/images/delivery.png" alt="delivery" />;
+    case 3:
+      return <img src="/images/change.png" alt="change" />;
+    case 4:
+      return <img src="/images/quality.png" alt="quality" />;
+    default:
+      return <img src="/images/info.png" alt="info" />;
+  }
+};
 
-// - ▪️ WETOWN & STORE는 WE ENTERTAINMENT 공식 온라인 스토어입니다.
-// - ▪️ WETOWN & STORE는 콘텐츠 저작권법에 따라 보호받으며, 무단복제 및 도용을 금지합니다
-// - ▪️ WETOWN & STORE는 음반 판매 수량은 🎼차트와 ⚜️차트에 반영됩니다.
+export default ProductDetail;
