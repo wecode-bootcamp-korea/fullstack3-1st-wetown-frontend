@@ -44,12 +44,13 @@ const SignUp = () => {
     // [ ] password length and character types
     // [ ] password and password check match
     // [ ] policy agreement mandatory fields checked
+    // [ ] age must be 14 years and older to signup
   };
 
   function goSignUp(e) {
     e.preventDefault();
 
-    fetch("http://localhost:8000/signup", {
+    fetch("http://localhost:8000/user/signup", {
       method: "POST",
       mode: "cors",
       headers: {
