@@ -12,10 +12,22 @@
 }
 
 .policyAgreement {
+  .policyCheckWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .policyCheckBox {
+      border: none;
+      // border-radius: 50%;
+    }
+  }
   .policyType {
     h4 {
       padding: 10px 0;
       font-size: 1rem;
+      span {
+        color: red;
+      }
     }
     &.notRequired .textContent {
       padding-right: 50px;
