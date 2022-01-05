@@ -304,6 +304,34 @@
         }
       }
 
+      .headerBottomSection.fixed {
+        position: fixed;
+        transition: opacity 0.3s ease-in;
+        .headerBottomInner {
+          background-color: blanchedalmond;
+          position: relative;
+          top: -50px;
+          display: flex;
+          justify-content: space-between;
+          margin: 0 auto;
+
+          .userMenu {
+            margin-left: 208px;
+            display: flex;
+            gap: 4rem;
+            ul {
+              li {
+                float: left;
+                margin-left: 3.5rem;
+
+                img {
+                  width: 36px;
+                }
+              }
+            }
+          }
+        }
+      }
       .pinkBackGround {
         background: #fbeff1;
         display: block;

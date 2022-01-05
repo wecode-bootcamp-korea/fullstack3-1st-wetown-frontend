@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
+
+  const [ScrollY, setScrollY] = useState(0);
+  const [fix, setFix] = useState(false);
+
+  const scrollWatch = () => {
+    setScrollY(window.pageYOffset);
+    if (ScrollY > 50) {
+      setFix(true);
+      setHovered(false);
+    } else {
+      setFix(false);
+    }
+  };
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", scrollWatch);
+    };
+    watch();
+    return () => {
+      window.removeEventListener("scroll", scrollWatch);
+    };
+  });
 
   return (
     <header className="HeaderNav">
@@ -35,7 +58,11 @@ export default function HeaderNav() {
               </ul>
             </nav>
           </section>
-          <section>
+          <section
+            className={
+              fix ? "headerBottomSection fixed" : "headerBottomSection"
+            }
+          >
             <nav className="headerBottom">
               <div className="headerBottomInner">
                 <div
@@ -55,32 +82,44 @@ export default function HeaderNav() {
                             DOG
                             <span
                               className="smallCircle"
-                              // style={{backgroundColor:`${circleColor}`}}
+                              style={{ backgroundColor: "red" }}
                             ></span>
                           </a>
                         </li>
                         <li>
                           <a href="/cat">
                             CAT
-                            <span className="smallCircle"></span>
+                            <span
+                              className="smallCircle"
+                              style={{ backgroundColor: "blue" }}
+                            ></span>
                           </a>
                         </li>
                         <li>
                           <a href="/turtle">
                             TURTLE
-                            <span className="smallCircle"></span>
+                            <span
+                              className="smallCircle"
+                              style={{ backgroundColor: "green" }}
+                            ></span>
                           </a>
                         </li>
                         <li>
                           <a href="/hamster">
                             HAMSTER
-                            <span className="smallCircle"></span>
+                            <span
+                              className="smallCircle"
+                              style={{ backgroundColor: "yellow" }}
+                            ></span>
                           </a>
                         </li>
                         <li>
                           <a href="/bird">
                             BIRD
-                            <span className="smallCircle"></span>
+                            <span
+                              className="smallCircle"
+                              style={{ backgroundColor: "purple" }}
+                            ></span>
                           </a>
                         </li>
                       </ul>

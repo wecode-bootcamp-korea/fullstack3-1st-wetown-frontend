@@ -4,13 +4,9 @@
   margin: 0 auto;
   position: relative;
   top: -130px;
-  // right: 560px;
   list-style: none;
-  // display: flex;
   justify-content: center;
   align-items: center;
-  // overflow: hidden;
-  // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
   ul {
     width: 100%;
@@ -50,7 +46,6 @@
   background: white;
   position: absolute;
   border: none;
-  // display: flex;
   align-items: center;
   cursor: pointer;
 
@@ -64,10 +59,8 @@
 .prev {
   top: 50%;
   left: -70px;
-  // transform: translateY(-60%);
 }
 .next {
   top: 50%;
   right: -70px;
-  // transform: translateY(-60%);
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import BtnSlider from "./BtnSlider";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
-//import "./practice.scss";
 
 export default function MainSlider() {
   const [slideIndex, setSlideIndex] = useState(1);
