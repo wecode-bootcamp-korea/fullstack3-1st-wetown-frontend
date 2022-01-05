@@ -1,4 +1,5 @@
 import React from "react";
+import "./BtnSlider.scss";
 
 export default function BtnSlider({ moveSlide, direction }) {
   return (
