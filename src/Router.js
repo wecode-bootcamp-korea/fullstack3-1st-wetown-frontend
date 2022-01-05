@@ -6,6 +6,7 @@ import SubProductList from "./pages/ProductList/SubProductList";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
+import Cart from "./pages/Cart/Cart";
 
 const Router = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const Router = () => (
       />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   </BrowserRouter>
 );

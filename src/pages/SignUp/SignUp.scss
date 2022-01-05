@@ -18,7 +18,6 @@
 .SignUp {
   font-size: 10px;
   // remove bgc after common style variables import
-  background-color: #f2f2f2;
 
   .SignUpContainer {
     @include flex-box(column, center, center);
@@ -61,11 +60,14 @@
         width: 100%;
 
         .inputControl {
+          @include flex-box(row, space-between, center);
           position: relative;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
           font-size: 0.8rem;
+
+          @media (max-width: 800px) {
+            @include flex-box(column, space-evenly, flex-start);
+            border: 1px solid #a0a0a0;
+          }
 
           &.requiredField > label::before {
             position: absolute;
@@ -73,10 +75,19 @@
             content: "*";
             color: red;
             font-size: 1rem;
+
+            @media (max-width: 800px) {
+              left: -10px;
+            }
           }
+
           .label {
             width: 130px;
             padding-left: 15px;
+
+            @media (max-width: 800px) {
+              padding-left: 0;
+            }
           }
 
           input {
@@ -86,27 +97,54 @@
             border: none;
             border-bottom: 1px solid #a0a0a0;
             outline: none;
-          }
-
-          #verification {
-            width: max-content;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin: 0;
+            &[disabled] {
+              background-color: #fff;
+            }
           }
 
           .verificationInputWrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: left;
-            align-content: flex-end;
+            @include flex-box(column, -content, flex-start);
             width: 100%;
-          }
 
+            .verificationInput.verificationInput {
+              margin: 0 15px 10px 0;
+            }
+
+            #verification {
+              width: max-content;
+              padding: 5px 10px;
+              cursor: pointer;
+              border: none;
+              border-radius: 50px;
+              background-color: #3d435f;
+              color: #fff;
+            }
+          }
+          .genderOptions {
+            @include flex-box(row, flex-start, center);
+            width: 50%;
+            input {
+              width: 10%;
+            }
+            label {
+              width: 30%;
+            }
+          }
           .phoneNumWrapper {
-            @include flex-box(row, flex-start, baseline);
-            display: flex;
+            @include flex-box(row, space-between, center);
             width: 100%;
+
+            select {
+              padding: 15px;
+              border: none;
+              outline: none;
+            }
+
+            .areaCodeInput,
+            .phoneNumInput {
+              width: 30%;
+              border-bottom: 1px solid #a0a0a0;
+            }
           }
         }
       }
@@ -160,15 +198,27 @@
       .formButtons {
         @include flex-box(row, space-between, -items);
         width: 100%;
+        @media (max-width: 800px) {
+          @include flex-box(column, space-between, center);
+          margin-bottom: 15px;
+          width: 100%;
+        }
 
         button {
           width: 48%;
-          padding: 15px 40px;
           border: none;
           border-radius: 50px;
           background-color: #3d435f;
-          color: #fff;
-          cursor: pointer;
+
+          .buttonText {
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 15px 40px;
+            color: #fff;
+            text-decoration: none;
+          }
         }
       }
     }

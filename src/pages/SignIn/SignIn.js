@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
@@ -24,28 +25,41 @@ const SignIn = () => {
     if (emailCheck && passwordCheck) {
       setValidLogin(true);
     } else setValidLogin(false);
-  }, [emailInput, passwordInput, validLogin]);
+  }, [emailInput, passwordInput]);
 
-  function goSignIn(e) {
+  const navigate = useNavigate();
+
+  async function goSignIn(e) {
     e.preventDefault();
-    fetch("http://localhost:8000/user/signin", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => localStorage.setItem("token", data.token));
+
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/user/signin`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailInput,
+          password: passwordInput,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.token);
+      navigate("/");
+    } else {
+    }
   }
+
   return (
     <div className="SignIn">
       <div className="SignInContainer">
+        <HeaderNav />
         <h2 className="pageTitle">Login</h2>
         <section className="signInBox">
           <form className="section form " action="#">
@@ -84,7 +98,7 @@ const SignIn = () => {
               // 개발과정에서 유효성 검사 진행확인 위해 색 표시
               // 추후 style 어트리뷰트는 삭제
               style={{ backgroundColor: validLogin ? "blue" : "red" }}
-              disabled={validLogin ? false : true}
+              disabled={!validLogin}
             >
               LOGIN
             </button>
