@@ -162,7 +162,7 @@
                         opacity: 1;
                         visibility: visible;
                       }
-                      &__.petsListLink {
+                      &__a {
                         position: relative;
                         z-index: 4;
                         font-weight: 600;
@@ -175,7 +175,7 @@
                     .petsListLink {
                       position: relative;
                       vertical-align: middle;
-                      padding: 10px 0px 10px 0px;
+                      padding: 10px 0px;
                       z-index: 3;
 
                       .smallCircle {
@@ -313,6 +313,7 @@
         transition: opacity 0.3s ease-in;
         .headerBottomInner {
           background-color: blanchedalmond;
+          opacity: 0.5;
           position: relative;
           top: -50px;
           display: flex;
