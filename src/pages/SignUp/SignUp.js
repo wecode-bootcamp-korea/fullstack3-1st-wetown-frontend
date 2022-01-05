@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
@@ -64,41 +64,32 @@ const SignUp = () => {
     } else {
       setValidSignUp(false);
     }
-  }, [emailInput, passwordInput, pwCheckInput, bdayInput, validSignUp]);
+  }, [emailInput, passwordInput, pwCheckInput, bdayInput]);
 
   function goSignUp(e) {
     e.preventDefault();
 
-    const options = {
-      mode: "no-cors",
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
+      method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      withCredentials: true,
-    };
-
-    axios
-      .post(
-        "http://localhost:8000/user/signup",
-        {
-          name: nameInput,
-          nickname: nicknameInput,
-          password: passwordInput,
-          email: emailInput,
-          phone_number: phoneNumInput,
-          gender: genderInput,
-        },
-        options
-      )
-      .then(response => {
-        if (response.status === 200) {
-          // 사용자를 로그인 시키고 메인페이지 또는 마지막 페이지로 이동
-        }
-      });
+      body: JSON.stringify({
+        name: nameInput,
+        nickname: nicknameInput,
+        password: passwordInput,
+        email: emailInput,
+        phone_number: phoneNumInput,
+        gender: genderInput,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/data/mockCategory.json")
+    fetch("/data/mockCategory.json")
       .then(res => res.json())
       .then(data => setCategoryList(data));
   }, []);
@@ -111,6 +102,7 @@ const SignUp = () => {
       style={{ backgroundColor: validSignUp ? "green" : "orange" }}
     >
       <div className="SignUpContainer">
+        <HeaderNav />
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
           <section className="section userFormInput">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
@@ -25,43 +25,32 @@ const SignIn = () => {
     if (emailCheck && passwordCheck) {
       setValidLogin(true);
     } else setValidLogin(false);
-  }, [emailInput, passwordInput, validLogin]);
+  }, [emailInput, passwordInput]);
 
   const navigate = useNavigate();
 
   function goSignIn(e) {
     e.preventDefault();
 
-    const options = {
-      mode: "no-cors",
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/signin`, {
+      method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      withCredentials: true,
-      // sameSite: StrictMode,
-      // xsrfCookieName: "XSRF-TOKEN",
-      // xsrfHeaderName: "X-XSRF-TOKEN",
-    };
-
-    axios
-      .post(
-        "http://localhost:8000/user/signin",
-        {
-          email: emailInput,
-          password: passwordInput,
-        },
-        options
-      )
-      .then(response => {
-        if (response.status === 200) {
-          navigate("/");
-        }
-      });
+      body: JSON.stringify({
+        email: emailInput,
+        password: passwordInput,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
   }
 
   return (
     <div className="SignIn">
       <div className="SignInContainer">
+        <HeaderNav />
         <h2 className="pageTitle">Login</h2>
         <section className="signInBox">
           <form className="section form " action="#">
