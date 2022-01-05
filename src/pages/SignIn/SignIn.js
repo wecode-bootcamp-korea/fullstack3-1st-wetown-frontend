@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
@@ -27,6 +27,8 @@ const SignIn = () => {
     } else setValidLogin(false);
   }, [emailInput, passwordInput, validLogin]);
 
+  const navigate = useNavigate();
+
   function goSignIn(e) {
     e.preventDefault();
 
@@ -36,7 +38,11 @@ const SignIn = () => {
         "Content-Type": "application/json",
       },
       withCredentials: true,
+      // sameSite: StrictMode,
+      // xsrfCookieName: "XSRF-TOKEN",
+      // xsrfHeaderName: "X-XSRF-TOKEN",
     };
+
     axios
       .post(
         "http://localhost:8000/user/signin",
@@ -46,7 +52,11 @@ const SignIn = () => {
         },
         options
       )
-      .then(response => response);
+      .then(response => {
+        if (response.status === 200) {
+          navigate("/");
+        }
+      });
   }
 
   return (
