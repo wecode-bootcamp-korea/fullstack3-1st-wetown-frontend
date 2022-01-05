@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
@@ -62,32 +65,59 @@ const SignUp = () => {
     } else {
       setValidSignUp(false);
     }
-  }, [emailInput, passwordInput, pwCheckInput, bdayInput, validSignUp]);
+  }, [emailInput, passwordInput, pwCheckInput, bdayInput]);
 
   function goSignUp(e) {
     e.preventDefault();
 
-    fetch("http://localhost:8000/user/signup", {
-      method: "POST",
-      mode: "cors",
+    // fetch(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     name: nameInput,
+    //     nickname: nicknameInput,
+    //     password: passwordInput,
+    //     email: emailInput,
+    //     phone_number: phoneNumInput,
+    //     gender: genderInput,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => console.log(data));
+
+    const options = {
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: nameInput,
-        nickname: nicknameInput,
-        password: passwordInput,
-        email: emailInput,
-        phone_number: phoneNumInput,
-        gender: genderInput,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+      withCredentials: true,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/user/signup`,
+        {
+          name: nameInput,
+          nickname: nicknameInput,
+          password: passwordInput,
+          email: emailInput,
+          phone_number: phoneNumInput,
+          gender: genderInput,
+        },
+        options
+      )
+      .then(response => {
+        if (response.status === 200) {
+          // 사용자를 로그인 시키고 메인페이지 또는 마지막 페이지로 이동
+        }
+      });
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/data/mockCategory.json")
+    fetch("/data/mockCategory.json")
       .then(res => res.json())
       .then(data => setCategoryList(data));
   }, []);
@@ -100,6 +130,7 @@ const SignUp = () => {
       style={{ backgroundColor: validSignUp ? "green" : "orange" }}
     >
       <div className="SignUpContainer">
+        <HeaderNav />
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
           <section className="section userFormInput">
@@ -110,8 +141,19 @@ const SignUp = () => {
               </label>
               <div className="verificationInputWrapper">
                 <div className="inputWrapper">
-                  <span>휴대폰 인증</span>
-                  <input type="button" id="verification" value="인증하기" />
+                  <span className="verificationInput">휴대폰 인증</span>
+                  <button
+                    className="verificationInput"
+                    type="button"
+                    id="verification"
+                    style={{
+                      color: "#3d435f",
+                      backgroundColor: "#fff",
+                      border: "1px solid #4d435f",
+                    }}
+                  >
+                    인증하기
+                  </button>
                 </div>
                 <div>본인 명의의 휴대폰으로 본인인증을 진행합니다.</div>
               </div>
@@ -142,20 +184,20 @@ const SignUp = () => {
             </div>
             <div className="inputControl">
               <label className="label">성별</label>
-              <div>
+              <div className="genderOptions">
                 <input
                   type="radio"
-                  id="genderMaleInput"
+                  id="male"
                   name="genderInput"
                   value="남자"
                   onClick={handleInput}
                 />
                 <label htmlFor="genderMaleInput">남자</label>
               </div>
-              <div>
+              <div className="genderOptions">
                 <input
                   type="radio"
-                  id="genderFemaleInput"
+                  id="female"
                   name="genderInput"
                   value="여자"
                   onClick={handleInput}
@@ -208,14 +250,19 @@ const SignUp = () => {
               <label className="label" htmlFor="addressInput">
                 주소
               </label>
-              <input type="text" id="addressInput" name="addressInput" />
+              <input
+                type="text"
+                id="addressInput"
+                name="addressInput"
+                disabled
+              />
             </div>
             <div className="inputControl">
               <label className="label" htmlFor="phoneNumInput">
                 일반전화
               </label>
               <div className="phoneNumWrapper">
-                <select id="phoneNumInput" name="areaCode">
+                <select className="areaCodeInput">
                   <option value="02">02</option>
                   <option value="010">010</option>
                   <option value="031">031</option>
@@ -228,8 +275,8 @@ const SignUp = () => {
                   <option value="051">051</option>
                   <option value="052">052</option>
                 </select>
-                <input type="tel" id="phoneNum1" />
-                <input type="tel" id="phoneNum2" />
+                <input type="tel" className="phoneNumInput" disabled />
+                <input type="tel" className="phoneNumInput" disabled />
               </div>
             </div>
             <div className="inputControl requiredField">
@@ -275,8 +322,14 @@ const SignUp = () => {
           </section>
           <Policy />
           <section className="section formButtons">
-            <button>CANCEL</button>
-            <button onClick={goSignUp}>JOIN</button>
+            <button>
+              <Link className="buttonText" to="/">
+                CANCEL
+              </Link>
+            </button>
+            <button onClick={goSignUp} disabled={!validSignUp}>
+              <span className="buttonText">JOIN</span>
+            </button>
           </section>
         </form>
       </div>
