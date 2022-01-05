@@ -32,7 +32,12 @@ export default function HeaderNav() {
 
   return (
     <header className="HeaderNav">
-      <div className="topBox" style={{ backgroundColor: `${colorChange}` }}>
+      <div
+        className="topBox"
+        style={{
+          backgroundColor: `${colorChange}`,
+        }}
+      >
         <div className="topBoxInner">
           <section>
             <nav className="headerTop">

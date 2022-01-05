@@ -1,7 +1,7 @@
 .HeaderNav {
   font-size: 16px;
-  position: relative;
-  z-index: 1000;
+  // position: fixed;
+  // top: 0;
 
   .topBox {
     height: 320px;
@@ -337,18 +337,17 @@
           }
         }
       }
-      .pinkBackGround {
-        background: #fbeff1;
-        display: block;
-        position: absolute;
-        z-index: -50;
-        border-radius: 100%;
-        text-align: center;
-        top: -50px;
-        left: 70px;
-        width: 0px;
-        height: 0px;
-      }
+      // .pinkBackGround {
+      //   display: block;
+      //   position: absolute;
+      //   z-index: 1;
+      //   // border-radius: 100%;
+      //   text-align: center;
+      //   top: -50px;
+      //   left: 70px;
+      //   width: 0px;
+      //   height: 300px;
+      // }
     }
   }
 }
