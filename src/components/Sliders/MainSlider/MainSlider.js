@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import BtnSlider from "./BtnSlider";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
+import { Link } from "react-router-dom";
 
 export default function MainSlider() {
   const [slideIndex, setSlideIndex] = useState(1);
@@ -33,6 +34,12 @@ export default function MainSlider() {
       clearInterval(interval);
     };
   });
+
+  const changePage = () => {
+    console.log("changed");
+    var link = "www.yahoo.com";
+    window.location.assign(link);
+  };
   return (
     <div className="MainSlider">
       <ul>
@@ -42,7 +49,11 @@ export default function MainSlider() {
               key={obj.id}
               className={slideIndex === index + 1 ? "slide-active" : "slide"}
             >
-              <img src={obj.img} className="image" />
+              <img
+                src={obj.img}
+                className="image"
+                onClick={() => changePage()}
+              />
             </li>
           );
         })}
