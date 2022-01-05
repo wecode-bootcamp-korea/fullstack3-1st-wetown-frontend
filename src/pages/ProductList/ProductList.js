@@ -29,24 +29,19 @@ function ProductList() {
   // if (querySubCategory) {
   //   URL = `http://localhost:8000/product/filter/${params.category}/?setcategory=${querySubCategory}&sortMethod=${querySortMethod}`;
   // }
-  // console.log("^^^^", querySubCategory);
 
   // 카테고리 입력값 받아오기
   useEffect(() => {
-    console.log("FIRST USE EFFECT");
     fetch(URL)
       .then(res => res.json())
       .then(data => setCategoryList(data));
   }, [sortMethod]);
-
-  // console.log("data: ", categoryList);
 
   // const subCategoryValue = e => {
   //   setSubcategory(e);
   // };
 
   const sortMethodValue = num => {
-    console.log("sortmethod: ", num.target.value);
     setSortMethod(num.target.value);
   };
 
