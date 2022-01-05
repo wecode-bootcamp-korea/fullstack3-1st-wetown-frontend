@@ -1,0 +1,43 @@
+.MainSlider {
+  width: 700px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  top: -130px;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .slide-active {
+      width: 700px;
+      height: 500px;
+      object-fit: cover;
+      opacity: 1;
+      transition: opacity ease-in-out 0.4s;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
