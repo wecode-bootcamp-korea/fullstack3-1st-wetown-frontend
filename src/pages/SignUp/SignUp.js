@@ -307,7 +307,7 @@ const SignUp = () => {
                 CANCEL
               </Link>
             </button>
-            <button onClick={goSignUp}>
+            <button onClick={goSignUp} disabled={!validSignUp}>
               <span className="buttonText">JOIN</span>
             </button>
           </section>
