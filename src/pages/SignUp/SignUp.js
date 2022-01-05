@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
@@ -67,23 +69,32 @@ const SignUp = () => {
   function goSignUp(e) {
     e.preventDefault();
 
-    fetch("http://localhost:8000/user/signup", {
-      method: "POST",
-      mode: "cors",
+    const options = {
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: nameInput,
-        nickname: nicknameInput,
-        password: passwordInput,
-        email: emailInput,
-        phone_number: phoneNumInput,
-        gender: genderInput,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+      withCredentials: true,
+    };
+
+    axios
+      .post(
+        "http://localhost:8000/user/signup",
+        {
+          name: nameInput,
+          nickname: nicknameInput,
+          password: passwordInput,
+          email: emailInput,
+          phone_number: phoneNumInput,
+          gender: genderInput,
+        },
+        options
+      )
+      .then(response => {
+        if (response.status === 200) {
+          // 사용자를 로그인 시키고 메인페이지 또는 마지막 페이지로 이동
+        }
+      });
   }
 
   useEffect(() => {
@@ -291,8 +302,14 @@ const SignUp = () => {
           </section>
           <Policy />
           <section className="section formButtons">
-            <button>CANCEL</button>
-            <button onClick={goSignUp}>JOIN</button>
+            <button>
+              <Link className="buttonText" to="/">
+                CANCEL
+              </Link>
+            </button>
+            <button onClick={goSignUp}>
+              <span className="buttonText">JOIN</span>
+            </button>
           </section>
         </form>
       </div>

@@ -61,10 +61,8 @@
         width: 100%;
 
         .inputControl {
+          @include flex-box(row, space-between, center);
           position: relative;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
           font-size: 0.8rem;
 
           &.requiredField > label::before {
@@ -93,10 +91,7 @@
           }
 
           .verificationInputWrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: left;
-            align-content: flex-end;
+            @include flex-box(column, -content, flex-start);
             width: 100%;
 
             .verificationInput.verificationInput {
@@ -114,10 +109,8 @@
             }
           }
           .genderOptions {
-            display: flex;
+            @include flex-box(row, flex-start, center);
             width: 50%;
-            justify-content: flex-start;
-            align-items: center;
             input {
               width: 10%;
             }
@@ -127,7 +120,6 @@
           }
           .phoneNumWrapper {
             @include flex-box(row, space-between, center);
-            display: flex;
             width: 100%;
 
             select {
@@ -197,12 +189,19 @@
 
         button {
           width: 48%;
-          padding: 15px 40px;
           border: none;
           border-radius: 50px;
           background-color: #3d435f;
-          color: #fff;
-          cursor: pointer;
+
+          .buttonText {
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 15px 40px;
+            color: #fff;
+            text-decoration: none;
+          }
         }
       }
     }
