@@ -1,0 +1,40 @@
+.PetProductBox {
+  width: 1200px;
+  margin: 0 auto;
+
+  .petProductBox {
+    margin: 0 auto;
+
+    h2 {
+      margin: 0 auto;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 600;
+    }
+
+    .productBoxTab {
+      height: 50px;
+      margin: 30px auto 0;
+      text-align: center;
+
+      .productBoxTabList {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .productBox {
+      margin: 30px auto 0;
+      text-align: center;
+
+      .productBoxList {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+img {
+  width: 200px;
+  height: 400px;
+}

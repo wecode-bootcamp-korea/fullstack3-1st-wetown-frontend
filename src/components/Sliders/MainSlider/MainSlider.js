@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BtnSlider from "./BtnSlider";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
@@ -22,6 +22,18 @@ export default function MainSlider() {
       setSlideIndex(slideIndex - 1);
     }
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (slideIndex !== sliderData.length) {
+        setSlideIndex(slideIndex + 1);
+      } else {
+        setSlideIndex(1);
+      }
+    }, 2000);
+    return () => {
+      clearInterval(interval);
+    };
+  });
   return (
     <div className="MainSlider">
       <ul>
