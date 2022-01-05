@@ -16,9 +16,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .policyCheckBox {
-      border: none;
-      // border-radius: 50%;
+    &.checkAllWrapper {
+      font-size: 1rem;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
     }
   }
   .policyType {
@@ -37,7 +38,6 @@
       max-height: 300px;
       margin: 20px 0;
       padding: 20px;
-      border: 1px solid #f0f0f0;
       overflow: auto;
       color: #a0a0a0;
       text-align: justify;

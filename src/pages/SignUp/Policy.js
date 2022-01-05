@@ -32,21 +32,13 @@ const Policy = () => {
     if (!userAgmt || !privacy || !ageFourteen || !marketing) {
       setCheckAll(false);
     }
-  }, [policyList]);
+  }, [userAgmt, privacy, ageFourteen, marketing]);
 
   return (
     <section className="section policyAgreement">
       <h3 className="title">약관 동의</h3>
-      <div className="policyCheckWrapper">
-        <h4
-          style={{
-            fontSize: "1.1rem",
-            borderBottom: "1px solid #f0f0f0",
-            paddingBottom: "15px",
-          }}
-        >
-          아래 내용에 모두 동의합니다.
-        </h4>
+      <div className="policyCheckWrapper checkAllWrapper">
+        <h4>아래 내용에 모두 동의합니다.</h4>
         <input
           type="checkbox"
           className="policyCheckBox"
@@ -64,7 +56,7 @@ const Policy = () => {
             type="checkbox"
             className="policyCheckBox"
             name="userAgmt"
-            checked={policyList.userAgmt ? true : false}
+            checked={userAgmt ? true : false}
             onChange={handleCheckBox}
           />
         </div>
@@ -818,7 +810,7 @@ const Policy = () => {
             type="checkbox"
             className="policyCheckBox"
             name="privacy"
-            checked={policyList.privacy ? true : false}
+            checked={privacy ? true : false}
             onChange={handleCheckBox}
           />
         </div>
@@ -895,7 +887,7 @@ const Policy = () => {
             type="checkbox"
             className="policyCheckBox"
             name="ageFourteen"
-            checked={policyList.ageFourteen ? true : false}
+            checked={ageFourteen ? true : false}
             onChange={handleCheckBox}
           />
         </div>
@@ -910,7 +902,7 @@ const Policy = () => {
             type="checkbox"
             className="policyCheckBox"
             name="marketing"
-            checked={policyList.marketing ? true : false}
+            checked={marketing ? true : false}
             onChange={handleCheckBox}
           />
         </div>
