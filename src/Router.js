@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main/Main";
 import ProductList from "./pages/ProductList/ProductList";
+import SubProductList from "./pages/ProductList/SubProductList";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
@@ -10,6 +11,10 @@ const Router = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Main />} />
+      <Route
+        path="/category/:category/subcategory/:subcategory/sortMethod=1"
+        element={<SubProductList />}
+      />
       <Route path="/category/:category" element={<ProductList />} />
       <Route
         path="/category/:category/product/:product"
