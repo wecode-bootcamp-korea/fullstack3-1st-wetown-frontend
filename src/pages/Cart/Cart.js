@@ -80,7 +80,6 @@ const CartList = ({ img, name, quantity, price, sale = 1, total, x, setX }) => {
   const [productQuantity, setProductQuantity] = useState(quantity);
   total.push(price * quantity * (1 - sale / 100));
   const a = new Set(total);
-  console.log(a);
   return (
     <div className="productDetail">
       <div className="dot">◾</div>
