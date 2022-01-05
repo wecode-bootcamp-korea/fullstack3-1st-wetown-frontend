@@ -9,10 +9,10 @@ export default function HeaderNav() {
 
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
-  const newScrollY = useState(window.pageYOffset);
+
   const scrollWatch = () => {
-    setScrollY(newScrollY);
-    if (newScrollY > 50) {
+    setScrollY(window.pageYOffset);
+    if (scrollY > 50) {
       setFix(true);
       setHovered(false);
     } else {
@@ -28,7 +28,7 @@ export default function HeaderNav() {
     return () => {
       window.removeEventListener("scroll", scrollWatch);
     };
-  }, []);
+  });
 
   return (
     <header className="HeaderNav">
@@ -90,7 +90,7 @@ export default function HeaderNav() {
                             DOG
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "red" }}
+                              style={{ backgroundColor: "#fccf1d" }}
                             ></span>
                           </Link>
                         </li>
@@ -102,7 +102,7 @@ export default function HeaderNav() {
                             CAT
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "blue" }}
+                              style={{ backgroundColor: "#c81a20" }}
                             ></span>
                           </Link>
                         </li>
@@ -114,7 +114,7 @@ export default function HeaderNav() {
                             TURTLE
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "green" }}
+                              style={{ backgroundColor: "#016ad5" }}
                             ></span>
                           </Link>
                         </li>
@@ -126,7 +126,7 @@ export default function HeaderNav() {
                             HAMSTER
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "yellow" }}
+                              style={{ backgroundColor: "#cda5e0" }}
                             ></span>
                           </Link>
                         </li>
@@ -138,7 +138,7 @@ export default function HeaderNav() {
                             BIRD
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "purple" }}
+                              style={{ backgroundColor: "#d8e22d" }}
                             ></span>
                           </Link>
                         </li>
