@@ -206,6 +206,7 @@
               border-bottom: 2px solid black;
             }
             span {
+              cursor: pointer;
               width: 25%;
               padding-bottom: 20px;
               border-bottom: 1px solid #c7c4c4;
@@ -410,6 +411,42 @@
               background-color: #ecebeb;
             }
           }
+        }
+      }
+    }
+    .topBottom {
+      cursor: pointer;
+      .top {
+        position: fixed;
+        top: 85%;
+        right: 2%;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #6f6f85;
+        text-align: center;
+        padding-top: 13px;
+        img {
+          width: 60%;
+          height: 60%;
+          object-fit: fill;
+        }
+      }
+      .bottom {
+        position: fixed;
+        top: 90%;
+        right: 2%;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #6f6f85;
+        text-align: center;
+        transform: scaleY(-1);
+        padding-top: 13px;
+        img {
+          width: 60%;
+          height: 60%;
+          object-fit: fill;
         }
       }
     }

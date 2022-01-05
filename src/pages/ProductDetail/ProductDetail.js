@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { Slider } from "./compo/slider";
 
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
   useEffect(() => {
-    fetch(`http://localhost:8000/product/7`, {
+    fetch(`http://localhost:8000/product/8`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -29,6 +30,7 @@ const ProductDetail = () => {
       });
   }, []);
 
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [imgList, setImgList] = useState([]);
   const [originalImg, setOriginalImg] = useState([]);
@@ -40,38 +42,42 @@ const ProductDetail = () => {
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
-      return Math.floor(
+      return Math.round(
         data[0].price * (1 - data[0].sale_rate / 100) * quantity
       )
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     } else {
-      return Math.floor(data[0].price * quantity)
+      return Math.round(data[0].price * quantity)
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   };
 
   const toCart = () => {
-    // fetch(`http://localhost:8000/cart`, {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     product_id: data[0].product_id,
-    //     cart_quantity: quantity,
-    //   })
-    //     .then(res => res.json)
-    //     .then(res => setAddCart(res.result)),
-    // });
-    setAddCart(true);
+    fetch(`http://localhost:8000/cart`, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: 3,
+        product_id: data[0].id,
+        cart_quantity: quantity,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => setAddCart(res.result));
+    // setAddCart(true);
   };
-
   return (
     <div className="ProductDetail">
       <div className="detailArea">
         {addCart ? (
-          <ViewCart cate={data[0].cate_name} setAddCart={setAddCart} />
+          <ViewCart
+            cate={data[0].cate_name}
+            setAddCart={setAddCart}
+            navigate={navigate}
+          />
         ) : null}
         <div className="mainArea">
           {data[0] && data[0].is_new ? <NewTag /> : null}
@@ -193,9 +199,9 @@ const ProductDetail = () => {
             </ul>
             <ul className="savedValue">
               <li>
-                0.5% ({data[0] && Math.floor(data[0].price * 0.005) + ` P`}
+                0.5% ({data[0] && Math.round(data[0].price * 0.005) + ` P`}
                 )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </li>
               <li className="beforeHover">PINK SILVER 기본적립금 +0.2%</li>
               <li className="beforeHover">PINK GOLD 기본적립금 +0.5%</li>
@@ -279,6 +285,24 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+        <div className="topBottom">
+          <span
+            className="top"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <img src="/images/totop.png" alt="top" />
+          </span>
+          <span
+            className="bottom"
+            onClick={() => {
+              window.scrollTo({ top: 10000, behavior: "smooth" });
+            }}
+          >
+            <img src="/images/totop.png" alt="bottom" />
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -297,7 +321,7 @@ const Price = ({ sale, price }) => {
     <div className="priceBox">
       <span className="afterPrice">
         {`₩ ` +
-          Math.floor(price * (1 - sale / 100))
+          Math.round(price * (1 - sale / 100))
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
       </span>
@@ -326,7 +350,7 @@ const pickColor = cate => {
   }
 };
 
-const ViewCart = ({ cate, setAddCart }) => {
+const ViewCart = ({ cate, setAddCart, navigate }) => {
   return (
     <div className="cartArea">
       <div className="cartHead" style={pickColor(cate)}>
@@ -353,7 +377,7 @@ const ViewCart = ({ cate, setAddCart }) => {
         </button>
         <button
           onClick={() => {
-            setAddCart(false);
+            navigate("/cart");
           }}
         >
           장바구니 이동
