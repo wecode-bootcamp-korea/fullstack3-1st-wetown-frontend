@@ -1,9 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-practice.scss
-practiceSlider.js
-Slider.jsSlider.scss
-SliderSlick.js
-SliderSlick.scss
+
 # dependencies
 /node_modules
 /.pnp
@@ -26,3 +22,7 @@ SliderSlick.scss
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.env
+.env.development
+.env.production
