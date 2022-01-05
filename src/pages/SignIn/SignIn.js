@@ -5,6 +5,7 @@ import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
 const SignIn = () => {
+  const [errorMsg, setErrorMsg] = useState(false);
   const [validLogin, setValidLogin] = useState(false);
   const [signInInput, setSignInInput] = useState({
     emailInput: "",
@@ -16,6 +17,9 @@ const SignIn = () => {
   const handleInput = e => {
     let { name, value } = e.target;
     setSignInInput({ ...signInInput, [name]: value });
+    if (errorMsg) {
+      setErrorMsg(false);
+    }
   };
 
   useEffect(() => {
@@ -52,7 +56,9 @@ const SignIn = () => {
     if (response.status === 200) {
       localStorage.setItem("token", data.token);
       navigate("/");
-    } else {
+    } else if (response.status === (400 || 500)) {
+      setErrorMsg(true);
+      setValidLogin(false);
     }
   }
 
@@ -91,6 +97,12 @@ const SignIn = () => {
               />
             </div>
           </form>
+          <div
+            className="errorMsg"
+            style={{ visibility: errorMsg ? "visible" : "hidden" }}
+          >
+            이메일과 비밀번호를 확인해주세요.
+          </div>
           <section className="section formButtons">
             <button
               className="signInButton"
