@@ -79,7 +79,7 @@ export default function HeaderNav() {
                     <li className="petMenu">
                       <Link to="/category" className="petTitle">
                         PET
-                        <span className="circle"></span>
+                        <span className="circle" />
                       </Link>
                       <ul className="petsList">
                         <li>
@@ -91,7 +91,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "#fccf1d" }}
-                            ></span>
+                            />
                           </Link>
                         </li>
                         <li>
@@ -103,7 +103,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "#c81a20" }}
-                            ></span>
+                            />
                           </Link>
                         </li>
                         <li>
@@ -115,7 +115,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "#016ad5" }}
-                            ></span>
+                            />
                           </Link>
                         </li>
                         <li>
@@ -127,7 +127,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "#cda5e0" }}
-                            ></span>
+                            />
                           </Link>
                         </li>
                         <li>
@@ -139,7 +139,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "#d8e22d" }}
-                            ></span>
+                            />
                           </Link>
                         </li>
                       </ul>
@@ -147,31 +147,31 @@ export default function HeaderNav() {
                     <li className="productMenu">
                       <Link to="/list" className="productTitle">
                         PRODUCT
-                        <span className="circle"></span>
+                        <span className="circle" />
                       </Link>
                       <ul className="productsList">
                         <li>
                           <Link to="/food">
                             FOOD
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </Link>
                         </li>
                         <li>
                           <Link to="/toy">
                             TOY
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </Link>
                         </li>
                         <li>
                           <Link to="/house">
                             HOUSE
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </Link>
                         </li>
                         <li>
                           <Link to="/health">
                             HEALTH
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </Link>
                         </li>
                       </ul>
@@ -219,7 +219,7 @@ export default function HeaderNav() {
               </div>
             </nav>
           </section>
-          <div className="pinkBackGround"></div>
+          <div className="pinkBackGround" />
         </div>
       </div>
     </header>
