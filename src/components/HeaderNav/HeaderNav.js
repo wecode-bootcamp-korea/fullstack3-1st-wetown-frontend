@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
@@ -6,12 +7,12 @@ export default function HeaderNav() {
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
 
-  const [ScrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
 
   const scrollWatch = () => {
     setScrollY(window.pageYOffset);
-    if (ScrollY > 50) {
+    if (scrollY > 50) {
       setFix(true);
       setHovered(false);
     } else {
@@ -36,22 +37,26 @@ export default function HeaderNav() {
           <section>
             <nav className="headerTop">
               <ul>
-                <li>Login</li>
-                <li>Join</li>
+                <li>
+                  <Link to="/signin">Login</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Join</Link>
+                </li>
                 <li className="globalStore">
-                  <a href="/">KOR</a>
+                  <Link to="/">KOR</Link>
                   <ul className="globalStoreList">
                     <li>
-                      <a href="/">KOR</a>
+                      <Link to="/">KOR</Link>
                     </li>
                     <li>
-                      <a href="/en">ENG</a>
+                      <Link to="#">ENG</Link>
                     </li>
                     <li>
-                      <a href="/jp">JPN</a>
+                      <Link to="#">JPN</Link>
                     </li>
                     <li>
-                      <a href="/cn">CHN</a>
+                      <Link to="#">CHN</Link>
                     </li>
                   </ul>
                 </li>
@@ -72,119 +77,142 @@ export default function HeaderNav() {
                 >
                   <ul>
                     <li className="petMenu">
-                      <a href="/list" className="petTitle">
+                      <Link to="/category" className="petTitle">
                         PET
                         <span className="circle"></span>
-                      </a>
+                      </Link>
                       <ul className="petsList">
                         <li>
-                          <a href="/dog">
+                          <Link
+                            to="/category/:category"
+                            className="petsListLink"
+                          >
                             DOG
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "red" }}
+                              style={{ backgroundColor: "#fccf1d" }}
                             ></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/cat">
+                          <Link
+                            to="/category/:category"
+                            className="petsListLink"
+                          >
                             CAT
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "blue" }}
+                              style={{ backgroundColor: "#c81a20" }}
                             ></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/turtle">
+                          <Link
+                            to="/category/:category"
+                            className="petsListLink"
+                          >
                             TURTLE
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "green" }}
+                              style={{ backgroundColor: "#016ad5" }}
                             ></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/hamster">
+                          <Link
+                            to="/category/:category"
+                            className="petsListLink"
+                          >
                             HAMSTER
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "yellow" }}
+                              style={{ backgroundColor: "#cda5e0" }}
                             ></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/bird">
+                          <Link
+                            to="/category/:category"
+                            className="petsListLink"
+                          >
                             BIRD
                             <span
                               className="smallCircle"
-                              style={{ backgroundColor: "purple" }}
+                              style={{ backgroundColor: "#d8e22d" }}
                             ></span>
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </li>
                     <li className="productMenu">
-                      <a href="/list" className="productTitle">
+                      <Link to="/list" className="productTitle">
                         PRODUCT
                         <span className="circle"></span>
-                      </a>
+                      </Link>
                       <ul className="productsList">
                         <li>
-                          <a href="/food">
+                          <Link to="/food">
                             FOOD
                             <span className="smallCircle"></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/toy">
+                          <Link to="/toy">
                             TOY
                             <span className="smallCircle"></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/house">
+                          <Link to="/house">
                             HOUSE
                             <span className="smallCircle"></span>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="/health">
+                          <Link to="/health">
                             HEALTH
                             <span className="smallCircle"></span>
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="/list">P!CK</a>
+                      <Link to="/list">P!CK</Link>
                     </li>
                     <li>
-                      <a href="/list">EVENT</a>
+                      <Link to="/list">EVENT</Link>
                     </li>
                     <li>
-                      <a href="/list">BRAND</a>
+                      <Link to="/list">BRAND</Link>
                     </li>
                   </ul>
                 </div>
                 <div className="headerLogo">
-                  <a href="/">
+                  <Link to="/">
                     <img src="icons/main/mainIcon.svg" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="userMenu">
                   <ul>
                     <li>
-                      <img src="icons/main/person.svg" />
+                      <Link to="/signin">
+                        <img src="icons/main/person.svg" />
+                      </Link>
                     </li>
                     <li>
-                      <img src="icons/main/search.svg" />
+                      <Link to="/">
+                        <img src="icons/main/search.svg" />
+                      </Link>
                     </li>
                     <li>
-                      <img src="icons/main/shopping_cart.svg" />
+                      <Link to="/">
+                        <img src="icons/main/shopping_cart.svg" />
+                      </Link>
                     </li>
                     <li>
-                      <img src="icons/main/bookmarks.svg" />
+                      <Link to="/">
+                        <img src="icons/main/bookmarks.svg" />
+                      </Link>
                     </li>
                   </ul>
                 </div>
