@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
@@ -36,8 +37,12 @@ export default function HeaderNav() {
           <section>
             <nav className="headerTop">
               <ul>
-                <li>Login</li>
-                <li>Join</li>
+                <li>
+                  <Link to="/signin">Login</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Join</Link>
+                </li>
                 <li className="globalStore">
                   <a href="/">KOR</a>
                   <ul className="globalStoreList">
@@ -74,7 +79,7 @@ export default function HeaderNav() {
                     <li className="petMenu">
                       <a href="/list" className="petTitle">
                         PET
-                        <span className="circle"></span>
+                        <span className="circle" />
                       </a>
                       <ul className="petsList">
                         <li>
@@ -83,7 +88,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "red" }}
-                            ></span>
+                            />
                           </a>
                         </li>
                         <li>
@@ -92,7 +97,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "blue" }}
-                            ></span>
+                            />
                           </a>
                         </li>
                         <li>
@@ -101,7 +106,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "green" }}
-                            ></span>
+                            />
                           </a>
                         </li>
                         <li>
@@ -110,7 +115,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "yellow" }}
-                            ></span>
+                            />
                           </a>
                         </li>
                         <li>
@@ -119,7 +124,7 @@ export default function HeaderNav() {
                             <span
                               className="smallCircle"
                               style={{ backgroundColor: "purple" }}
-                            ></span>
+                            />
                           </a>
                         </li>
                       </ul>
@@ -127,31 +132,31 @@ export default function HeaderNav() {
                     <li className="productMenu">
                       <a href="/list" className="productTitle">
                         PRODUCT
-                        <span className="circle"></span>
+                        <span className="circle" />
                       </a>
                       <ul className="productsList">
                         <li>
                           <a href="/food">
                             FOOD
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </a>
                         </li>
                         <li>
                           <a href="/toy">
                             TOY
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </a>
                         </li>
                         <li>
                           <a href="/house">
                             HOUSE
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </a>
                         </li>
                         <li>
                           <a href="/health">
                             HEALTH
-                            <span className="smallCircle"></span>
+                            <span className="smallCircle" />
                           </a>
                         </li>
                       </ul>
@@ -191,7 +196,7 @@ export default function HeaderNav() {
               </div>
             </nav>
           </section>
-          <div className="pinkBackGround"></div>
+          <div className="pinkBackGround" />
         </div>
       </div>
     </header>
