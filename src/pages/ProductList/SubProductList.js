@@ -1,21 +1,19 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { Link, useParams, useLocation } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
+// import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 
-function ProductList() {
+function SubProductList() {
+  console.log("SUB PRODUCT LIST");
   //url에 담긴 parameter 가져오기
   const params = useParams();
   // const search = useLocation().search;
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
   // const querySortMethod = new URLSearchParams(search).get("sortMethod");
 
-  let URL = `http://localhost:8000/product/filter/${params.category}`;
-
-  const LINK_URL = e => {
-    return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
-  };
+  let URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=1`;
 
   //카테고리 입력된 값 상태 관리
   const [categoryList, setCategoryList] = useState([]);
@@ -23,26 +21,36 @@ function ProductList() {
   // const [subCategory, setSubcategory] = useState("");
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
+
   if (sortMethod) {
-    URL = `http://localhost:8000/product/filter/${params.category}/?sortMethod=${sortMethod}`;
+    URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=${sortMethod}`;
   }
-  // if (querySubCategory) {
-  //   URL = `http://localhost:8000/product/filter/${params.category}/?setcategory=${querySubCategory}&sortMethod=${querySortMethod}`;
-  // }
+
+  console.log(URL);
+  //navigate 할당
+  const navigate = useNavigate();
 
   // 카테고리 입력값 받아오기
+  //"/product/filter/dog"
   useEffect(() => {
+    console.log("SECOND USE EFFECT");
     fetch(URL)
       .then(res => res.json())
       .then(data => setCategoryList(data));
   }, [sortMethod]);
+  console.log("data: ", categoryList);
 
   // const subCategoryValue = e => {
   //   setSubcategory(e);
   // };
 
   const sortMethodValue = num => {
+    console.log("sortmethod: ", num.target.value);
     setSortMethod(num.target.value);
+  };
+
+  const LINK_URL = e => {
+    return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
   };
 
   return (
@@ -113,4 +121,4 @@ function ProductList() {
     </section>
   );
 }
-export default ProductList;
+export default SubProductList;
