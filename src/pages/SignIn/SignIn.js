@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
@@ -30,44 +29,31 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  function goSignIn(e) {
+  async function goSignIn(e) {
     e.preventDefault();
 
-    // fetch(`${process.env.REACT_APP_BASE_URL}/user/signin`, {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     email: emailInput,
-    //     password: passwordInput,
-    //   }),
-    // })
-    //   .then(response => response.json())
-    //   .then(data => console.log(data));
-
-    const options = {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    };
-    axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}/user/signin`,
-        {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/user/signin`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           email: emailInput,
           password: passwordInput,
-        },
-        options
-      )
-      .then(response => {
-        if (response.status === 200) {
-          navigate("/");
-        }
-      });
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.token);
+      navigate("/");
+    } else {
+    }
   }
 
   return (
