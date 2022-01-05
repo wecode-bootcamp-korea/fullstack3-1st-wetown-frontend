@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
@@ -69,23 +70,50 @@ const SignUp = () => {
   function goSignUp(e) {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
-      method: "POST",
-      mode: "cors",
+    // fetch(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     name: nameInput,
+    //     nickname: nicknameInput,
+    //     password: passwordInput,
+    //     email: emailInput,
+    //     phone_number: phoneNumInput,
+    //     gender: genderInput,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => console.log(data));
+
+    const options = {
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: nameInput,
-        nickname: nicknameInput,
-        password: passwordInput,
-        email: emailInput,
-        phone_number: phoneNumInput,
-        gender: genderInput,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+      withCredentials: true,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/user/signup`,
+        {
+          name: nameInput,
+          nickname: nicknameInput,
+          password: passwordInput,
+          email: emailInput,
+          phone_number: phoneNumInput,
+          gender: genderInput,
+        },
+        options
+      )
+      .then(response => {
+        if (response.status === 200) {
+          // 사용자를 로그인 시키고 메인페이지 또는 마지막 페이지로 이동
+        }
+      });
   }
 
   useEffect(() => {

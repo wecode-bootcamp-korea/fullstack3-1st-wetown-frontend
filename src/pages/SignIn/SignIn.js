@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
@@ -32,19 +33,41 @@ const SignIn = () => {
   function goSignIn(e) {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_BASE_URL}/user/signin`, {
-      method: "POST",
-      mode: "cors",
+    // fetch(`${process.env.REACT_APP_BASE_URL}/user/signin`, {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email: emailInput,
+    //     password: passwordInput,
+    //   }),
+    // })
+    //   .then(response => response.json())
+    //   .then(data => console.log(data));
+
+    const options = {
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => console.log(data));
+      withCredentials: true,
+    };
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/user/signin`,
+        {
+          email: emailInput,
+          password: passwordInput,
+        },
+        options
+      )
+      .then(response => {
+        if (response.status === 200) {
+          navigate("/");
+        }
+      });
   }
 
   return (
