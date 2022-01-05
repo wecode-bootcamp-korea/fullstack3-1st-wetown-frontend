@@ -15,11 +15,11 @@
   box-sizing: border-box;
 }
 
-body {
+.SignUp {
   font-size: 10px;
   // remove bgc after common style variables import
 
-  .SignUp {
+  .SignUpContainer {
     @include flex-box(column, center, center);
     margin: 0 auto;
     width: 100%;
