@@ -56,25 +56,21 @@ export default function HeaderNav() {
                       <Link to="/">KOR</Link>
                     </li>
                     <li>
-                      <Link to="#">ENG</Link>
+                      <Link to="/">ENG</Link>
                     </li>
                     <li>
-                      <Link to="#">JPN</Link>
+                      <Link to="/">JPN</Link>
                     </li>
                     <li>
-                      <Link to="#">CHN</Link>
+                      <Link to="/">CHN</Link>
                     </li>
                   </ul>
                 </li>
               </ul>
             </nav>
           </section>
-          <section
-            className={
-              fix ? "headerBottomSection fixed" : "headerBottomSection"
-            }
-          >
-            <nav className="headerBottom">
+          <section className="headerBottomSection">
+            <nav className={fix ? "headerBottom fixed" : "headerBottom"}>
               <div className="headerBottomInner">
                 <div
                   className="headerMenu"
@@ -83,16 +79,13 @@ export default function HeaderNav() {
                 >
                   <ul>
                     <li className="petMenu">
-                      <Link to="/category" className="petTitle">
+                      <Link to="/category/dog" className="petTitle">
                         PET
                         <span className="circle" />
                       </Link>
                       <ul className="petsList">
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/dog" className="petsListLink">
                             DOG
                             <span
                               className="smallCircle"
@@ -101,10 +94,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/cat" className="petsListLink">
                             CAT
                             <span
                               className="smallCircle"
@@ -113,10 +103,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/turtle" className="petsListLink">
                             TURTLE
                             <span
                               className="smallCircle"
@@ -125,10 +112,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/hamster" className="petsListLink">
                             HAMSTER
                             <span
                               className="smallCircle"
@@ -137,10 +121,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/bird" className="petsListLink">
                             BIRD
                             <span
                               className="smallCircle"

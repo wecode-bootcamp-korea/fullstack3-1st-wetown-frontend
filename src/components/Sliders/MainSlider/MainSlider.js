@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BtnSlider from "./BtnSlider";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function MainSlider() {
   const [slideIndex, setSlideIndex] = useState(1);

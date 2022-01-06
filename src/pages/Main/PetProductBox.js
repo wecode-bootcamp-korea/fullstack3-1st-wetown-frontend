@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./PetProductBox.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function PetProductBox() {
   const [index, setIndex] = useState(1);
   const [color, setColor] = useState("#fccf1d");
+  const navigate = useNavigate();
   const changeColor = () => {
     if (index === 1) {
       setColor("#fccf1d");
@@ -22,18 +23,12 @@ export default function PetProductBox() {
     changeColor();
   });
 
-  const [imgData, setImgData] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:8000/category/dog/`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(res => res.json())
-      .then(data => setImgData(data));
-  }, []);
+  // const [imgData, setImgData] = useState([]);
+  // useEffect(() => {
+  // fetch("data/imgData.json")
+  //   .then(res => res.json())
+  //   .then(res => setImgData(res.data));
+  // }, []);
 
   return (
     <div className="PetProductBox">
@@ -189,6 +184,46 @@ export default function PetProductBox() {
               <img src="images/mainSlider/puppy_smile.jpg" alt="puppy_smile" />
             </li>
           </ul>
+          {/* practice */}
+          {/* {imgData &&
+            imgData.map((el, i) => {
+              return (
+                <ul
+                  className="productBoxList"
+                  style={{ display: index === i ? "flex" : "none" }}
+                  key={i}
+                >
+                  <li>
+                    <div
+                      className="circleBox"
+                      style={{ backgroundColor: color }}
+                    >
+                      <div className="circleBackground">
+                        <div
+                          className="circleText"
+                          onClick={navigate(`/category/${el.categories.name}`)}
+                        >
+                          {el.category_id}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="productPic">
+                    <img src={el.url} alt={el.categories.name} />
+                  </li>
+                  <li className="productPic">
+                    <img src={el.url} alt={el.categories.name} />
+                  </li>
+                  <li className="productPic">
+                    <img src={el.url} alt={el.categories.name} />
+                  </li>
+                  <li className="productPic">
+                    <img src={el.url} alt={el.categories.name} />
+                  </li>
+                </ul>
+              );
+            })} */}
+          {/* practice */}
         </section>
       </div>
     </div>
