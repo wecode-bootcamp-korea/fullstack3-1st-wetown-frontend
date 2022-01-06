@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { React, useEffect } from "react";
+import { React } from "react";
 
 const ProductCard = props => {
   const kor_currency = props.data.price
@@ -11,37 +11,6 @@ const ProductCard = props => {
   const dc_kor_currency = Math.round(dc_currency)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-  // const AddToCart = id => {
-  //   let getStatus = 0;
-  //   useEffect(() => {
-  //     fetch("http://localhost:8000/cart", {
-  //       method: "POST",
-  //       mode: "cors",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         product_id: id,
-  //       }),
-  //     })
-  //       .then(function (res) {
-  //         getStatus = res.status;
-  //         return res.json();
-  //       })
-  //       .then(data => {
-  //         if (getStatus === 400) {
-  //           alert("로그인 후 이용해주세요.");
-  //           console.log(data);
-  //         }
-
-  //         if (getStatus === 200) {
-  //           alert("장바구니에 담겼습니다.");
-  //           console.log(data);
-  //         }
-  //       });
-  //   }, []);
-  // };
 
   return (
     <li className="productCardList">
@@ -62,19 +31,22 @@ const ProductCard = props => {
               className="cartIcon"
               src="http://localhost:3000/images/outline_shopping_bag_black_24dp.png"
               alt="cart-icon"
-              // onClick={AddToCart(props.data.id)}
             />
           </section>
         </section>
         <section className="priceInfo">
           {props.data.sale_rate ? (
-            <span className="discountPrice">
-              ₩ {dc_kor_currency}
-              <span className="prices">₩ {kor_currency}</span>
-              <span className="saleRate">{props.data.sale_rate}</span>
-            </span>
+            <section className="discountPrice">
+              <section className="dcPrices">
+                <span className="afterDiscountPrice">₩ {dc_kor_currency}</span>
+                <span className="price">₩ {kor_currency}</span>
+              </section>
+              <section>
+                <span className="saleRate">{props.data.sale_rate}%</span>
+              </section>
+            </section>
           ) : (
-            <span className="prices">₩ {kor_currency}</span>
+            <span className="price">₩ {kor_currency}</span>
           )}
         </section>
       </section>
