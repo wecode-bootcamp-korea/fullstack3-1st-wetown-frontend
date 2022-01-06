@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import Footer from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
@@ -14,25 +14,21 @@ function ProductList() {
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
   // const querySortMethod = new URLSearchParams(search).get("sortMethod");
 
+  //카테고리 입력된 값 상태 관리
+  const [categoryList, setCategoryList] = useState([]);
+
+  //sort 입력된 값 상태 관리
+  const [sortMethod, setSortMethod] = useState("");
+
   let URL = `http://localhost:8000/product/filter/${params.category}`;
+  if (sortMethod) {
+    URL = `http://localhost:8000/product/filter/${params.category}/?sortMethod=${sortMethod}`;
+  }
 
   //Link to URL
   const LINK_URL = e => {
     return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
   };
-
-  //카테고리 입력된 값 상태 관리
-  const [categoryList, setCategoryList] = useState([]);
-  //서브카테고리 입력된 값 상태 관리
-  // const [subCategory, setSubcategory] = useState("");
-  //sort 입력된 값 상태 관리
-  const [sortMethod, setSortMethod] = useState("");
-  if (sortMethod) {
-    URL = `http://localhost:8000/product/filter/${params.category}/?sortMethod=${sortMethod}`;
-  }
-  // if (querySubCategory) {
-  //   URL = `http://localhost:8000/product/filter/${params.category}/?setcategory=${querySubCategory}&sortMethod=${querySortMethod}`;
-  // }
 
   // 카테고리 입력값 받아오기
   useEffect(() => {
@@ -40,10 +36,6 @@ function ProductList() {
       .then(res => res.json())
       .then(data => setCategoryList(data));
   }, [sortMethod]);
-
-  // const subCategoryValue = e => {
-  //   setSubcategory(e);
-  // };
 
   const sortMethodValue = num => {
     setSortMethod(num.target.value);
