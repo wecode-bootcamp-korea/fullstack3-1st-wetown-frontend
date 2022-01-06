@@ -22,6 +22,19 @@ export default function PetProductBox() {
     changeColor();
   });
 
+  const [imgData, setImgData] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:8000/category/dog/`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(res => res.json())
+      .then(data => setImgData(data));
+  }, []);
+
   return (
     <div className="PetProductBox">
       <div className="petProductBox">

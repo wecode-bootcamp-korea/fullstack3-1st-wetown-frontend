@@ -36,6 +36,7 @@ export default function HeaderNav() {
         className="topBox"
         style={{
           backgroundColor: `${colorChange}`,
+          transition: "0.4s",
         }}
       >
         <div className="topBoxInner">
@@ -210,7 +211,7 @@ export default function HeaderNav() {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/">
+                      <Link to="/cart">
                         <img
                           src="icons/main/shopping_cart.svg"
                           alt="shopping_cart"

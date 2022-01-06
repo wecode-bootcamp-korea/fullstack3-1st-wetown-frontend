@@ -17,8 +17,8 @@
   font-size: 10px;
   background-color: #f2f2f2;
   padding: 0 0 160px;
-  //position: relative;
-  top: -130px;
+  position: relative;
+  top: -230px;
 
   .SignInContainer {
     @include flex-box(column, center, center);

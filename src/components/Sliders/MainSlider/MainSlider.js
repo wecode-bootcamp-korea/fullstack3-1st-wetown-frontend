@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import BtnSlider from "./BtnSlider";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MainSlider() {
   const [slideIndex, setSlideIndex] = useState(1);
+  const navigate = useNavigate();
   // 앞으로
   const nextSlide = () => {
     if (slideIndex !== sliderData.length) {
@@ -35,10 +36,24 @@ export default function MainSlider() {
     };
   });
 
-  const changePage = () => {
-    console.log("changed");
-    var link = "www.yahoo.com";
-    window.location.assign(link);
+  const changePage = index => {
+    switch (index) {
+      case 1:
+        navigate("/category/dog");
+        break;
+      case 2:
+        navigate("/category/cat");
+        break;
+      case 3:
+        navigate("/category/turtle");
+        break;
+      case 4:
+        navigate("/category/hamster");
+        break;
+      case 5:
+        navigate("/category/bird");
+        break;
+    }
   };
   return (
     <div className="MainSlider">
@@ -48,11 +63,12 @@ export default function MainSlider() {
             <li
               key={obj.id}
               className={slideIndex === index + 1 ? "slide-active" : "slide"}
+              onClick={() => changePage(slideIndex)}
             >
               <img
                 src={obj.img}
                 className="image"
-                onClick={() => changePage()}
+                // onClick={() => console.log(obj.img)}
               />
             </li>
           );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
+// import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
@@ -130,7 +130,7 @@ const SignUp = () => {
       style={{ backgroundColor: validSignUp ? "green" : "orange" }}
     >
       <div className="SignUpContainer">
-        <HeaderNav />
+        {/* <HeaderNav /> */}
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
           <section className="section userFormInput">
