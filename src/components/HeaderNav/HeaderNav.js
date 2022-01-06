@@ -152,31 +152,31 @@ export default function HeaderNav() {
                       </ul>
                     </li>
                     <li className="productMenu">
-                      <Link to="/list" className="productTitle">
+                      <Link to="#" className="productTitle">
                         PRODUCT
                         <span className="circle" />
                       </Link>
                       <ul className="productsList">
                         <li>
-                          <Link to="/food">
+                          <Link to="#">
                             FOOD
                             <span className="smallCircle" />
                           </Link>
                         </li>
                         <li>
-                          <Link to="/toy">
+                          <Link to="#">
                             TOY
                             <span className="smallCircle" />
                           </Link>
                         </li>
                         <li>
-                          <Link to="/house">
+                          <Link to="#">
                             HOUSE
                             <span className="smallCircle" />
                           </Link>
                         </li>
                         <li>
-                          <Link to="/health">
+                          <Link to="#">
                             HEALTH
                             <span className="smallCircle" />
                           </Link>
@@ -184,13 +184,13 @@ export default function HeaderNav() {
                       </ul>
                     </li>
                     <li>
-                      <Link to="/list">P!CK</Link>
+                      <Link to="#">P!CK</Link>
                     </li>
                     <li>
-                      <Link to="/list">EVENT</Link>
+                      <Link to="#">EVENT</Link>
                     </li>
                     <li>
-                      <Link to="/list">BRAND</Link>
+                      <Link to="#">BRAND</Link>
                     </li>
                   </ul>
                 </div>
@@ -207,7 +207,7 @@ export default function HeaderNav() {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/">
+                      <Link to="#">
                         <img src="/icons/main/search.svg" alt="search" />
                       </Link>
                     </li>
@@ -220,7 +220,7 @@ export default function HeaderNav() {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/">
+                      <Link to="#">
                         <img src="/icons/main/bookmarks.svg" alt="bookmarks" />
                       </Link>
                     </li>
