@@ -9,6 +9,11 @@ function ProductList() {
   //GET PARAMETER FROM URL
   const params = useParams();
 
+  const [cate, setCate] = useState();
+
+  useEffect(() => {
+    setCate(params.category);
+  });
   //GET QUERY FROM URL
   // const search = useLocation().search;
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
@@ -35,7 +40,7 @@ function ProductList() {
     fetch(URL)
       .then(res => res.json())
       .then(data => setCategoryList(data));
-  }, [sortMethod]);
+  }, [sortMethod, cate]);
 
   const sortMethodValue = num => {
     setSortMethod(num.target.value);
@@ -48,7 +53,7 @@ function ProductList() {
         <section className="imgSlide">
           <a href=" ">
             <img
-              class="petSlideImg"
+              className="petSlideImg"
               src="http://localhost:3000/images/_.jpg"
               alt="주인공 이름은?"
             />
