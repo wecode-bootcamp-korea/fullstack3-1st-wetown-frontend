@@ -37,17 +37,20 @@ const SignIn = () => {
   async function goSignIn(e) {
     e.preventDefault();
 
-    const response = await fetch(`http://localhost:8000/user/signin`, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/user/signin`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailInput,
+          password: passwordInput,
+        }),
+      }
+    );
 
     const data = await response.json();
 

@@ -18,7 +18,7 @@ const ProductCard = props => {
         {props.data.is_new ? (
           <section className="isNew">new</section>
         ) : (
-          <section></section>
+          <section />
         )}
         <img class="listImg" src={props.data.url} alt={props.data.eng_name} />
       </Link>
