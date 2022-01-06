@@ -201,7 +201,7 @@ export default function HeaderNav() {
                     </li>
                     <li>
                       <Link to="/">
-                        <img src="icons/main/bookmarks.svg" />
+                        <img src="/icons/main/bookmarks.svg" />
                       </Link>
                     </li>
                   </ul>

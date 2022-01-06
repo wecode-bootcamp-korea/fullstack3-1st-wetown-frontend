@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 
@@ -108,6 +110,7 @@ function ProductList() {
           </section>
         </section>
       </section>
+      <FooterNav />
     </section>
   );
 }

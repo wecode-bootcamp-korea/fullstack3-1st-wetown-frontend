@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import { useNavigate } from "react-router";
 import { Slider } from "./compo/slider";
 
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
+  let params = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8000/product/8`, {
+    fetch(`http://localhost:8000/product/${params.product}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -39,6 +42,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [addCart, setAddCart] = useState(false);
   const [noticeNum, setNoticeNum] = useState(1);
+  const userId = localStorage.getItem("token");
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
@@ -60,17 +64,22 @@ const ProductDetail = () => {
       mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        user_id: 3,
+        user_id: userId,
         product_id: data[0].id,
         cart_quantity: quantity,
       }),
     })
       .then(res => res.json())
-      .then(res => setAddCart(res.result));
-    // setAddCart(true);
+      .then(res => {
+        if (res.result === true) {
+          setAddCart(res.result);
+        }
+      })
+      .catch(err => alert("로그인 해주세요."));
   };
   return (
     <div className="ProductDetail">
+      <HeaderNav />
       <div className="detailArea">
         {addCart ? (
           <ViewCart
@@ -350,7 +359,7 @@ const pickColor = cate => {
   }
 };
 
-const ViewCart = ({ cate, setAddCart, navigate }) => {
+const ViewCart = ({ cate, setAddCart, navigate, userId }) => {
   return (
     <div className="cartArea">
       <div className="cartHead" style={pickColor(cate)}>
@@ -377,7 +386,7 @@ const ViewCart = ({ cate, setAddCart, navigate }) => {
         </button>
         <button
           onClick={() => {
-            navigate("/cart");
+            navigate(`/cart`);
           }}
         >
           장바구니 이동

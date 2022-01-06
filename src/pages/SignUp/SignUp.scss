@@ -20,7 +20,7 @@
   position: relative;
   top: -230px;
   // remove bgc after common style variables import
-
+  background-color: #f2f2f2;
   .SignUpContainer {
     @include flex-box(column, center, center);
     margin: 0 auto;
