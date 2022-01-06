@@ -194,7 +194,7 @@ const CartList = ({
         </Link>
       </div>
       <div className="productName">
-        <div className="cateName">{cate}</div>
+        <div className="cateName">{cate.toUpperCase()}</div>
         <div className="name">{name.toUpperCase()}</div>
       </div>
 
