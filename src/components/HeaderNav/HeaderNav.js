@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
@@ -39,8 +40,19 @@ export default function HeaderNav() {
     }
   }, [loginState]);
 
-  const logout = () => {
+  const logout = e => {
+    e.preventDefault();
     localStorage.removeItem("token");
+    setLoginState(false);
+  };
+
+  const goToSignInPage = () => {
+    if (!loginState) {
+      alert("로그인 하시면 프로필 페이지를 확인 하실수있습니다!");
+      navigate("/signin");
+    } else {
+      alert("프로필 페이지 아직 없지롱~");
+    }
   };
 
   return (
@@ -202,9 +214,15 @@ export default function HeaderNav() {
                 <div className="userMenu">
                   <ul>
                     <li>
-                      <Link to="/signin">
-                        <img src="/icons/main/person.svg" alt="person" />
-                      </Link>
+                      <img
+                        className="userButton"
+                        style={{ cursor: "pointer" }}
+                        onClick={goToSignInPage}
+                        tabIndex="0"
+                        role="button"
+                        src="/icons/main/person.svg"
+                        alt="person"
+                      />
                     </li>
                     <li>
                       <Link to="#">
