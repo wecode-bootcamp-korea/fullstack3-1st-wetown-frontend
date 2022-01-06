@@ -46,9 +46,9 @@ function SubProductList() {
     setSortMethod(num.target.value);
   };
 
-  // const LINK_URL = e => {
-  //   return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
-  // };
+  const LINK_URL = e => {
+    return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
+  };
 
   return (
     <section className="productList">
