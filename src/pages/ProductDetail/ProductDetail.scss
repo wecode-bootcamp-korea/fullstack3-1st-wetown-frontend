@@ -1,6 +1,9 @@
 .ProductDetail {
+  position: relative;
+  top: -320px;
   letter-spacing: 2px;
   .detailArea {
+    margin-top: 50px;
     height: auto;
     .cartArea {
       width: 400px;
@@ -57,7 +60,7 @@
     .mainArea {
       position: relative;
       width: 900px;
-      height: 6000px;
+      margin-bottom: 100px;
       .newBox {
         position: absolute;
         top: -50px;
@@ -197,6 +200,7 @@
           width: 100%;
           margin-top: 100px;
           font-size: 1.4em;
+          height: auto;
           .policyBox {
             display: flex;
             justify-content: space-between;
@@ -447,6 +451,48 @@
           width: 60%;
           height: 60%;
           object-fit: fill;
+        }
+      }
+    }
+    .popUpBox {
+      position: fixed;
+      top: 80%;
+      left: 3%;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      .exit {
+        font-size: 3em;
+        color: #7e7b7b;
+      }
+      .background {
+        box-shadow: 10px 20px 20px 5px rgb(207, 201, 201);
+        width: 200px;
+        height: 200px;
+        background-color: #8a8484;
+        border-radius: 50%;
+        img {
+          width: 100%;
+          height: 130%;
+          position: absolute;
+          top: -30px;
+          object-fit: contain;
+        }
+      }
+      .hurryUP {
+        position: absolute;
+        top: 150px;
+        right: -180px;
+        display: flex;
+        flex-direction: column;
+        .title {
+          font-size: 2.5em;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+        .subTitle {
+          font-size: 1.4em;
+          font-weight: bold;
         }
       }
     }

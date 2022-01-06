@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import Footer from "../../components/Footer/Footer";
 import "./Cart.scss";
 
 const Cart = () => {
@@ -76,93 +77,96 @@ const Cart = () => {
   return (
     <div className="Cart">
       <HeaderNav />
-      <div className="title">Cart</div>
-      <div className="product">
-        <div className="productField">
-          <div>상품정보</div>
-          <div>수량</div>
-          <div>주문금액</div>
-          <div>선택</div>
-        </div>
-        <div className="cartBox">
-          {data.map((e, i) => {
-            return (
-              <CartList
-                key={i}
-                img={data[i].url}
-                name={data[i].eng_name}
-                price={data[i].price}
-                sale={data[i].sale_rate}
-                product_id={data[i].product_id}
-                cate={data[i].cate_name}
-                deleteCart={deleteCart}
-                index={i}
-                productQuantity={productQuantity}
-                setProductQuantity={setProductQuantity}
-              />
-            );
-          })}
-        </div>
-        <div className="notice">
-          장바구니에 담긴 상품은 30일 동안 보관됩니다.
-        </div>
-        <div className="totalArea">
-          <div className="totalValue">
-            <div>
-              {`₩ ` +
-                totalPrice()
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              <div className="allTotalPrice">총 상품금액</div>
-            </div>
-            <div>+</div>
-            <div>
-              {`₩ ` + 0} <div className="deliveryPrice">배송비</div>
-            </div>
-            <div>-</div>
-            <div>
-              {`₩ ` +
-                salePrice()
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              <div className="salePrice">할인금액</div>
-            </div>
-            <div>=</div>
-            <div style={{ color: "rgb(233, 52, 52)" }}>
-              {`₩ ` +
-                (totalPrice() - salePrice())
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-              <div className="expectPrice" style={{ color: "black" }}>
-                결제예정금액
+      <div className="main">
+        <div className="title">Cart</div>
+        <div className="product">
+          <div className="productField">
+            <div>상품정보</div>
+            <div>수량</div>
+            <div>주문금액</div>
+            <div>선택</div>
+          </div>
+          <div className="cartBox">
+            {data.map((e, i) => {
+              return (
+                <CartList
+                  key={i}
+                  img={data[i].url}
+                  name={data[i].eng_name}
+                  price={data[i].price}
+                  sale={data[i].sale_rate}
+                  product_id={data[i].product_id}
+                  cate={data[i].cate_name}
+                  deleteCart={deleteCart}
+                  index={i}
+                  productQuantity={productQuantity}
+                  setProductQuantity={setProductQuantity}
+                />
+              );
+            })}
+          </div>
+          <div className="notice">
+            장바구니에 담긴 상품은 30일 동안 보관됩니다.
+          </div>
+          <div className="totalArea">
+            <div className="totalValue">
+              <div>
+                {`₩ ` +
+                  totalPrice()
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                <div className="allTotalPrice">총 상품금액</div>
+              </div>
+              <div>+</div>
+              <div>
+                {`₩ ` + 0} <div className="deliveryPrice">배송비</div>
+              </div>
+              <div>-</div>
+              <div>
+                {`₩ ` +
+                  salePrice()
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                <div className="salePrice">할인금액</div>
+              </div>
+              <div>=</div>
+              <div style={{ color: "rgb(233, 52, 52)" }}>
+                {`₩ ` +
+                  (totalPrice() - salePrice())
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                <div className="expectPrice" style={{ color: "black" }}>
+                  결제예정금액
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="btnBox">
-          <button className="orderBtn">전체상품 주문</button>
-          <button>선택상품 주문</button>
-          <button>선택상품 선물</button>
-        </div>
-        <div className="topBottom">
-          <span
-            className="top"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <img src="/images/totop.png" alt="top" />
-          </span>
-          <span
-            className="bottom"
-            onClick={() => {
-              window.scrollTo({ top: 10000, behavior: "smooth" });
-            }}
-          >
-            <img src="/images/totop.png" alt="bottom" />
-          </span>
+          <div className="btnBox">
+            <button className="orderBtn">전체상품 주문</button>
+            <button>선택상품 주문</button>
+            <button>🛍️ 선택상품 선물</button>
+          </div>
+          <div className="topBottom">
+            <span
+              className="top"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <img src="/images/totop.png" alt="top" />
+            </span>
+            <span
+              className="bottom"
+              onClick={() => {
+                window.scrollTo({ top: 10000, behavior: "smooth" });
+              }}
+            >
+              <img src="/images/totop.png" alt="bottom" />
+            </span>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

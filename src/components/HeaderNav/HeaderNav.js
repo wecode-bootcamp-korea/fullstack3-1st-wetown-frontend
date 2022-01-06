@@ -30,18 +30,44 @@ export default function HeaderNav() {
     };
   });
 
+  const [loginState, setLoginState] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoginState(true);
+    }
+  }, [loginState]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <header className="HeaderNav">
-      <div className="topBox" style={{ backgroundColor: `${colorChange}` }}>
+      <div
+        className="topBox"
+        style={{
+          backgroundColor: `${colorChange}`,
+          transition: "0.4s",
+        }}
+      >
         <div className="topBoxInner">
           <section>
             <nav className="headerTop">
               <ul>
-                <li>
+                <li style={{ display: loginState ? "none" : "block" }}>
                   <Link to="/signin">Login</Link>
                 </li>
-                <li>
+                <li style={{ display: loginState ? "none" : "block" }}>
                   <Link to="/signup">Join</Link>
+                </li>
+                <li
+                  className="logoutButton"
+                  onClick={logout}
+                  style={{ display: loginState ? "block" : "none" }}
+                >
+                  Logout
                 </li>
                 <li className="globalStore">
                   <Link to="/">KOR</Link>
@@ -50,25 +76,21 @@ export default function HeaderNav() {
                       <Link to="/">KOR</Link>
                     </li>
                     <li>
-                      <Link to="#">ENG</Link>
+                      <Link to="/">ENG</Link>
                     </li>
                     <li>
-                      <Link to="#">JPN</Link>
+                      <Link to="/">JPN</Link>
                     </li>
                     <li>
-                      <Link to="#">CHN</Link>
+                      <Link to="/">CHN</Link>
                     </li>
                   </ul>
                 </li>
               </ul>
             </nav>
           </section>
-          <section
-            className={
-              fix ? "headerBottomSection fixed" : "headerBottomSection"
-            }
-          >
-            <nav className="headerBottom">
+          <section className="headerBottomSection">
+            <nav className={fix ? "headerBottom fixed" : "headerBottom"}>
               <div className="headerBottomInner">
                 <div
                   className="headerMenu"
@@ -77,16 +99,13 @@ export default function HeaderNav() {
                 >
                   <ul>
                     <li className="petMenu">
-                      <Link to="/category" className="petTitle">
+                      <Link to="/category/dog" className="petTitle">
                         PET
                         <span className="circle" />
                       </Link>
                       <ul className="petsList">
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/dog" className="petsListLink">
                             DOG
                             <span
                               className="smallCircle"
@@ -95,10 +114,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/cat" className="petsListLink">
                             CAT
                             <span
                               className="smallCircle"
@@ -107,10 +123,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/turtle" className="petsListLink">
                             TURTLE
                             <span
                               className="smallCircle"
@@ -119,10 +132,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/hamster" className="petsListLink">
                             HAMSTER
                             <span
                               className="smallCircle"
@@ -131,10 +141,7 @@ export default function HeaderNav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            to="/category/:category"
-                            className="petsListLink"
-                          >
+                          <Link to="/category/bird" className="petsListLink">
                             BIRD
                             <span
                               className="smallCircle"
@@ -189,24 +196,27 @@ export default function HeaderNav() {
                 </div>
                 <div className="headerLogo">
                   <Link to="/">
-                    <img src="/icons/main/mainIcon.svg" />
+                    <img src="icons/main/mainIcon.svg" alt="mainIcon" />
                   </Link>
                 </div>
                 <div className="userMenu">
                   <ul>
                     <li>
                       <Link to="/signin">
-                        <img src="/icons/main/person.svg" />
+                        <img src="icons/main/person.svg" alt="person" />
                       </Link>
                     </li>
                     <li>
                       <Link to="/">
-                        <img src="/icons/main/search.svg" />
+                        <img src="icons/main/search.svg" alt="search" />
                       </Link>
                     </li>
                     <li>
-                      <Link to="/">
-                        <img src="/icons/main/shopping_cart.svg" />
+                      <Link to="/cart">
+                        <img
+                          src="icons/main/shopping_cart.svg"
+                          alt="shopping_cart"
+                        />
                       </Link>
                     </li>
                     <li>
