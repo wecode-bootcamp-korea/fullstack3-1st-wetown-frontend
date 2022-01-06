@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Policy.scss";
 
-const Policy = () => {
+const Policy = ({ onCheck }) => {
   const [checkAll, setCheckAll] = useState(false);
   const [policyList, setPolicyList] = useState({
     userAgmt: false,
@@ -9,7 +9,6 @@ const Policy = () => {
     ageFourteen: false,
     marketing: false,
   });
-
   const { userAgmt, privacy, ageFourteen, marketing } = policyList;
 
   const handleCheckBox = e => {
@@ -23,8 +22,14 @@ const Policy = () => {
     const array = Object.keys(policyList).map(key => [key, !checkAll]);
     const object = Object.fromEntries(array);
     setPolicyList(object);
+    passToForm();
   };
 
+  const passToForm = () => {
+    onCheck(policyList);
+  };
+
+  //전체 체크박스를 렌더링 해줄지 캐치 해주는 useEffect
   useEffect(() => {
     if (userAgmt && privacy && ageFourteen && marketing) {
       setCheckAll(true);
@@ -32,6 +37,7 @@ const Policy = () => {
     if (!userAgmt || !privacy || !ageFourteen || !marketing) {
       setCheckAll(false);
     }
+    passToForm();
   }, [userAgmt, privacy, ageFourteen, marketing]);
 
   return (
