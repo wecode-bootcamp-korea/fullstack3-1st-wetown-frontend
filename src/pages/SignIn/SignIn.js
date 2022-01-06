@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import Footer from "../../components/Footer/Footer";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
@@ -61,8 +62,8 @@ const SignIn = () => {
 
   return (
     <div className="SignIn">
+      <HeaderNav />
       <div className="SignInContainer">
-        <HeaderNav />
         <h2 className="pageTitle">Login</h2>
         <section className="signInBox">
           <form className="section form " action="#">
@@ -186,6 +187,7 @@ const SignIn = () => {
           </section>
         </section>
       </div>
+      <Footer />
     </div>
   );
 };

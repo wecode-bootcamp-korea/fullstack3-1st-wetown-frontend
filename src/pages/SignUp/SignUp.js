@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import Footer from "../../components/Footer/Footer";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
@@ -145,8 +146,8 @@ const SignUp = () => {
       // 추후 스타일 어트리뷰트는 삭제
       style={{ backgroundColor: validSignUp ? "green" : "orange" }}
     >
+      <HeaderNav />
       <div className="SignUpContainer">
-        <HeaderNav />
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
           <section className="section userFormInput">
@@ -349,6 +350,7 @@ const SignUp = () => {
           </section>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
