@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-// import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import { Link, useNavigate } from "react-router-dom";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import Footer from "../../components/Footer/Footer";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
 
 const SignUp = () => {
+  //첫 렌더링 때 불러올 카테고리
+  useEffect(() => {
+    fetch("/data/mockCategory.json")
+      .then(res => res.json())
+      .then(data => setCategoryList(data));
+  }, []);
+
   const [categoryList, setCategoryList] = useState([]);
   const [validSignUp, setValidSignUp] = useState(false);
   const [userInput, setUserInput] = useState({
-    //필수항목은 db저장
-    nameInput: "", //required
-    nicknameInput: "", //required
-    passwordInput: "", //required
-    pwCheckInput: "", //required
-    emailInput: "", //required
-    bdayInput: "", // required for age validation
+    //필수항목은 db저장 초기값
+    nameInput: "",
+    nicknameInput: "",
+    passwordInput: "",
+    pwCheckInput: "",
+    emailInput: "",
+    policiesInput: {},
     //선택항목
-    phoneNumInput: "010-1234-5678", //optional
-    genderInput: "여자", //optional
-    petCategoryInput: "", // optional -> type: object
+    genderInput: "여자",
+    phoneNumInput: "010-1234-5678",
+    petCategoryInput: {}, // 선택해서 값 저장만
+    bdayInput: "", // db항목 없고 나이 유효성 검사만
   });
 
   const {
@@ -29,10 +37,11 @@ const SignUp = () => {
     passwordInput,
     pwCheckInput,
     emailInput,
-    phoneNumInput,
+    policiesInput,
     genderInput,
-    bdayInput,
+    phoneNumInput,
     petCategoryInput,
+    bdayInput,
   } = userInput;
 
   const handleInput = e => {
@@ -42,16 +51,26 @@ const SignUp = () => {
     if (name === "petCategoryInput") {
       const [petChoice] = categoryList.filter(pet => pet.category === value);
       value = { ...petChoice };
-    }
-
-    if (name === "bdayInput") {
+    } else if (name === "bdayInput") {
       value = Date.parse(value);
     }
 
     setUserInput({ ...userInput, [name]: value });
   };
 
+  const checkOptionalPolicy = value => {
+    //Array로 선택 저장..
+    // const choicesArray = Object.values(value);
+    // console.log(choicesArray);
+    // setUserInput({ ...userInput, policiesInput: choicesArray });
+
+    //객체로 약관동의 선택 저장
+    setUserInput({ ...userInput, policiesInput: value });
+  };
+
   useEffect(() => {
+    const validateName = nameInput;
+    const validateNickname = nicknameInput.length > 3;
     const validateEmail = emailInput.includes("@");
 
     const validatePassword =
@@ -60,67 +79,65 @@ const SignUp = () => {
     const fourteenYearsInSec = 14 * 365 * 24 * 60 * 60 * 1000;
     const validateAge = Date.now() - bdayInput > fourteenYearsInSec;
 
-    if (validateEmail && validatePassword && validateAge) {
+    const validateRequiredPolicies =
+      policiesInput?.userAgmt &&
+      policiesInput.privacy &&
+      policiesInput.ageFourteen;
+
+    if (
+      validateName &&
+      validateNickname &&
+      validateEmail &&
+      validatePassword &&
+      validateAge &&
+      validateRequiredPolicies
+    ) {
       setValidSignUp(true);
     } else {
       setValidSignUp(false);
     }
-  }, [emailInput, passwordInput, pwCheckInput, bdayInput]);
+  }, [
+    nameInput,
+    nicknameInput,
+    emailInput,
+    passwordInput,
+    pwCheckInput,
+    bdayInput,
+    policiesInput,
+  ]);
 
-  function goSignUp(e) {
+  const navigate = useNavigate();
+
+  async function goSignUp(e) {
     e.preventDefault();
 
-    // fetch(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     name: nameInput,
-    //     nickname: nicknameInput,
-    //     password: passwordInput,
-    //     email: emailInput,
-    //     phone_number: phoneNumInput,
-    //     gender: genderInput,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => console.log(data));
-
-    const options = {
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    };
-
-    axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}/user/signup`,
-        {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/user/signup`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           name: nameInput,
           nickname: nicknameInput,
           password: passwordInput,
           email: emailInput,
-          phone_number: phoneNumInput,
+          policies: policiesInput,
           gender: genderInput,
-        },
-        options
-      )
-      .then(response => {
-        if (response.status === 200) {
-          // 사용자를 로그인 시키고 메인페이지 또는 마지막 페이지로 이동
-        }
-      });
-  }
+          phone_number: phoneNumInput,
+        }),
+      }
+    );
 
-  useEffect(() => {
-    fetch("/data/mockCategory.json")
-      .then(res => res.json())
-      .then(data => setCategoryList(data));
-  }, []);
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.token);
+      navigate("/");
+    }
+  }
 
   return (
     <div
@@ -129,8 +146,8 @@ const SignUp = () => {
       // 추후 스타일 어트리뷰트는 삭제
       style={{ backgroundColor: validSignUp ? "green" : "orange" }}
     >
+      <HeaderNav />
       <div className="SignUpContainer">
-        {/* <HeaderNav /> */}
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
           <section className="section userFormInput">
@@ -320,7 +337,7 @@ const SignUp = () => {
               ))}
             </article>
           </section>
-          <Policy />
+          <Policy onCheck={value => checkOptionalPolicy(value)} />
           <section className="section formButtons">
             <button>
               <Link className="buttonText" to="/">
@@ -333,6 +350,7 @@ const SignUp = () => {
           </section>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

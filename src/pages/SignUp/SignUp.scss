@@ -66,30 +66,17 @@
           position: relative;
           font-size: 0.8rem;
 
-          @media (max-width: 800px) {
-            @include flex-box(column, space-evenly, flex-start);
-            border: 1px solid #a0a0a0;
-          }
-
           &.requiredField > label::before {
             position: absolute;
             left: 0;
             content: "*";
             color: red;
             font-size: 1rem;
-
-            @media (max-width: 800px) {
-              left: -10px;
-            }
           }
 
           .label {
             width: 130px;
             padding-left: 15px;
-
-            @media (max-width: 800px) {
-              padding-left: 0;
-            }
           }
 
           input {
@@ -200,11 +187,6 @@
       .formButtons {
         @include flex-box(row, space-between, -items);
         width: 100%;
-        @media (max-width: 800px) {
-          @include flex-box(column, space-between, center);
-          margin-bottom: 15px;
-          width: 100%;
-        }
 
         button {
           width: 48%;

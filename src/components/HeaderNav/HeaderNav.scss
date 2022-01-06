@@ -27,6 +27,11 @@
           line-height: 30px;
           color: black;
 
+          .logoutButton {
+            padding: 5px;
+            cursor: pointer;
+          }
+
           a {
             text-decoration: none;
             color: inherit;

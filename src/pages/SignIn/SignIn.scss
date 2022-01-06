@@ -16,14 +16,12 @@
 .SignIn {
   font-size: 10px;
   background-color: #f2f2f2;
-  padding: 0 0 160px;
-  position: relative;
-  top: -230px;
 
   .SignInContainer {
     @include flex-box(column, center, center);
     width: 100%;
     margin: 0 auto;
+    padding: 0 0 160px;
 
     .pageTitle {
       margin: 50px 0;
@@ -64,7 +62,12 @@
           }
         }
       }
-
+      .errorMsg {
+        padding: 15px;
+        text-align: center;
+        color: red;
+        visibility: visible;
+      }
       .formButtons {
         @include flex-box(column, space-between, center);
         width: 100%;

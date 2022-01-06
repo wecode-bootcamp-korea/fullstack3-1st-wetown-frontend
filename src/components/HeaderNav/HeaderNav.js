@@ -30,6 +30,19 @@ export default function HeaderNav() {
     };
   });
 
+  const [loginState, setLoginState] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoginState(true);
+    }
+  }, [loginState]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <header className="HeaderNav">
       <div
@@ -43,11 +56,18 @@ export default function HeaderNav() {
           <section>
             <nav className="headerTop">
               <ul>
-                <li>
+                <li style={{ display: loginState ? "none" : "block" }}>
                   <Link to="/signin">Login</Link>
                 </li>
-                <li>
+                <li style={{ display: loginState ? "none" : "block" }}>
                   <Link to="/signup">Join</Link>
+                </li>
+                <li
+                  className="logoutButton"
+                  onClick={logout}
+                  style={{ display: loginState ? "block" : "none" }}
+                >
+                  Logout
                 </li>
                 <li className="globalStore">
                   <Link to="/">KOR</Link>
