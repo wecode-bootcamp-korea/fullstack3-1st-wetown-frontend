@@ -1,19 +1,20 @@
 import { React, useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 
 function ProductList() {
-  //url에 담긴 parameter 가져오기
+  //GET PARAMETER FROM URL
   const params = useParams();
+
+  //GET QUERY FROM URL
   // const search = useLocation().search;
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
   // const querySortMethod = new URLSearchParams(search).get("sortMethod");
 
   let URL = `http://localhost:8000/product/filter/${params.category}`;
 
+  //Link to URL
   const LINK_URL = e => {
     return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
   };
@@ -48,8 +49,7 @@ function ProductList() {
 
   return (
     <section className="productList">
-      {/* <HeaderNav /> */}
-      <header></header>
+      <HeaderNav />
       <section className="sectionLayout">
         <section className="imgSlide">
           <a href=" ">

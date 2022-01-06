@@ -1,5 +1,5 @@
 .footerSection {
-  background-color: rgba(34, 36, 52);
+  background-color: rgba(45, 49, 67);
   color: white;
   font-family: "Noto Sans KR", sans-serif;
   .bodySection {
@@ -71,10 +71,11 @@
         img {
           width: 13px;
           margin-left: -25px;
+          cursor: pointer;
         }
       }
       .protectFromRaw {
-        padding: 40px 0 40px 20px;
+        padding: 40px 0 40px 0;
       }
     }
     .iconLinkSection {
@@ -96,10 +97,8 @@
         width: 25px;
       }
       .sideBorder {
-        width: 15px;
-        height: 30px;
         margin: 0 40px 0 0;
-        font-size: 30px;
+        font-size: 25px;
         border-right: solid 1px;
         border-color: grey;
       }
