@@ -3,11 +3,23 @@ import { useParams } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import { useNavigate } from "react-router";
 import { Slider } from "./compo/slider";
-
+import Footer from "../../components/Footer/Footer";
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
-  let params = useParams();
+  const params = useParams();
+  const [ad, setAd] = useState(false);
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [imgList, setImgList] = useState([]);
+  const [originalImg, setOriginalImg] = useState([]);
+  const [originalSize, setOriginalSize] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [addCart, setAddCart] = useState(false);
+  const [noticeNum, setNoticeNum] = useState(1);
+  const userId = localStorage.getItem("token");
+
   useEffect(() => {
     fetch(`http://localhost:8000/product/${params.product}`, {
       method: "GET",
@@ -33,16 +45,14 @@ const ProductDetail = () => {
       });
   }, []);
 
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [imgList, setImgList] = useState([]);
-  const [originalImg, setOriginalImg] = useState([]);
-  const [originalSize, setOriginalSize] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-  const [addCart, setAddCart] = useState(false);
-  const [noticeNum, setNoticeNum] = useState(1);
-  const userId = localStorage.getItem("token");
+  useEffect(() => {
+    const adTimer = setTimeout(() => {
+      setAd(true);
+    }, 2000);
+    return () => {
+      clearTimeout(adTimer);
+    };
+  }, [ad]);
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
@@ -312,7 +322,9 @@ const ProductDetail = () => {
             <img src="/images/totop.png" alt="bottom" />
           </span>
         </div>
+        {ad && data[0].quantity <= 10 ? <PopUp setAd={setAd} /> : null}
       </div>
+      <Footer />
     </div>
   );
 };
@@ -409,6 +421,26 @@ const SelectNotice = ({ num }) => {
     default:
       return <img src="/images/info.png" alt="info" />;
   }
+};
+
+const PopUp = ({ setAd }) => {
+  return (
+    <div
+      className="popUpBox"
+      onClick={() => {
+        setAd(false);
+      }}
+    >
+      <div className="exit">x</div>
+      <div className="background">
+        <img src="/images/cat.png" alt="popup" />
+      </div>
+      <div className="hurryUP">
+        <span className="title">Hurry Up!</span>
+        <span className="subTitle">수량이 얼마 남지 않았어요.</span>
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetail;

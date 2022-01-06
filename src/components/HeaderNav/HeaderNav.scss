@@ -1,5 +1,7 @@
 .HeaderNav {
   font-size: 16px;
+  position: relative;
+  z-index: 1000;
   height: 9rem;
 
   .topBox {
