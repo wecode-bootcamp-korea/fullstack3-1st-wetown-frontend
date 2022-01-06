@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
@@ -14,14 +14,10 @@ function SubProductList() {
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
   // const querySortMethod = new URLSearchParams(search).get("sortMethod");
 
-  //useNavigate DECLARE
-  const navigate = useNavigate();
-
   //카테고리 입력된 값 상태 관리
   const [subCategoryList, setSubCategoryList] = useState([]);
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
-
   //Sub ProductList로 들어오는 base URL
   let URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=1`;
   if (sortMethod) {
@@ -32,19 +28,13 @@ function SubProductList() {
     return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
   };
 
-  //navigate 할당
-
   // 카테고리 입력값 받아오기
   //"/product/filter/dog"
   useEffect(() => {
     fetch(URL)
       .then(res => res.json())
       .then(data => setSubCategoryList(data));
-  }, [sortMethod]);
-
-  // const subCategoryValue = e => {
-  //   setSubcategory(e);
-  // };
+  }, [params, sortMethod]);
 
   const sortMethodValue = num => {
     setSortMethod(num.target.value);
