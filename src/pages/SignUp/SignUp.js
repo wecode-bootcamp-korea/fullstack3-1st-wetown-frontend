@@ -74,7 +74,7 @@ const SignUp = () => {
     const validateEmail = emailInput.includes("@");
 
     const validatePassword =
-      passwordInput.length > 8 && passwordInput === pwCheckInput;
+      passwordInput.length > 7 && passwordInput === pwCheckInput;
 
     const fourteenYearsInSec = 14 * 365 * 24 * 60 * 60 * 1000;
     const validateAge = Date.now() - bdayInput > fourteenYearsInSec;
