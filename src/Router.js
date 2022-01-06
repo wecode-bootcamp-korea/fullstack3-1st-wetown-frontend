@@ -7,7 +7,6 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
 import Cart from "./pages/Cart/Cart";
-
 const Router = () => (
   <BrowserRouter>
     <Routes>

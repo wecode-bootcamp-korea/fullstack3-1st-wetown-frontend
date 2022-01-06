@@ -1,7 +1,6 @@
 .HeaderNav {
   font-size: 16px;
-  position: relative;
-  z-index: 1000;
+  height: 9rem;
 
   .topBox {
     height: 320px;
@@ -74,88 +73,201 @@
           }
         }
       }
-      .headerBottom {
+      .headerBottomSection {
         width: 100%;
+        .headerBottom {
+          width: 1200px;
 
-        .headerBottomInner {
-          width: 100%;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          height: 70px;
-          align-items: center;
-          position: relative;
+          .headerBottomInner {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            height: 70px;
+            align-items: center;
+            position: relative;
 
-          .headerMenu {
-            ul {
-              display: flex;
-              gap: 2rem;
+            .headerMenu {
+              ul {
+                display: flex;
+                gap: 2rem;
 
-              a {
-                font-size: 20px;
-                text-decoration: none;
-                color: black;
-                position: relative;
-                z-index: 2;
-              }
-
-              .petMenu {
-                list-style: none;
-                cursor: pointer;
-                padding-bottom: 10px;
-
-                .petTitle {
+                a {
                   font-size: 20px;
                   text-decoration: none;
                   color: black;
                   position: relative;
                   z-index: 2;
+                }
 
-                  &:hover .circle {
+                .petMenu {
+                  list-style: none;
+                  cursor: pointer;
+                  padding-bottom: 10px;
+
+                  .petTitle {
+                    font-size: 20px;
+                    text-decoration: none;
+                    color: black;
+                    position: relative;
+                    z-index: 2;
+
+                    &:hover .circle {
+                      opacity: 1;
+                      visibility: visible;
+                    }
+                    .circle {
+                      position: absolute;
+                      top: -50px;
+                      left: -12px;
+                      width: 80px;
+                      height: 80px;
+                      border-radius: 50%;
+                      opacity: 0;
+                      background-color: #fff;
+                      z-index: -9;
+                      visibility: hidden;
+                    }
+                  }
+
+                  &:hover ul {
                     opacity: 1;
                     visibility: visible;
                   }
-                  .circle {
+
+                  .petsList {
                     position: absolute;
-                    top: -50px;
-                    left: -12px;
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
+                    padding-bottom: 3px;
+                    width: 100px;
+                    top: 50px;
+                    left: -10px;
+                    gap: 0.5rem;
+                    display: flex;
+                    flex-direction: column;
                     opacity: 0;
-                    background-color: #fff;
-                    z-index: -9;
                     visibility: hidden;
+                    transition: opacity 200ms ease-in-out;
+
+                    li {
+                      list-style: none;
+                      padding: 10px 10px;
+                      transition: background-color 200ms ease-in-out;
+                      position: relative;
+                      z-index: 20;
+
+                      &:hover,
+                      &:focus {
+                        position: relative;
+                        z-index: 3;
+                        &:hover .smallCircle {
+                          opacity: 1;
+                          visibility: visible;
+                        }
+                        &__a {
+                          position: relative;
+                          z-index: 4;
+                          font-weight: 600;
+                        }
+                      }
+                      &:hover .smallCircle {
+                        opacity: 0.3;
+                        visibility: visible;
+                      }
+                      .petsListLink {
+                        position: relative;
+                        vertical-align: middle;
+                        padding: 10px 0px;
+                        z-index: 3;
+
+                        .smallCircle {
+                          position: absolute;
+                          top: 0px;
+                          left: 30px;
+                          width: 40px;
+                          height: 40px;
+                          border-radius: 50%;
+                          opacity: 1;
+                          background-color: #fff;
+                          z-index: -10;
+                          visibility: hidden;
+                        }
+                      }
+                    }
                   }
                 }
+                .productMenu {
+                  list-style: none;
+                  cursor: pointer;
 
-                &:hover ul {
-                  opacity: 1;
-                  visibility: visible;
-                }
-
-                .petsList {
-                  position: absolute;
-                  padding-bottom: 3px;
-                  width: 100px;
-                  top: 50px;
-                  left: -10px;
-                  gap: 0.5rem;
-                  display: flex;
-                  flex-direction: column;
-                  opacity: 0;
-                  visibility: hidden;
-                  transition: opacity 200ms ease-in-out;
-
-                  li {
-                    list-style: none;
-                    padding: 10px 10px;
-                    transition: background-color 200ms ease-in-out;
+                  .productTitle {
                     position: relative;
-                    z-index: 20;
+                    padding-bottom: 10px;
 
-                    &:hover,
-                    &:focus {
+                    &:hover .circle {
+                      opacity: 1;
+                      visibility: visible;
+                    }
+                    .circle {
+                      position: absolute;
+                      top: -50px;
+                      left: -12px;
+                      width: 80px;
+                      height: 80px;
+                      border-radius: 50%;
+                      opacity: 0;
+                      background-color: #fff;
+                      z-index: -9;
+                      visibility: hidden;
+                    }
+                  }
+
+                  &:hover ul {
+                    opacity: 1;
+                    visibility: visible;
+                  }
+
+                  .productsList {
+                    position: absolute;
+                    padding-bottom: 3px;
+                    width: 100px;
+                    top: 60px;
+                    left: 60px;
+                    gap: 0.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 200ms ease-in-out;
+
+                    li {
+                      list-style: none;
+                      padding: 10px 10px;
+                      transition: background-color 200ms ease-in-out;
+                      position: relative;
+                      z-index: 20;
+
+                      a {
+                        position: relative;
+                        vertical-align: middle;
+                        padding: 10px 0px 10px 0px;
+                        z-index: 3;
+
+                        .smallCircle {
+                          position: absolute;
+                          top: 0px;
+                          right: -20px;
+                          width: 40px;
+                          height: 40px;
+                          border-radius: 50%;
+                          opacity: 1;
+                          background-color: #fff;
+                          z-index: -10;
+                          visibility: hidden;
+                        }
+                      }
+                    }
+                    li:hover,
+                    li:focus {
                       position: relative;
                       z-index: 3;
                       &:hover .smallCircle {
@@ -168,186 +280,69 @@
                         font-weight: 600;
                       }
                     }
-                    &:hover .smallCircle {
-                      opacity: 0.3;
-                      visibility: visible;
-                    }
-                    .petsListLink {
-                      position: relative;
-                      vertical-align: middle;
-                      padding: 10px 0px;
-                      z-index: 3;
-
-                      .smallCircle {
-                        position: absolute;
-                        top: 0px;
-                        left: 30px;
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        opacity: 1;
-                        background-color: #fff;
-                        z-index: -10;
-                        visibility: hidden;
-                      }
-                    }
-                  }
-                }
-              }
-              .productMenu {
-                list-style: none;
-                cursor: pointer;
-
-                .productTitle {
-                  position: relative;
-                  padding-bottom: 10px;
-
-                  &:hover .circle {
-                    opacity: 1;
-                    visibility: visible;
-                  }
-                  .circle {
-                    position: absolute;
-                    top: -50px;
-                    left: -12px;
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    opacity: 0;
-                    background-color: #fff;
-                    z-index: -9;
-                    visibility: hidden;
-                  }
-                }
-
-                &:hover ul {
-                  opacity: 1;
-                  visibility: visible;
-                }
-
-                .productsList {
-                  position: absolute;
-                  padding-bottom: 3px;
-                  width: 100px;
-                  top: 60px;
-                  left: 60px;
-                  gap: 0.5rem;
-                  display: flex;
-                  flex-direction: column;
-                  opacity: 0;
-                  visibility: hidden;
-                  transition: opacity 200ms ease-in-out;
-
-                  li {
-                    list-style: none;
-                    padding: 10px 10px;
-                    transition: background-color 200ms ease-in-out;
-                    position: relative;
-                    z-index: 20;
-
-                    a {
-                      position: relative;
-                      vertical-align: middle;
-                      padding: 10px 0px 10px 0px;
-                      z-index: 3;
-
-                      .smallCircle {
-                        position: absolute;
-                        top: 0px;
-                        right: -20px;
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        opacity: 1;
-                        background-color: #fff;
-                        z-index: -10;
-                        visibility: hidden;
-                      }
-                    }
-                  }
-                  li:hover,
-                  li:focus {
-                    position: relative;
-                    z-index: 3;
-                    &:hover .smallCircle {
-                      opacity: 1;
-                      visibility: visible;
-                    }
-                    &__a {
-                      position: relative;
-                      z-index: 4;
-                      font-weight: 600;
-                    }
                   }
                 }
               }
             }
-          }
-          .headerLogo {
-            margin: 0 auto;
-            margin-left: 130px;
+            .headerLogo {
+              margin: 0 auto;
+              margin-left: 130px;
 
-            img {
-              width: 64px;
+              img {
+                width: 64px;
+              }
             }
-          }
-          .userMenu {
-            display: flex;
-            gap: 4rem;
-            ul {
-              li {
-                float: left;
-                margin-left: 3.5rem;
+            .userMenu {
+              display: flex;
+              gap: 4rem;
+              ul {
+                li {
+                  float: left;
+                  margin-left: 3.5rem;
 
-                img {
-                  width: 36px;
+                  img {
+                    width: 36px;
+                  }
                 }
               }
             }
           }
         }
-      }
 
-      .headerBottomSection.fixed {
-        position: fixed;
-        transition: opacity 0.3s ease-in;
-        .headerBottomInner {
+        .headerBottom.fixed {
+          position: fixed;
+          top: -10px;
+          left: 0px;
+          width: 100%;
+          margin: 0 auto;
+          transition: opacity 0.3s ease-in;
           background-color: blanchedalmond;
           opacity: 0.5;
-          position: relative;
-          top: -50px;
-          display: flex;
-          justify-content: space-between;
-          margin: 0 auto;
-
-          .userMenu {
-            margin-left: 208px;
+          .headerBottomInner {
+            width: 1200px;
+            position: relative;
+            margin: 0 auto;
+            top: 5px;
             display: flex;
-            gap: 4rem;
-            ul {
-              li {
-                float: left;
-                margin-left: 3.5rem;
+            justify-content: center;
+            margin: 0 auto;
 
-                img {
-                  width: 36px;
+            .userMenu {
+              display: flex;
+              gap: 4rem;
+              ul {
+                li {
+                  float: left;
+                  margin-left: 3.5rem;
+
+                  img {
+                    width: 36px;
+                  }
                 }
               }
             }
           }
         }
-      }
-      .pinkBackGround {
-        background: #fbeff1;
-        display: block;
-        position: absolute;
-        z-index: -50;
-        border-radius: 100%;
-        text-align: center;
-        top: -50px;
-        left: 70px;
-        width: 0px;
-        height: 0px;
       }
     }
   }
