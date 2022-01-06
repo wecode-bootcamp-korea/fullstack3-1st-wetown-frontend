@@ -189,29 +189,29 @@ export default function HeaderNav() {
                 </div>
                 <div className="headerLogo">
                   <Link to="/">
-                    <img src="icons/main/mainIcon.svg" />
+                    <img src="/icons/main/mainIcon.svg" />
                   </Link>
                 </div>
                 <div className="userMenu">
                   <ul>
                     <li>
                       <Link to="/signin">
-                        <img src="icons/main/person.svg" />
+                        <img src="/icons/main/person.svg" />
                       </Link>
                     </li>
                     <li>
                       <Link to="/">
-                        <img src="icons/main/search.svg" />
+                        <img src="/icons/main/search.svg" />
                       </Link>
                     </li>
                     <li>
                       <Link to="/">
-                        <img src="icons/main/shopping_cart.svg" />
+                        <img src="/icons/main/shopping_cart.svg" />
                       </Link>
                     </li>
                     <li>
                       <Link to="/">
-                        <img src="icons/main/bookmarks.svg" />
+                        <img src="/icons/main/bookmarks.svg" />
                       </Link>
                     </li>
                   </ul>
