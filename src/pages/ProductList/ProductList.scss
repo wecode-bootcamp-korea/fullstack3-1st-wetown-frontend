@@ -3,10 +3,6 @@
 //Product List Style
 .productList {
   // background-color: skyblue;
-  header {
-    // background-color: brown;
-    height: 9rem;
-  }
   .sectionLayout {
     width: 1200px;
     margin: 0 auto;
@@ -114,15 +110,39 @@
               }
             }
 
-            .prices {
-              font-size: 1rem;
-              margin: 7px 0 7px 0;
+            .priceInfo {
+              margin: 0.5rem auto;
+              .discountPrice {
+                font-size: 1rem;
+                display: flex;
+                justify-content: space-between;
+                .afterDiscountPrice {
+                  width: 35%;
+                }
+                .price {
+                  width: 35%;
+                  text-decoration: line-through;
+                  color: grey;
+                  margin-left: 10px;
+                }
+                .saleRate {
+                  width: 30%;
+                  color: red;
+                  margin-right: 20px;
+                }
+              }
+              .price {
+                font-size: 1rem;
+              }
             }
           }
         }
 
         .showMore {
-          margin-top: 1.5rem;
+          cursor: pointer;
+          border-top: solid black 1px;
+          margin: 3rem auto;
+          padding-top: 15px;
           font-size: 1rem;
           text-align: center;
         }

@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Link, useParams, useLocation } from "react-router-dom";
-// import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 
@@ -55,8 +56,7 @@ function SubProductList() {
 
   return (
     <section className="productList">
-      {/* <HeaderNav /> */}
-      <header></header>
+      <HeaderNav />
       <section className="sectionLayout">
         <section className="imgSlide">
           <a href=" ">
@@ -118,6 +118,7 @@ function SubProductList() {
           </section>
         </section>
       </section>
+      <FooterNav />
     </section>
   );
 }
