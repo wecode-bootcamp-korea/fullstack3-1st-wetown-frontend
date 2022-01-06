@@ -25,7 +25,7 @@ const SignIn = () => {
 
   useEffect(() => {
     const emailCheck = emailInput.includes("@");
-    const passwordCheck = passwordInput.length > 8;
+    const passwordCheck = passwordInput.length > 7;
 
     if (emailCheck && passwordCheck) {
       setValidLogin(true);
