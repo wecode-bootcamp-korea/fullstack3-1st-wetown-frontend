@@ -25,7 +25,7 @@ const SignUp = () => {
     emailInput: "",
     policiesInput: {},
     //선택항목
-    genderInput: "여자",
+    genderInput: "",
     phoneNumInput: "010-1234-5678",
     petCategoryInput: {}, // 선택해서 값 저장만
     bdayInput: "", // db항목 없고 나이 유효성 검사만
@@ -45,6 +45,7 @@ const SignUp = () => {
   } = userInput;
 
   const handleInput = e => {
+    e.preventDefault();
     let { name, value } = e.target;
 
     if (name === "petCategoryInput") {
@@ -202,7 +203,8 @@ const SignUp = () => {
             <div className="inputControl">
               <label className="label">성별</label>
               <div className="genderOptions">
-                <input
+                <button
+                  className="genderButton"
                   type="radio"
                   id="male"
                   name="genderInput"
@@ -212,7 +214,8 @@ const SignUp = () => {
                 <label htmlFor="genderMaleInput">남자</label>
               </div>
               <div className="genderOptions">
-                <input
+                <button
+                  className="genderButton"
                   type="radio"
                   id="female"
                   name="genderInput"
