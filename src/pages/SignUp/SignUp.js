@@ -45,7 +45,6 @@ const SignUp = () => {
   } = userInput;
 
   const handleInput = e => {
-    e.preventDefault();
     let { name, value } = e.target;
 
     if (name === "petCategoryInput") {
@@ -135,6 +134,7 @@ const SignUp = () => {
 
     if (response.status === 200) {
       localStorage.setItem("token", data.token);
+      alert("회원가입을 축하드립니다.");
       navigate("/");
     }
   }
@@ -268,6 +268,7 @@ const SignUp = () => {
                 주소
               </label>
               <input
+                tabIndex={-1}
                 type="text"
                 id="addressInput"
                 name="addressInput"
@@ -279,7 +280,7 @@ const SignUp = () => {
                 일반전화
               </label>
               <div className="phoneNumWrapper">
-                <select className="areaCodeInput">
+                <select tabIndex={-1} className="areaCodeInput">
                   <option value="02">02</option>
                   <option value="010">010</option>
                   <option value="031">031</option>
@@ -292,8 +293,18 @@ const SignUp = () => {
                   <option value="051">051</option>
                   <option value="052">052</option>
                 </select>
-                <input type="tel" className="phoneNumInput" disabled />
-                <input type="tel" className="phoneNumInput" disabled />
+                <input
+                  tabIndex={-1}
+                  type="tel"
+                  className="phoneNumInput"
+                  disabled
+                />
+                <input
+                  tabIndex={-1}
+                  type="tel"
+                  className="phoneNumInput"
+                  disabled
+                />
               </div>
             </div>
             <div className="inputControl requiredField">
