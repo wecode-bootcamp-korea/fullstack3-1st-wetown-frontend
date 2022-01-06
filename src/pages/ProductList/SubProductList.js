@@ -28,6 +28,10 @@ function SubProductList() {
     URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=${sortMethod}`;
   }
 
+  const LINK_URL = e => {
+    return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
+  };
+
   //navigate 할당
 
   // 카테고리 입력값 받아오기
@@ -45,10 +49,6 @@ function SubProductList() {
   const sortMethodValue = num => {
     setSortMethod(num.target.value);
   };
-
-  // const LINK_URL = e => {
-  //   return `/category/${params.category}/subcategory/${e}/sortMethod=1`;
-  // };
 
   return (
     <section className="productList">
