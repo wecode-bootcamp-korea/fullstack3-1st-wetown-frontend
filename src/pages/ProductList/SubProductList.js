@@ -1,51 +1,48 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import { Link, useParams, useLocation } from "react-router-dom";
-// import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 
 function SubProductList() {
-  console.log("SUB PRODUCT LIST");
-  //url에 담긴 parameter 가져오기
+  //GET PARAMETER FROM URL
   const params = useParams();
+
+  //GET QUERY FROM URL
   // const search = useLocation().search;
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
   // const querySortMethod = new URLSearchParams(search).get("sortMethod");
 
-  let URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=1`;
+  //useNavigate DECLARE
+  const navigate = useNavigate();
 
   //카테고리 입력된 값 상태 관리
-  const [categoryList, setCategoryList] = useState([]);
-  //서브카테고리 입력된 값 상태 관리
-  // const [subCategory, setSubcategory] = useState("");
+  const [subCategoryList, setSubCategoryList] = useState([]);
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
 
+  //Sub ProductList로 들어오는 base URL
+  let URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=1`;
   if (sortMethod) {
     URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=${sortMethod}`;
   }
 
-  console.log(URL);
   //navigate 할당
-  const navigate = useNavigate();
 
   // 카테고리 입력값 받아오기
   //"/product/filter/dog"
   useEffect(() => {
-    console.log("SECOND USE EFFECT");
     fetch(URL)
       .then(res => res.json())
-      .then(data => setCategoryList(data));
+      .then(data => setSubCategoryList(data));
   }, [sortMethod]);
-  console.log("data: ", categoryList);
 
   // const subCategoryValue = e => {
   //   setSubcategory(e);
   // };
 
   const sortMethodValue = num => {
-    console.log("sortmethod: ", num.target.value);
     setSortMethod(num.target.value);
   };
 
@@ -55,8 +52,7 @@ function SubProductList() {
 
   return (
     <section className="productList">
-      {/* <HeaderNav /> */}
-      <header></header>
+      <HeaderNav />
       <section className="sectionLayout">
         <section className="imgSlide">
           <a href=" ">
@@ -108,9 +104,12 @@ function SubProductList() {
             </section>
             <section className="productSide">
               <ul>
-                {categoryList[0] &&
-                  categoryList.map(categoryList => (
-                    <ProductCard data={categoryList} key={categoryList.id} />
+                {subCategoryList[0] &&
+                  subCategoryList.map(subCategoryList => (
+                    <ProductCard
+                      data={subCategoryList}
+                      key={subCategoryList.id}
+                    />
                   ))}
               </ul>
             </section>
@@ -118,6 +117,7 @@ function SubProductList() {
           </section>
         </section>
       </section>
+      <FooterNav />
     </section>
   );
 }
