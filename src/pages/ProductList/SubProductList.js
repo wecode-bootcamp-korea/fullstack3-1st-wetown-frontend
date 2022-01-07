@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
-import ListSlider from "./ListComponents/ListSlider";
 import "./ProductList.scss";
+import ListSlider from "./ListComponents/ListSlider";
 
 function SubProductList() {
   //GET PARAMETER FROM URL
@@ -45,9 +45,7 @@ function SubProductList() {
     <section className="productList">
       <HeaderNav />
       <section className="sectionLayout">
-        <section className="imgSlide">
-          <ListSlider />
-        </section>
+        <ListSlider />
         <section className="productSideSection">
           <section className="sideSection">
             <nav className="petSide">
