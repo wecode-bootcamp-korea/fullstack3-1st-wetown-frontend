@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
+import ListSlider from "./ListComponents/ListSlider";
 import "./ProductList.scss";
 
 function SubProductList() {
@@ -45,13 +46,7 @@ function SubProductList() {
       <HeaderNav />
       <section className="sectionLayout">
         <section className="imgSlide">
-          <a href=" ">
-            <img
-              class="petSlideImg"
-              src="http://localhost:3000/images/_.jpg"
-              alt="주인공 이름은?"
-            />
-          </a>
+          <ListSlider />
         </section>
         <section className="productSideSection">
           <section className="sideSection">
