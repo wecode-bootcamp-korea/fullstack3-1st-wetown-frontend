@@ -160,18 +160,21 @@ const SignUp = () => {
               <div className="verificationInputWrapper">
                 <div className="inputWrapper">
                   <span className="verificationInput">휴대폰 인증</span>
-                  <button
-                    className="verificationInput"
-                    type="button"
-                    id="verification"
+                  <CircleButton
+                    type="radio"
+                    name="genderInput"
+                    value="인증하기"
                     style={{
-                      color: "#3d435f",
-                      backgroundColor: "#fff",
-                      border: "1px solid #4d435f",
+                      marginBottom: "15px",
+                      width: "100px",
+                      height: "25px",
+                      borderRadius: "25px",
+                      backgroundColor: "",
                     }}
-                  >
-                    인증하기
-                  </button>
+                    onClick={() => {
+                      alert("본인이 맞습니까?");
+                    }}
+                  />
                 </div>
                 <div>본인 명의의 휴대폰으로 본인인증을 진행합니다.</div>
               </div>
@@ -203,26 +206,40 @@ const SignUp = () => {
             <div className="inputControl">
               <label className="label">성별</label>
               <div className="genderOptions">
-                <button
-                  className="genderButton"
+                <CircleButton
                   type="radio"
-                  id="male"
                   name="genderInput"
                   value="남자"
-                  onClick={handleInput}
+                  style={{
+                    width: "50px",
+                    height: "25px",
+                    borderRadius: "25px",
+                    backgroundColor:
+                      genderInput === "남자"
+                        ? petCategoryInput?.color || "black"
+                        : "transparent",
+                    color: genderInput === "남자" ? "white" : "black",
+                  }}
+                  onClick={e => handleInput(e)}
                 />
-                <label htmlFor="genderMaleInput">남자</label>
               </div>
               <div className="genderOptions">
-                <button
-                  className="genderButton"
+                <CircleButton
                   type="radio"
-                  id="female"
                   name="genderInput"
                   value="여자"
-                  onClick={handleInput}
+                  style={{
+                    width: "50px",
+                    height: "25px",
+                    borderRadius: "25px",
+                    backgroundColor:
+                      genderInput === "여자"
+                        ? petCategoryInput?.color || "black"
+                        : "transparent",
+                    color: genderInput === "여자" ? "white" : "black",
+                  }}
+                  onClick={e => handleInput(e)}
                 />
-                <label htmlFor="genderFemaleInput">여자</label>
               </div>
             </div>
             <div className="inputControl requiredField">
