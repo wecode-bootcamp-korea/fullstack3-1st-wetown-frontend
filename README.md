@@ -39,53 +39,31 @@ SM 엔터테인먼트 사이트 주소 : https://smtownandstore.com/
 
 #### 메인 페이지
 
+<img width="1438" alt="스크린샷 2022-01-07 오후 6 18 17" src="https://user-images.githubusercontent.com/87569550/148525352-6058745b-db2d-47fa-8172-d4566c0a3d4c.png">
 
-### `npm run build`
+<img width="1433" alt="스크린샷 2022-01-07 오후 6 28 21" src="https://user-images.githubusercontent.com/87569550/148525591-67b13676-d2e1-4274-8a75-217a50855a69.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 상품 리스트 페이지
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img width="1440" alt="스크린샷 2022-01-07 오후 6 43 28" src="https://user-images.githubusercontent.com/87569550/148525659-10fce6cd-da16-448f-bdd2-28d410f0d43d.png">
 
-### `npm run eject`
+<img width="1438" alt="스크린샷 2022-01-07 오후 6 43 41" src="https://user-images.githubusercontent.com/87569550/148525668-10aca35e-4e76-48e6-9eff-45b0c36172bd.png">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 상품 디테일 페이지
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="1431" alt="스크린샷 2022-01-07 오후 6 50 27" src="https://user-images.githubusercontent.com/87569550/148525962-0b7ea0e1-7167-45de-a29a-ae04e77bfd0b.png">
+<img width="1439" alt="스크린샷 2022-01-07 오후 6 50 52" src="https://user-images.githubusercontent.com/87569550/148525974-57584527-14f8-4e89-ace6-407d4eac574a.png">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### 로그인 페이지
 
-## Learn More
+<img width="1057" alt="스크린샷 2022-01-07 오후 6 52 51" src="https://user-images.githubusercontent.com/87569550/148526234-9354c67a-58aa-4c48-8627-b72c3f355c4a.png">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 회원가입 페이지
 
-### Code Splitting
+<img width="1042" alt="스크린샷 2022-01-07 오후 6 53 10" src="https://user-images.githubusercontent.com/87569550/148526244-6d903b13-be34-4112-98c0-c3c97c12c95a.png">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
