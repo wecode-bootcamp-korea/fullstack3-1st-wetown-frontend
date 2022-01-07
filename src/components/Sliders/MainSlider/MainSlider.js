@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function MainSlider() {
   const [slideIndex, setSlideIndex] = useState(1);
   const navigate = useNavigate();
+
   // 앞으로
   const nextSlide = () => {
     if (slideIndex !== sliderData.length) {
@@ -15,6 +16,7 @@ export default function MainSlider() {
       setSlideIndex(1);
     }
   };
+
   // 이전으로
   const prevSlide = () => {
     if (slideIndex === 1) {
@@ -23,6 +25,7 @@ export default function MainSlider() {
       setSlideIndex(slideIndex - 1);
     }
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (slideIndex !== sliderData.length) {
@@ -53,8 +56,10 @@ export default function MainSlider() {
       case 5:
         navigate("/category/bird");
         break;
+      default:
     }
   };
+
   const changePageColor = index => {
     switch (index) {
       case 1:
@@ -67,7 +72,12 @@ export default function MainSlider() {
         return "#cda5e0";
       case 5:
         return "#d8e22d";
+      default:
     }
+  };
+
+  const moveDot = index => {
+    setSlideIndex(index);
   };
   return (
     <div
@@ -81,17 +91,32 @@ export default function MainSlider() {
           {sliderData.map((obj, index) => {
             return (
               <li
-                key={obj.id}
                 className={slideIndex === index + 1 ? "slide-active" : "slide"}
                 onClick={() => changePage(slideIndex)}
+                key={obj.id}
               >
-                <img src={obj.img} className="image" />
+                <img
+                  src={obj.img}
+                  className="image"
+                  key={obj.id}
+                  alt="슬라이더 이미지"
+                />
               </li>
             );
           })}
         </ul>
-        <BtnSlider moveSlide={nextSlide} direction={"next"} />
-        <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+        <BtnSlider moveSlide={nextSlide} direction="next" />
+        <BtnSlider moveSlide={prevSlide} direction="prev" />
+
+        <div className="slider-dots">
+          {Array.from({ length: 5 }).map((item, index) => (
+            <div
+              onClick={() => moveDot(index + 1)}
+              className={slideIndex === index + 1 ? "dot active" : "dot"}
+              key={index}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

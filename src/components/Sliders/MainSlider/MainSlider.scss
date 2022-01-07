@@ -2,6 +2,7 @@
   width: 700px;
   height: 500px;
   margin: 4rem auto;
+  margin-bottom: 7rem;
   position: relative;
   list-style: none;
   justify-content: center;
@@ -39,4 +40,23 @@
       }
     }
   }
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  cursor: pointer;
+}
+.dot {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background: rgb(250, 212, 162);
+}
+.dot.active {
+  background: rgb(32, 32, 32);
 }

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./PetProductBox.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function PetProductBox() {
   const [index, setIndex] = useState(1);
   const [color, setColor] = useState("#fccf1d");
-  const navigate = useNavigate();
   const changeColor = () => {
     if (index === 1) {
       setColor("#fccf1d");
@@ -199,28 +198,36 @@ export default function PetProductBox() {
               </div>
             </li>
             <li className="productPic">
-              <img
-                src="https://sc04.alicdn.com/kf/H13b5ee7461d14a608e1cb37b24f9dcd82.jpg"
-                alt="Hamster Bed Hanging Hammock House"
-              />
+              <Link to="/category/hamster/product/31">
+                <img
+                  src="https://sc04.alicdn.com/kf/H13b5ee7461d14a608e1cb37b24f9dcd82.jpg"
+                  alt="Hamster Bed Hanging Hammock House"
+                />
+              </Link>
             </li>
             <li className="productPic">
-              <img
-                src="https://sc04.alicdn.com/kf/H4ac386225d4c432da2e278a1e429cf87a.jpg"
-                alt="Hamster Natural Wooden Chew Toys"
-              />
+              <Link to="/category/hamster/product/32">
+                <img
+                  src="https://sc04.alicdn.com/kf/H4ac386225d4c432da2e278a1e429cf87a.jpg"
+                  alt="Hamster Natural Wooden Chew Toys"
+                />
+              </Link>
             </li>
             <li className="productPic">
-              <img
-                src="https://sc04.alicdn.com/kf/H10fa5dcbe850496e928c3bbf1a93451a0.png"
-                alt="Hamster Cages with Wheels"
-              />
+              <Link to="/category/hamster/product/33">
+                <img
+                  src="https://sc04.alicdn.com/kf/H10fa5dcbe850496e928c3bbf1a93451a0.png"
+                  alt="Hamster Cages with Wheels"
+                />
+              </Link>
             </li>
             <li className="productPic">
-              <img
-                src="https://sc04.alicdn.com/kf/Ha21eb937d6db4049add382b58996deea1.jpg"
-                alt="Hamster Teeth Molar Chew Toy"
-              />
+              <Link to="/category/hamster/product/34">
+                <img
+                  src="https://sc04.alicdn.com/kf/Ha21eb937d6db4049add382b58996deea1.jpg"
+                  alt="Hamster Teeth Molar Chew Toy"
+                />
+              </Link>
             </li>
           </ul>
           <ul
@@ -237,28 +244,36 @@ export default function PetProductBox() {
               </div>
             </li>
             <li className="productPic">
-              <img
-                src="https://ae01.alicdn.com/kf/H89f2cf27def443caa4180b2ac6937e7eZ.jpg"
-                alt="Hanging Grass Hand Woven Bird"
-              />
+              <Link to="/category/bird/product/41">
+                <img
+                  src="https://ae01.alicdn.com/kf/H89f2cf27def443caa4180b2ac6937e7eZ.jpg"
+                  alt="Hanging Grass Hand Woven Bird"
+                />
+              </Link>
             </li>
             <li className="productPic">
-              <img
-                src="https://ae01.alicdn.com/kf/Hcee67e21d9424429b3631ac9a995da68r.jpg"
-                alt="Waterproof Gazebo Hanging Wild Bird Feeder"
-              />
+              <Link to="/category/bird/product/42">
+                <img
+                  src="https://ae01.alicdn.com/kf/Hcee67e21d9424429b3631ac9a995da68r.jpg"
+                  alt="Waterproof Gazebo Hanging Wild Bird Feeder"
+                />
+              </Link>
             </li>
             <li className="productPic">
-              <img
-                src="https://ae01.alicdn.com/kf/Ha3930e4bac0f4498bf7ef9dad66fb9e4A.jpg"
-                alt="Pet Cage Plastic Food Container"
-              />
+              <Link to="/category/bird/product/43">
+                <img
+                  src="https://ae01.alicdn.com/kf/Ha3930e4bac0f4498bf7ef9dad66fb9e4A.jpg"
+                  alt="Pet Cage Plastic Food Container"
+                />
+              </Link>
             </li>
             <li className="productPic">
-              <img
-                src="https://ae01.alicdn.com/kf/H62d42fb6333449cbbf003a78b0cbddbdi.jpg"
-                alt="parrot bird racing pigeon medicine conditioning"
-              />
+              <Link to="/category/bird/product/44">
+                <img
+                  src="https://ae01.alicdn.com/kf/H62d42fb6333449cbbf003a78b0cbddbdi.jpg"
+                  alt="parrot bird racing pigeon medicine conditioning"
+                />
+              </Link>
             </li>
           </ul>
         </section>
