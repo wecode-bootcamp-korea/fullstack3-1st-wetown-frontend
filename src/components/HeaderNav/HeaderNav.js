@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
   const [navHeight, setNavHeight] = useState("40px");
@@ -48,10 +49,13 @@ export default function HeaderNav() {
   };
 
   const goToSignInPage = () => {
-    if (!loginState) {
+    if (!loginState && location.pathname === "/signin") {
+      alert("회원가입이 하고싶은건가요~?");
+      navigate("/signin");
+    } else if (!loginState && location.pathname !== "/signin") {
       alert("로그인 하시면 프로필 페이지를 확인 하실수있습니다!");
       navigate("/signin");
-    } else {
+    } else if (loginState) {
       alert("프로필 페이지 아직 없지롱~");
     }
   };
