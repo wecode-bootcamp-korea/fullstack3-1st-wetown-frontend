@@ -12,7 +12,7 @@ function ListSlider() {
 
   const leftClick = () => {};
   const rightClick = () => {
-    setX(prevX => prevX - 710);
+    setX(prevX => prevX - 1000);
   };
 
   return (

@@ -8,14 +8,14 @@
     margin: 0 auto;
     .carousel-wrapper {
       width: 1200px;
+
       display: flex;
-      background-color: lightgrey;
       .leftSec {
-        width: 245px;
         .leftArrow {
-          margin: 100px 0 100px 145px;
+          margin: 125px 0 125px 0;
           width: 100px;
-          height: 200px;
+          height: 150px;
+          cursor: pointer;
         }
       }
       .carousel {
@@ -23,21 +23,20 @@
         overflow: hidden;
       }
       .listSlider {
-        width: 710px;
-
+        width: 1000px;
         display: flex;
         .carouselImg {
-          width: 100%;
+          width: 1000px;
           height: 400px;
         }
       }
 
       .rightSec {
-        width: 245px;
         .rightArrow {
-          margin: 100px 0 100px 0;
+          margin: 125px 0 125px 0;
           width: 100px;
-          height: 200px;
+          height: 150px;
+          cursor: pointer;
         }
       }
     }
