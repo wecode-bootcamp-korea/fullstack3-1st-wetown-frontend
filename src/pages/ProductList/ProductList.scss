@@ -92,6 +92,7 @@
           flex-wrap: wrap;
 
           li {
+            width: 298px;
             margin: 20px 0 0 15px;
             position: relative;
             .isNew {
@@ -112,53 +113,55 @@
               width: 298px;
               height: 402px;
             }
-
-            .cateName {
-              margin: 10px 0 5px 0;
-              color: lightgray;
-              font-size: 13px;
-            }
-
-            .engName-cartIcon {
-              display: flex;
-              flex-direction: row;
-              justify-content: space-between;
-
-              .engName {
-                width: 75%;
-                font-size: 1rem;
+            .productDescription {
+              width: 100%;
+              .cateName {
+                margin: 10px 0 5px 0;
+                color: lightgray;
+                font-size: 13px;
               }
 
-              .cartIcon {
-                width: 35px;
-                height: 35px;
-                margin: -10px 0 0 -3rem;
-              }
-            }
-
-            .priceInfo {
-              margin: 0.5rem auto;
-              .discountPrice {
-                font-size: 1rem;
+              .engName-cartIcon {
                 display: flex;
+                flex-direction: row;
                 justify-content: space-between;
-                .afterDiscountPrice {
-                  width: 35%;
+
+                .engName {
+                  width: 75%;
+                  font-size: 1rem;
+                }
+
+                .cartIcon {
+                  width: 35px;
+                  height: 35px;
+                  margin: -10px 0 0 -3rem;
+                }
+              }
+
+              .priceInfo {
+                margin: 0.5rem auto;
+                .discountPrice {
+                  font-size: 1rem;
+                  display: flex;
+                  justify-content: space-between;
+                  .afterDiscountPrice {
+                    width: 35%;
+                  }
+                  .price {
+                    width: 35%;
+                    text-decoration: line-through;
+                    color: grey;
+                    margin-left: 10px;
+                  }
+                  .saleRate {
+                    width: 30%;
+                    color: red;
+                    margin-right: 20px;
+                  }
                 }
                 .price {
-                  width: 35%;
-                  text-decoration: line-through;
-                  color: grey;
-                  margin-left: 10px;
+                  font-size: 1rem;
                 }
-                .saleRate {
-                  width: 30%;
-                  color: red;
-                  margin-right: 20px;
-                }
-              }
-              .price {
-                font-size: 1rem;
               }
             }
           }
