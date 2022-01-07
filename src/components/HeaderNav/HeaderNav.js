@@ -8,7 +8,9 @@ export default function HeaderNav() {
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
-
+  const colorChange2 =
+    hovered !== false ? "#fbeff1" : "rgba(255, 235, 205, 0.5)";
+  const heightChange = hovered !== false ? "360px" : "40px";
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
 
@@ -64,13 +66,17 @@ export default function HeaderNav() {
       <div
         className="topBox"
         style={{
-          backgroundColor: `${colorChange}`,
+          backgroundColor: colorChange,
           transition: "0.4s",
+          height: heightChange,
         }}
       >
         <div className="topBoxInner">
           <section>
-            <nav className="headerTop">
+            <nav
+              className="headerTop"
+              style={{ display: fix ? "none" : "block" }}
+            >
               <ul>
                 <li style={{ display: loginState ? "none" : "block" }}>
                   <Link to="/signin">Login</Link>
@@ -86,19 +92,19 @@ export default function HeaderNav() {
                   Logout
                 </li>
                 <li className="globalStore">
-                  <Link to="/">KOR</Link>
+                  <Link to="#">KOR</Link>
                   <ul className="globalStoreList">
                     <li>
-                      <Link to="/">KOR</Link>
+                      <Link to="#">KOR</Link>
                     </li>
                     <li>
-                      <Link to="/">ENG</Link>
+                      <Link to="#">ENG</Link>
                     </li>
                     <li>
-                      <Link to="/">JPN</Link>
+                      <Link to="#">JPN</Link>
                     </li>
                     <li>
-                      <Link to="/">CHN</Link>
+                      <Link to="#">CHN</Link>
                     </li>
                   </ul>
                 </li>
@@ -251,7 +257,6 @@ export default function HeaderNav() {
               </div>
             </nav>
           </section>
-          <div className="pinkBackGround" />
         </div>
       </div>
     </header>

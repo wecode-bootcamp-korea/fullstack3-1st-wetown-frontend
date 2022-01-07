@@ -3,6 +3,7 @@ import Footer from "../../components/Footer/Footer";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import MainSlider from "../../components/Sliders/MainSlider/MainSlider";
 import PetProductBox from "./PetProductBox";
+import "./Main.scss";
 
 const Main = () => {
   return (
