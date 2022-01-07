@@ -36,7 +36,7 @@ function ListSlider() {
               className="carouselImg"
               key={imgUrl.id}
               src={imgUrl.url}
-              alt={imgUrl.discription}
+              alt={imgUrl.description}
             />
           </section>
         ))}
