@@ -73,7 +73,7 @@ export default function MainSlider() {
     <div
       style={{
         backgroundColor: changePageColor(slideIndex),
-        transition: "0.3s",
+        transition: "0.4s ease-in-out",
       }}
     >
       <div className="MainSlider">
