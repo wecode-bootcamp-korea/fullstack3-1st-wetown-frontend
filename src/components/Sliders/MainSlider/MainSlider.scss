@@ -50,14 +50,14 @@
   transform: translateX(-50%);
   display: flex;
   cursor: pointer;
-}
-.dot {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin: 0 5px;
-  background: rgb(250, 212, 162);
-}
-.dot.active {
-  background: rgb(32, 32, 32);
+  .dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background: rgb(250, 212, 162);
+  }
+  .dot.active {
+    background: rgb(32, 32, 32);
+  }
 }
