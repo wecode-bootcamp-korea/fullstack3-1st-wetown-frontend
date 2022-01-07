@@ -20,7 +20,7 @@ function ListSlider() {
       <section className="leftSec">
         <img
           className="leftArrow"
-          src="../images/listSliderImg/chevron-left-solid.svg"
+          src="http://localhost:3000/images/listSliderImg/chevron-left-solid.svg"
           alt="left-arrow"
           onClick={leftClick}
         />
@@ -28,6 +28,7 @@ function ListSlider() {
       <section className="carousel">
         {imgUrl.map(imgUrl => (
           <section
+            key={imgUrl.discription}
             className="listSlider"
             style={{ transform: `translateX(${x}px)` }}
           >
@@ -35,7 +36,7 @@ function ListSlider() {
               className="carouselImg"
               key={imgUrl.id}
               src={imgUrl.url}
-              alt={imgUrl.id}
+              alt={imgUrl.discription}
             />
           </section>
         ))}
@@ -43,7 +44,7 @@ function ListSlider() {
       <section className="rightSec">
         <img
           className="rightArrow"
-          src="../images/listSliderImg/chevron-right-solid.svg"
+          src="http://localhost:3000/images/listSliderImg/chevron-right-solid.svg"
           alt="right-arrow"
           onClick={rightClick}
         />

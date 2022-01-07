@@ -1,18 +1,22 @@
 [
   {
     "id": 1,
-    "url": "../images/listSliderImg/forth.jpeg"
+    "url": "http://localhost:3000/images/listSliderImg/forth.jpeg",
+    "description": "cat"
   },
   {
     "id": 2,
-    "url": "../images/listSliderImg/second.jpg"
+    "url": "http://localhost:3000/images/listSliderImg/second.jpg",
+    "description": "man"
   },
   {
     "id": 3,
-    "url": "../images/listSliderImg/third.jpg"
+    "url": "http://localhost:3000/images/listSliderImg/third.jpg",
+    "description": "woman"
   },
   {
     "id": 4,
-    "url": "../images/listSliderImg/first.jpg"
+    "url": "http://localhost:3000/images/listSliderImg/first.jpg",
+    "description": "bla"
   }
 ]
