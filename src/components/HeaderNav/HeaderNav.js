@@ -8,8 +8,6 @@ export default function HeaderNav() {
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
-  const colorChange2 =
-    hovered !== false ? "#fbeff1" : "rgba(255, 235, 205, 0.5)";
   const heightChange = hovered !== false ? "360px" : "40px";
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
