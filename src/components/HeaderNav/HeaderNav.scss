@@ -5,10 +5,10 @@
   height: 9rem;
 
   .topBox {
-    height: 360px;
     width: 100%;
-    position: relative;
+    position: fixed;
     z-index: 100;
+
     .topBoxInner {
       position: relative;
       width: 1200px;
@@ -321,8 +321,9 @@
           left: 0px;
           width: 100%;
           margin: 0 auto;
-          transition: opacity 0.3s ease-in;
+          transition: opacity 0.4s ease-in;
           background-color: rgba(255, 235, 205, 0.5);
+
           .headerBottomInner {
             width: 1200px;
             position: relative;

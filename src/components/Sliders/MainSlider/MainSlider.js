@@ -55,27 +55,44 @@ export default function MainSlider() {
         break;
     }
   };
+  const changePageColor = index => {
+    switch (index) {
+      case 1:
+        return "#fccf1d";
+      case 2:
+        return "#c81a20";
+      case 3:
+        return "#016ad5";
+      case 4:
+        return "#cda5e0";
+      case 5:
+        return "#d8e22d";
+    }
+  };
   return (
-    <div className="MainSlider">
-      <ul>
-        {sliderData.map((obj, index) => {
-          return (
-            <li
-              key={obj.id}
-              className={slideIndex === index + 1 ? "slide-active" : "slide"}
-              onClick={() => changePage(slideIndex)}
-            >
-              <img
-                src={obj.img}
-                className="image"
-                // onClick={() => console.log(obj.img)}
-              />
-            </li>
-          );
-        })}
-      </ul>
-      <BtnSlider moveSlide={nextSlide} direction={"next"} />
-      <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+    <div
+      style={{
+        backgroundColor: changePageColor(slideIndex),
+        transition: "0.3s",
+      }}
+    >
+      <div className="MainSlider">
+        <ul>
+          {sliderData.map((obj, index) => {
+            return (
+              <li
+                key={obj.id}
+                className={slideIndex === index + 1 ? "slide-active" : "slide"}
+                onClick={() => changePage(slideIndex)}
+              >
+                <img src={obj.img} className="image" />
+              </li>
+            );
+          })}
+        </ul>
+        <BtnSlider moveSlide={nextSlide} direction={"next"} />
+        <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+      </div>
     </div>
   );
 }
