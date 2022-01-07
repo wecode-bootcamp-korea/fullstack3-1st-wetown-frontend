@@ -4,6 +4,7 @@ import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import Footer from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
+import ListSlider from "./ListComponents/ListSlider";
 
 function ProductList() {
   //GET PARAMETER FROM URL
@@ -14,6 +15,7 @@ function ProductList() {
   useEffect(() => {
     setCate(params.category);
   });
+
   //GET QUERY FROM URL
   // const search = useLocation().search;
   // const querySubCategory = new URLSearchParams(search).get("subcategory");
@@ -50,15 +52,7 @@ function ProductList() {
     <section className="productList">
       <HeaderNav />
       <section className="sectionLayout">
-        <section className="imgSlide">
-          <a href=" ">
-            <img
-              className="petSlideImg"
-              src="http://localhost:3000/images/_.jpg"
-              alt="주인공 이름은?"
-            />
-          </a>
-        </section>
+        <ListSlider />
         <section className="productSideSection">
           <section className="sideSection">
             <nav className="petSide">
