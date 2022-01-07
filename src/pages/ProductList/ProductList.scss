@@ -6,12 +6,38 @@
   .sectionLayout {
     width: 1200px;
     margin: 0 auto;
-    .imgSlide {
-      // background-color: rgb(199, 184, 23);
+    .carousel-wrapper {
+      width: 1200px;
 
-      .petSlideImg {
-        width: 100%;
-        height: 400px;
+      display: flex;
+      .leftSec {
+        .leftArrow {
+          margin: 125px 0 125px 0;
+          width: 100px;
+          height: 150px;
+          cursor: pointer;
+        }
+      }
+      .carousel {
+        display: flex;
+        overflow: hidden;
+      }
+      .listSlider {
+        width: 1000px;
+        display: flex;
+        .carouselImg {
+          width: 1000px;
+          height: 400px;
+        }
+      }
+
+      .rightSec {
+        .rightArrow {
+          margin: 125px 0 125px 0;
+          width: 100px;
+          height: 150px;
+          cursor: pointer;
+        }
       }
     }
 
