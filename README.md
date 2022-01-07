@@ -1,23 +1,44 @@
-# Getting Started with Create React App
+# 🎁 Wetown & Store에 오신걸 환영합니다 🎉
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Wetown & Store는 SM 엔터테인먼트의 굿즈 홈페이지를 클론코딩한 페이지입니다!
 
-## Available Scripts
+SM 엔터테인먼트 사이트 주소 : https://smtownandstore.com/
 
-In the project directory, you can run:
+💡 클론 코딩이란 실제 웹사이트 서비스들을 직접 구현하면서 서비스가 돌아가는 원리를 공부하는 작업으로, 코드를 베껴서 치는 작업이 아닙니다.
 
-### `npm start`
+저희 팀은 기존 엔터테인먼트 사이트를 구현하기 보다는 애완동물 관련 사이트로 새롭게 만들었습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+페이지는 총 6개로 메인 페이지, 상품 리스트 페이지, 상품 디테일 페이지, 장바구니 페이지, 회원가입 페이지, 로그인 페이지로 구성되어 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 사용한 기술 스택
 
-### `npm test`
+- HTML
+- CSS
+- JavaScript
+- React
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 참여한 팀원과 역할
+
+1. 황희윤 (메인 페이지 담당)
+- 헤더(페이지 상단의 메뉴 바), 메인 슬라이더, Pet for U (메인 페이지에서 보이는 상품 사진들) 구현
+
+2. 박태준 (상품 리스트 페이지, Footer)
+- 카테고리(동물 종류)별로 그에 해당하는 상품들의 목록을 보여주는 페이지 구현
+- 사이트 하단에 위치한 Footer 구현
+
+3. 이준혁 (상품 디테일 페이지, 장바구니 페이지)
+- 상품 개별 페이지를 구현하며 상품의 정보들을 디테일 하게 볼 수 있도록 구현
+- 상품을 구매하고 싶으면 로그인한 유저에 한해서 장바구니에 담을 수 있도록 구현
+
+4. 최은비 (로그인, 회원가입 페이지, 프로젝트 매니저 담당)
+- 유저가 특정한 정보를 입력하면 회원가입을 할 수 있게 회원가입 페이지 구현
+- 회원가입을 한 유저가 로그인을 하고 로그아웃도 할 수 있게 만듬
+- 프로젝트 전체적인 일정과 방향을 조율
+
+### 결과물
+
+#### 메인 페이지
+
 
 ### `npm run build`
 
