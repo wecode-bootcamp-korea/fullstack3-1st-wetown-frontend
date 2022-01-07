@@ -6,13 +6,13 @@ import CircleButton from "../../components/CircleButton/CircleButton";
 import "./SignIn.scss";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState(false);
   const [validLogin, setValidLogin] = useState(false);
   const [signInInput, setSignInInput] = useState({
     emailInput: "",
     passwordInput: "",
   });
-
   let { emailInput, passwordInput } = signInInput;
 
   const handleInput = e => {
@@ -31,8 +31,6 @@ const SignIn = () => {
       setValidLogin(true);
     } else setValidLogin(false);
   }, [emailInput, passwordInput]);
-
-  const navigate = useNavigate();
 
   async function goSignIn(e) {
     e.preventDefault();

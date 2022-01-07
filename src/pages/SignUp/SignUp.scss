@@ -89,6 +89,17 @@
             }
           }
 
+          .genderButton {
+            margin: 10px;
+            padding: 0;
+            border: 1px solid #f0f0f0;
+            background-color: transparent;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+          }
+
           .verificationInputWrapper {
             @include flex-box(column, -content, flex-start);
             width: 100%;
