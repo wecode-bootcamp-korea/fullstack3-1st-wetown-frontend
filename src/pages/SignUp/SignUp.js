@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+im1port React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import Footer from "../../components/Footer/Footer";
@@ -58,12 +58,6 @@ const SignUp = () => {
   };
 
   const checkOptionalPolicy = value => {
-    //Array로 선택 저장..
-    // const choicesArray = Object.values(value);
-    // console.log(choicesArray);
-    // setUserInput({ ...userInput, policiesInput: choicesArray });
-
-    //객체로 약관동의 선택 저장
     setUserInput({ ...userInput, policiesInput: value });
   };
 
