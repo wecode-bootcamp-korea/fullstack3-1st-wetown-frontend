@@ -1,7 +1,7 @@
 .ProductDetail {
   letter-spacing: 2px;
   .detailArea {
-    margin-top: 50px;
+    padding-top: 150px;
     height: auto;
     .cartArea {
       width: 400px;
@@ -57,88 +57,106 @@
     justify-content: center;
     .mainArea {
       position: relative;
-      width: 900px;
+      width: 800px;
       margin-bottom: 100px;
       .newBox {
         position: absolute;
-        top: -50px;
-        left: -30px;
+        top: -5px;
+        right: -10px;
         z-index: 1000;
+        img {
+          width: 150px;
+        }
       }
-      .slideBackground {
+      .sildeContainer {
+        display: flex;
         position: relative;
-        width: 900px;
-        height: 900px;
-        background-color: #ecebeb;
-        .slideBox {
-          display: flex;
-          width: 700px;
-          height: 700px;
-          overflow: hidden;
+        .dumy {
+          position: absolute;
+          left: -100%;
+          width: 800px;
+          height: 900px;
+          background-color: #f2f2f2;
+        }
+        .slideBackground {
           position: relative;
-          top: 100px;
-          left: 100px;
-          .slideList {
-            transition: 0.5s;
-            width: 700px;
-            height: 700px;
-            img {
-              width: 700px;
-              height: 700px;
-              object-fit: fill;
+          width: 800px;
+          height: 900px;
+          background-color: #f2f2f2;
+          display: flex;
+
+          .slideBox {
+            display: flex;
+            width: 600px;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            top: 150px;
+            left: 100px;
+            .slideList {
+              transition: 0.5s;
+              width: 600px;
+              height: 600px;
+              img {
+                width: 600px;
+                height: 600px;
+                object-fit: fill;
+              }
             }
           }
-        }
-        .dot {
-          font-size: 1.4em;
-          position: absolute;
-          top: 93%;
-          left: 46%;
-          .on {
-            font-weight: 900;
+          .dot {
+            font-size: 2.2em;
+            position: absolute;
+            top: 93%;
+            left: 46%;
+            color: #7e7b7b;
+            .on {
+              color: black;
+              font-weight: 900;
+            }
           }
-        }
-        #goLeft {
-          position: absolute;
-          top: 50%;
-          left: 20px;
-          background-image: url(./images/left.png);
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          border: none;
-          width: 30px;
-          height: 30px;
-          opacity: 0.4;
-          cursor: pointer;
-          &:hover {
-            opacity: 0.8;
-            transition: all 0.5s;
+          #goLeft {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            background-image: url(./images/left.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            width: 30px;
+            height: 30px;
+            opacity: 0.4;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.8;
+              transition: all 0.5s;
+            }
           }
-        }
-        #goRight {
-          position: absolute;
-          top: 50%;
-          right: 20px;
-          background-image: url(./images/right.png);
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          border: none;
-          width: 30px;
-          height: 30px;
-          opacity: 0.4;
-          cursor: pointer;
-          &:hover {
-            opacity: 0.8;
-            transition: all 0.5s;
+          #goRight {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            background-image: url(./images/right.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            width: 30px;
+            height: 30px;
+            opacity: 0.4;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.8;
+              transition: all 0.5s;
+            }
           }
         }
       }
       .productDetailArea {
         .detailHeading {
           .noticeInfo {
-            font-size: 1.6em;
+            font-size: 1.4em;
             margin-top: 70px;
             padding-top: 30px;
             border-top: 2px solid #ecebeb;
@@ -224,10 +242,11 @@
     .sidebarArea {
       margin-top: 50px;
       margin-left: 50px;
-      width: 450px;
+      width: 400px;
       height: 500px;
       position: sticky;
       top: 150px;
+      font-size: 0.9em;
       .sideHeading {
         .subCateName {
           font-size: 1.4em;
@@ -296,11 +315,15 @@
         }
         .savedName {
           color: #acaaaa;
+          display: inline-block;
+          width: 70px;
           .beforeHover {
             display: none;
           }
         }
         .savedValue {
+          display: inline-block;
+          width: 225px;
           .beforeHover {
             display: none;
           }

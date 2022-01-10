@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import { useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import { Slider } from "./compo/slider";
-import Footer from "../../components/Footer/Footer";
+import { PolicyBox } from "./compo/PolicyBox";
+import { ViewCart } from "./compo/ViewCart";
+import { NewTag, PopUp, Price, TopBottom } from "./compo/MiniCopo";
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
@@ -21,7 +21,7 @@ const ProductDetail = () => {
   const userId = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch(`http://localhost:8000/product/${params.product}`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/product/${params.product}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -43,7 +43,7 @@ const ProductDetail = () => {
           })
         );
       });
-  }, []);
+  }, [params.product]);
 
   useEffect(() => {
     const adTimer = setTimeout(() => {
@@ -52,24 +52,20 @@ const ProductDetail = () => {
     return () => {
       clearTimeout(adTimer);
     };
-  }, [ad]);
+  }, []);
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
       return Math.round(
         data[0].price * (1 - data[0].sale_rate / 100) * quantity
-      )
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      );
     } else {
-      return Math.round(data[0].price * quantity)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return Math.round(data[0].price * quantity);
     }
   };
 
   const toCart = () => {
-    fetch(`http://localhost:8000/cart`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/cart`, {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
@@ -87,9 +83,30 @@ const ProductDetail = () => {
       })
       .catch(err => alert("로그인 해주세요."));
   };
+
+  const pickColor = cate => {
+    switch (cate) {
+      case "dog":
+        return { backgroundColor: "#fccf1d" };
+      case "cat":
+        return { backgroundColor: "#c81a20" };
+      case "turtle":
+        return { backgroundColor: "#016ad5" };
+      case "hamster":
+        return { backgroundColor: "#cda5e0" };
+      case "bird":
+        return { backgroundColor: "#d8e22d" };
+      default:
+        return { backgroundColor: "black" };
+    }
+  };
+
+  const toComma = price => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <div className="ProductDetail">
-      <HeaderNav />
       <div className="detailArea">
         {addCart ? (
           <ViewCart
@@ -98,14 +115,17 @@ const ProductDetail = () => {
             navigate={navigate}
           />
         ) : null}
-        <div className="mainArea">
+        <section className="mainArea">
           {data[0] && data[0].is_new ? <NewTag /> : null}
-          <Slider
-            imgList={imgList}
-            setImgList={setImgList}
-            originalImg={originalImg}
-            originalSize={originalSize}
-          />
+          <div className="sildeContainer">
+            <div className="dumy" />
+            <Slider
+              imgList={imgList}
+              setImgList={setImgList}
+              originalImg={originalImg}
+              originalSize={originalSize}
+            />
+          </div>
           <div className="productDetailArea">
             <div className="detailHeading">
               <ul className="noticeInfo">
@@ -117,12 +137,12 @@ const ProductDetail = () => {
                   무단복제 및 도용을 금지합니다
                 </li>
                 <li>
-                  ▪️ WETOWN & STORE는 음반 판매 수량은 🎼차트와 ⚜️차트에
+                  ▪️ WETOWN & STORE는 음반 판매 수량은 🐶차트와 🐱차트에
                   반영됩니다.
                 </li>
               </ul>
               <div className="noticeIcon">
-                <span>🎼</span> <span>⚜️</span>
+                <span>🐶</span> <span>🐱</span>
               </div>
               <div className="noticeImg">
                 <div className="ad">
@@ -142,48 +162,10 @@ const ProductDetail = () => {
                 );
               })}
             </div>
-            <div className="policyNotice">
-              <div className="policyBox">
-                <span
-                  className={noticeNum === 1 ? "on" : undefined}
-                  onClick={() => {
-                    setNoticeNum(1);
-                  }}
-                >
-                  상품정보
-                </span>
-                <span
-                  className={noticeNum === 2 ? "on" : undefined}
-                  onClick={() => {
-                    setNoticeNum(2);
-                  }}
-                >
-                  주문 및 배송 안내
-                </span>
-                <span
-                  className={noticeNum === 3 ? "on" : undefined}
-                  onClick={() => {
-                    setNoticeNum(3);
-                  }}
-                >
-                  교환 및 환불 안내
-                </span>
-                <span
-                  className={noticeNum === 4 ? "on" : undefined}
-                  onClick={() => {
-                    setNoticeNum(4);
-                  }}
-                >
-                  품질보증기준
-                </span>
-              </div>
-              <div className="imgInfo">
-                <SelectNotice num={noticeNum} />
-              </div>
-            </div>
+            <PolicyBox noticeNum={noticeNum} setNoticeNum={setNoticeNum} />
           </div>
-        </div>
-        <div className="sidebarArea">
+        </section>
+        <section className="sidebarArea">
           <div className="sideHeading">
             <div className="subCateName">
               {data[0] && data[0].subcate_name.toUpperCase()}
@@ -195,7 +177,7 @@ const ProductDetail = () => {
               {data[0] && data[0].sale_rate ? (
                 <Price sale={data[0].sale_rate} price={data[0].price} />
               ) : (
-                `₩ ` + (data[0] && priceObject(false, 1))
+                `₩ ` + (data[0] && toComma(priceObject(false, 1)))
               )}
               <span className="shareIcon">
                 <img src="/images/shareIcon.png" alt="shareIcon" />
@@ -218,9 +200,7 @@ const ProductDetail = () => {
             </ul>
             <ul className="savedValue">
               <li>
-                0.5% ({data[0] && Math.round(data[0].price * 0.005) + ` P`}
-                )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0.5% ({data[0] && Math.round(data[0].price * 0.005) + ` P`})
               </li>
               <li className="beforeHover">PINK SILVER 기본적립금 +0.2%</li>
               <li className="beforeHover">PINK GOLD 기본적립금 +0.5%</li>
@@ -267,8 +247,8 @@ const ProductDetail = () => {
               <span>
                 {`₩ ` +
                   (data[0] && data[0].sale_rate
-                    ? priceObject(true, quantity)
-                    : data[0] && priceObject(false, quantity))}
+                    ? toComma(priceObject(true, quantity))
+                    : data[0] && toComma(priceObject(false, quantity)))}
               </span>
             </div>
           </div>
@@ -278,8 +258,8 @@ const ProductDetail = () => {
               <span className="totalPrice">
                 {`₩ ` +
                   (data[0] && data[0].sale_rate
-                    ? priceObject(true, quantity)
-                    : data[0] && priceObject(false, quantity))}
+                    ? toComma(priceObject(true, quantity))
+                    : data[0] && toComma(priceObject(false, quantity)))}
               </span>
               <span className="totalQuantity">({quantity + `개`})</span>
             </div>
@@ -303,141 +283,9 @@ const ProductDetail = () => {
               <button className="wishBtn">위시리스트 담기</button>
             </div>
           </div>
-        </div>
-        <div className="topBottom">
-          <span
-            className="top"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <img src="/images/totop.png" alt="top" />
-          </span>
-          <span
-            className="bottom"
-            onClick={() => {
-              window.scrollTo({ top: 10000, behavior: "smooth" });
-            }}
-          >
-            <img src="/images/totop.png" alt="bottom" />
-          </span>
-        </div>
+        </section>
+        <TopBottom />
         {ad && data[0].quantity <= 10 ? <PopUp setAd={setAd} /> : null}
-      </div>
-      <Footer />
-    </div>
-  );
-};
-
-const NewTag = () => {
-  return (
-    <div className="newBox">
-      <img src="/images/new.png" alt="newtag" />
-    </div>
-  );
-};
-
-const Price = ({ sale, price }) => {
-  return (
-    <div className="priceBox">
-      <span className="afterPrice">
-        {`₩ ` +
-          Math.round(price * (1 - sale / 100))
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-      </span>
-      <span className="beforePrice">
-        {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-      </span>
-      <span className="saleRate">{sale}%</span>
-    </div>
-  );
-};
-
-const pickColor = cate => {
-  switch (cate) {
-    case "dog":
-      return { backgroundColor: "#fccf1d" };
-    case "cat":
-      return { backgroundColor: "#c81a20" };
-    case "turtle":
-      return { backgroundColor: "#016ad5" };
-    case "hamster":
-      return { backgroundColor: "#cda5e0" };
-    case "bird":
-      return { backgroundColor: "#d8e22d" };
-    default:
-      return { backgroundColor: "black" };
-  }
-};
-
-const ViewCart = ({ cate, setAddCart, navigate, userId }) => {
-  return (
-    <div className="cartArea">
-      <div className="cartHead" style={pickColor(cate)}>
-        <span>장바구니 담기</span>
-        <span
-          onClick={() => {
-            setAddCart(false);
-          }}
-        >
-          X
-        </span>
-      </div>
-      <div className="cartMid">
-        <img src="/images/cart.png" alt="cart" />
-        <div>장바구니에 상품이 정상적으로 담겼습니다.</div>
-      </div>
-      <div className="cartBottom">
-        <button
-          onClick={() => {
-            setAddCart(false);
-          }}
-        >
-          쇼핑 계속하기
-        </button>
-        <button
-          onClick={() => {
-            navigate(`/cart`);
-          }}
-        >
-          장바구니 이동
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const SelectNotice = ({ num }) => {
-  switch (num) {
-    case 1:
-      return <img src="/images/info.png" alt="info" />;
-    case 2:
-      return <img src="/images/delivery.png" alt="delivery" />;
-    case 3:
-      return <img src="/images/change.png" alt="change" />;
-    case 4:
-      return <img src="/images/quality.png" alt="quality" />;
-    default:
-      return <img src="/images/info.png" alt="info" />;
-  }
-};
-
-const PopUp = ({ setAd }) => {
-  return (
-    <div
-      className="popUpBox"
-      onClick={() => {
-        setAd(false);
-      }}
-    >
-      <div className="exit">x</div>
-      <div className="background">
-        <img src="/images/cat.png" alt="popup" />
-      </div>
-      <div className="hurryUP">
-        <span className="title">Hurry Up!</span>
-        <span className="subTitle">수량이 얼마 남지 않았어요.</span>
       </div>
     </div>
   );

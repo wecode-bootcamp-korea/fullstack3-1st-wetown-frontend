@@ -31,7 +31,7 @@ const Slider = ({ imgList, setImgList, originalSize, originalImg }) => {
   const DotSlide = ({ num }) => {
     return (
       <span className={(index - 1) % originalSize === num ? "on" : undefined}>
-        ㅇ
+        ▫️
       </span>
     );
   };
