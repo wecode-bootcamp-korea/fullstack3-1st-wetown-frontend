@@ -77,7 +77,7 @@ const Cart = () => {
   return (
     <div className="Cart">
       <HeaderNav />
-      <div className="main">
+      <div className="mainArea">
         <div className="title">Cart</div>
         <div className="product">
           <div className="productField">
