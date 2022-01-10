@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import Footer from "../../components/Footer/Footer";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import Policy from "./Policy";
 import "./SignUp.scss";
@@ -135,7 +133,6 @@ const SignUp = () => {
 
   return (
     <div className="SignUp">
-      <HeaderNav />
       <div className="SignUpContainer">
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
@@ -367,7 +364,6 @@ const SignUp = () => {
           </section>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };
