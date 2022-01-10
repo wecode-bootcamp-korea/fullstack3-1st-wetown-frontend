@@ -1,4 +1,4 @@
-im1port React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
 import Footer from "../../components/Footer/Footer";
