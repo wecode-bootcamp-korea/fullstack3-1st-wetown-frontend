@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import Footer from "../../components/Footer/Footer";
 import CircleButton from "../../components/CircleButton/CircleButton";
+import ScrollToTop from "../../components/ScrollToTop";
 import "./SignIn.scss";
 
 const SignIn = () => {
@@ -63,7 +62,7 @@ const SignIn = () => {
 
   return (
     <div className="SignIn">
-      <HeaderNav />
+      <ScrollToTop />
       <div className="SignInContainer">
         <h2 className="pageTitle">Login</h2>
         <section className="signInBox">
@@ -188,7 +187,6 @@ const SignIn = () => {
           </section>
         </section>
       </div>
-      <Footer />
     </div>
   );
 };

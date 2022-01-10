@@ -7,8 +7,12 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
 import Cart from "./pages/Cart/Cart";
+import HeaderNav from "./components/HeaderNav/HeaderNav";
+import Footer from "./components/Footer/Footer";
+
 const Router = () => (
   <BrowserRouter>
+    <HeaderNav />
     <Routes>
       <Route path="/" element={<Main />} />
       <Route
@@ -24,6 +28,7 @@ const Router = () => (
       <Route path="/signin" element={<SignIn />} />
       <Route path="/cart" element={<Cart />} />
     </Routes>
+    <Footer />
   </BrowserRouter>
 );
 
