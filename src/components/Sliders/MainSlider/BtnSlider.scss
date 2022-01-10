@@ -1,26 +1,23 @@
 .BtnSlider {
+  position: absolute;
+  top: 75%;
   width: 60px;
   height: 60px;
-  background: white;
-  position: absolute;
+  background: transparent;
   border: none;
-  align-items: center;
+  border-radius: 50%;
   cursor: pointer;
 
   .BtnSlider img {
     width: 30px;
     height: 30px;
-    pointer-events: none;
   }
 }
 
 .prev {
-  top: 50%;
   left: -70px;
-  border-radius: 50%;
 }
+
 .next {
-  top: 50%;
   right: -70px;
-  border-radius: 50%;
 }
