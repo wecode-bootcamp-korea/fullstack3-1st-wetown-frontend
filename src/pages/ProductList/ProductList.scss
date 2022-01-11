@@ -2,44 +2,62 @@
 
 //Product List Style
 .productList {
-  // background-color: skyblue;
+  background-color: white;
+  position: relative;
+  .carousel-wrapper {
+    width: 1905px;
+    object-fit: cover;
+    position: relative;
+    display: flex;
+
+    .arrowSection {
+      margin: 300px auto;
+      position: absolute;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .leftArrow {
+        margin-left: 20px;
+        width: 30px;
+        height: 100px;
+        cursor: pointer;
+      }
+      .rightArrow {
+        margin-right: 20px;
+        width: 30px;
+        height: 100px;
+        cursor: pointer;
+      }
+    }
+    .carousel {
+      display: flex;
+      overflow: hidden;
+    }
+    .listSlider {
+      width: 1905px;
+      height: 700px;
+      display: flex;
+      .carouselImg {
+        object-fit: cover;
+        width: 1905px;
+        object-position: center bottom;
+      }
+    }
+
+    .rightSec {
+      position: absolute;
+      .rightArrow {
+        // margin: 125px 0 125px 1800px;
+        width: 50px;
+        height: 100px;
+        cursor: pointer;
+      }
+    }
+  }
   .sectionLayout {
     width: 1200px;
     margin: 0 auto;
-    .carousel-wrapper {
-      width: 1200px;
-
-      display: flex;
-      .leftSec {
-        .leftArrow {
-          margin: 125px 0 125px 0;
-          width: 100px;
-          height: 150px;
-          cursor: pointer;
-        }
-      }
-      .carousel {
-        display: flex;
-        overflow: hidden;
-      }
-      .listSlider {
-        width: 1000px;
-        display: flex;
-        .carouselImg {
-          width: 1000px;
-          height: 400px;
-        }
-      }
-
-      .rightSec {
-        .rightArrow {
-          margin: 125px 0 125px 0;
-          width: 100px;
-          height: 150px;
-          cursor: pointer;
-        }
-      }
-    }
 
     .productSideSection {
       // background-color: palevioletred;
@@ -108,11 +126,19 @@
               padding: 0.1rem 0 0 0.3rem;
             }
 
-            .listImg {
-              background-color: brown;
+            .imgSection {
               width: 298px;
               height: 402px;
+              background-color: #f2f2f2;
+              .listImg {
+                object-fit: cover;
+                width: 298px;
+                height: 302px;
+                margin: 50px auto;
+                // background-color: lightgrey;
+              }
             }
+
             .productDescription {
               width: 100%;
               .cateName {
