@@ -41,7 +41,6 @@ export default function PetProductBox() {
       .then(data => setCategoryArr(data));
   }, []);
 
-  console.log(categoryArr);
   return (
     <div className="PetProductBox">
       <div className="petProductBox">
@@ -51,7 +50,7 @@ export default function PetProductBox() {
             {categoryArr &&
               categoryArr.map((category, index) => {
                 return (
-                  <li onMouseEnter={() => setNumb(index)} key={index}>
+                  <li onMouseEnter={() => setNumb(index)} key={category.id}>
                     <Link to={linkAddress + category.name}>
                       {category.name.toUpperCase()}
                     </Link>
@@ -67,6 +66,7 @@ export default function PetProductBox() {
                 <ul
                   className="productBoxList"
                   style={{ display: numb === index ? "flex" : "none" }}
+                  key={category.id}
                 >
                   <li>
                     <div
@@ -88,16 +88,18 @@ export default function PetProductBox() {
                       .slice(0 + 9 * index, 9 + 9 * index)
                       .map((item, indexInner) => {
                         return (
-                          <li className="productPic">
-                            <Link
-                              to={
-                                linkAddress +
-                                item +
-                                `/product/${indexInner + 1}`
-                              }
-                            >
-                              <img src={item.url} alt={item.eng_name} />
-                            </Link>
+                          <li className="productPic" key={item.id}>
+                            <div className="productPic-wrapper">
+                              <Link
+                                to={
+                                  linkAddress +
+                                  item +
+                                  `/product/${indexInner + 1}`
+                                }
+                              >
+                                <img src={item.url} alt={item.eng_name} />
+                              </Link>
+                            </div>
                           </li>
                         );
                       })}
