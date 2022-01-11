@@ -266,6 +266,29 @@ const ProductDetail = () => {
               <button className="wishBtn">위시리스트 담기</button>
             </div>
           </div>
+          <div className="withHappyArea">
+            <div className="title">함께하면 좋은 상품!</div>
+            <div className="happyArea">
+              <div className="happyBox">
+                <div className="happyBackground">
+                  <span>
+                    <img src="/images/cat12.png" alt="cat" />
+                  </span>
+                </div>
+                <div className="happyName">SUPER PRETTY CAT TOWER</div>
+                <div className="happyPrice">₩ 55,000</div>
+              </div>
+              <div className="happyBox">
+                <div className="happyBackground">
+                  <span>
+                    <img src="/images/cat13.png" alt="cat" />
+                  </span>
+                </div>
+                <div className="happyName">LUXURIOUS CAT CUSHION</div>
+                <div className="happyPrice">₩ 120,000</div>
+              </div>
+            </div>
+          </div>
         </section>
         <TopBottom />
         {ad && data.quantity <= 999 ? <PopUp setAd={setAd} /> : null}

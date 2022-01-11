@@ -257,7 +257,7 @@
       margin-left: 50px;
       width: 450px;
       min-width: 315px;
-      height: 800px;
+      height: 1200px;
       position: sticky;
       top: 150px;
       background-color: #ffffff;
@@ -448,6 +448,46 @@
             &:hover {
               transition: 0.35s;
               background-color: #ecebeb;
+            }
+          }
+        }
+      }
+      .withHappyArea {
+        margin-top: 40px;
+        padding: 15px;
+        .title {
+          color: #1c0d41;
+          font-size: 1.8em;
+          font-weight: bold;
+        }
+        .happyArea {
+          margin-top: 50px;
+          display: flex;
+          justify-content: space-between;
+          .happyBox {
+            .happyBackground {
+              background-color: #f2f2f2;
+              width: 200px;
+              height: 250px;
+              text-align: center;
+              span {
+                width: 200px;
+                height: 250px;
+                img {
+                  width: 200px;
+                  height: 250px;
+                  object-fit: contain;
+                }
+              }
+            }
+            .happyName {
+              margin-top: 10px;
+              font-size: 1.2em;
+            }
+            .happyPrice {
+              margin-top: 10px;
+              font-size: 1.2em;
+              font-weight: bold;
             }
           }
         }
