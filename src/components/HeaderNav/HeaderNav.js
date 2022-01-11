@@ -50,7 +50,7 @@ export default function HeaderNav() {
 
   const scrollWatch = () => {
     setScrollY(window.pageYOffset);
-    if (scrollY > 100) {
+    if (scrollY > 50) {
       setFix(true);
       setHovered(false);
     } else {
