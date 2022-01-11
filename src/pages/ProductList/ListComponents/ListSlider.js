@@ -11,10 +11,10 @@ function ListSlider() {
   }, []);
 
   const leftClick = () => {
-    setX(prevX => prevX + 1905);
+    setX(prevX => prevX + 100);
   };
   const rightClick = () => {
-    setX(prevX => prevX - 1905);
+    setX(prevX => prevX - 100);
   };
 
   return (
@@ -38,7 +38,7 @@ function ListSlider() {
           <section
             key={imgUrl.discription}
             className="listSlider"
-            style={{ transform: `translateX(${x}px)` }}
+            style={{ transform: `translateX(${x}%)` }}
           >
             <img
               className="carouselImg"
