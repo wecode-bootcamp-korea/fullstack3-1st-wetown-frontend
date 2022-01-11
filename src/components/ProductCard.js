@@ -20,7 +20,9 @@ const ProductCard = props => {
         ) : (
           <section />
         )}
-        <img class="listImg" src={props.data.url} alt={props.data.eng_name} />
+        <section className="imgSection">
+          <img class="listImg" src={props.data.url} alt={props.data.eng_name} />
+        </section>
       </Link>
       <section className="productDescription">
         <p className="cateName">{props.data.cate_name}</p>

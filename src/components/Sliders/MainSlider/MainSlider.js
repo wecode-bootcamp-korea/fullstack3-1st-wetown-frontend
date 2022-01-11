@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BtnSlider from "./BtnSlider";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
 import { useNavigate } from "react-router-dom";
@@ -39,21 +39,21 @@ export default function MainSlider() {
     };
   });
 
-  const changePage = index => {
-    switch (index) {
-      case 1:
+  const changePage = category => {
+    switch (category) {
+      case "dog":
         navigate("/category/dog");
         break;
-      case 2:
+      case "cat":
         navigate("/category/cat");
         break;
-      case 3:
+      case "turtle":
         navigate("/category/turtle");
         break;
-      case 4:
+      case "hamster":
         navigate("/category/hamster");
         break;
-      case 5:
+      case "bird":
         navigate("/category/bird");
         break;
       default:
@@ -67,11 +67,15 @@ export default function MainSlider() {
       case 2:
         return "#c81a20";
       case 3:
-        return "#016ad5";
-      case 4:
-        return "#cda5e0";
-      case 5:
         return "#d8e22d";
+      case 4:
+        return "#fccf1d";
+      case 5:
+        return "#cda5e0";
+      case 6:
+        return "#fccf1d";
+      case 7:
+        return "#016ad5";
       default:
     }
   };
@@ -79,8 +83,10 @@ export default function MainSlider() {
   const moveDot = index => {
     setSlideIndex(index);
   };
+
   return (
     <div
+      className="MainSliderWrapper"
       style={{
         backgroundColor: changePageColor(slideIndex),
         transition: "0.4s ease-in-out",
@@ -91,25 +97,40 @@ export default function MainSlider() {
           {sliderData.map((obj, index) => {
             return (
               <li
-                className={slideIndex === index + 1 ? "slide-active" : "slide"}
-                onClick={() => changePage(slideIndex)}
+                className={`${obj.category}
+                  ${slideIndex === index + 1 ? "slide-active" : "slide"}
+                `}
+                onClick={() => {
+                  changePage(obj.category);
+                }}
                 key={obj.id}
               >
                 <img
                   src={obj.img}
-                  className="image"
+                  className={`image ${obj.category}`}
                   key={obj.id}
                   alt="슬라이더 이미지"
                 />
+                <div className="mainSliderDetail">{obj.desc}</div>
               </li>
             );
           })}
         </ul>
-        <BtnSlider moveSlide={nextSlide} direction="next" />
-        <BtnSlider moveSlide={prevSlide} direction="prev" />
+        <FaChevronLeft
+          color="white"
+          size={50}
+          className="BtnSlider prev"
+          onClick={nextSlide}
+        />
+        <FaChevronRight
+          color="white"
+          size={50}
+          className="BtnSlider next"
+          onClick={prevSlide}
+        />
 
         <div className="slider-dots">
-          {Array.from({ length: 5 }).map((item, index) => (
+          {Array.from({ length: 7 }).map((item, index) => (
             <div
               onClick={() => moveDot(index + 1)}
               className={slideIndex === index + 1 ? "dot active" : "dot"}
