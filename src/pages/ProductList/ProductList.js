@@ -51,8 +51,8 @@ function ProductList() {
   return (
     <section className="productList">
       <HeaderNav />
+      <ListSlider />
       <section className="sectionLayout">
-        <ListSlider />
         <section className="productSideSection">
           <section className="sideSection">
             <nav className="petSide">
