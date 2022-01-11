@@ -10,8 +10,8 @@ const Cart = () => {
   const [productQuantity, setProductQuantity] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      await fetch(`${process.env.REACT_APP_BASE_URL}/cart/list`, {
+    function fetchData() {
+      fetch(`${process.env.REACT_APP_BASE_URL}/cart/list`, {
         method: "POST",
         mode: "cors",
         headers: {
@@ -62,8 +62,8 @@ const Cart = () => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  const deleteCart = async product_id => {
-    await fetch(`${process.env.REACT_APP_BASE_URL}/cart`, {
+  const deleteCart = product_id => {
+    fetch(`${process.env.REACT_APP_BASE_URL}/cart`, {
       method: "delete",
       mode: "cors",
       headers: {

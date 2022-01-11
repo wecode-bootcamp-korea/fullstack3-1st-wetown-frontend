@@ -4,6 +4,7 @@ import { Slider } from "./compo/slider";
 import { PolicyBox } from "./compo/PolicyBox";
 import { ViewCart } from "./compo/ViewCart";
 import { NewTag, PopUp, Price, TopBottom } from "./compo/MiniCopo";
+import ScrollToTop from "../../components/ScrollToTop";
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
@@ -13,14 +14,19 @@ const ProductDetail = () => {
   const [data, setData] = useState([]);
   const [imgList, setImgList] = useState([]);
   const [originalImg, setOriginalImg] = useState([]);
-  const [originalSize, setOriginalSize] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [addCart, setAddCart] = useState(false);
   const [noticeNum, setNoticeNum] = useState(1);
   const userId = localStorage.getItem("token");
+  const [x, setX] = useState(0);
+  const [moving, setMoving] = useState(false);
 
   useEffect(() => {
+    const adTimer = setTimeout(() => {
+      setAd(true);
+    }, 2000); // 왜 3초?
+
     fetch(`${process.env.REACT_APP_BASE_URL}/product/${params.product}`, {
       method: "GET",
       mode: "cors",
@@ -30,29 +36,24 @@ const ProductDetail = () => {
     })
       .then(res => res.json())
       .then(res => {
-        setOriginalSize(res.length);
         setData(res);
-        setImgList(
-          res.map(e => {
-            return e.url;
-          })
-        );
+        const img = res.map(e => {
+          return e.url;
+        });
+        const newImg = [...img, ...img];
+        setImgList(newImg);
+        setX(-(parseInt(newImg.length / 2, 10) * 600));
         setOriginalImg(
           res.map(e => {
             return e.url;
           })
         );
       });
-  }, [params.product]);
 
-  useEffect(() => {
-    const adTimer = setTimeout(() => {
-      setAd(true);
-    }, 2000);
     return () => {
       clearTimeout(adTimer);
     };
-  }, []);
+  }, [params.product]);
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
@@ -105,8 +106,33 @@ const ProductDetail = () => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  const goLeft = () => {
+    if (moving) return;
+    setX(prevX => prevX + 600);
+    setMoving(true);
+    setTimeout(() => {
+      const lastImg = imgList.pop();
+      setImgList([lastImg, ...imgList]);
+      setX(prevX => prevX - 600);
+      setMoving(false);
+    }, 500);
+  };
+
+  const goRight = () => {
+    if (moving) return;
+    setX(prevX => prevX - 600);
+    setMoving(true);
+    setTimeout(() => {
+      const lastImg = imgList.shift();
+      setImgList([...imgList, lastImg]);
+      setX(prevX => prevX + 600);
+      setMoving(false);
+    }, 500);
+  };
+
   return (
     <div className="ProductDetail">
+      <ScrollToTop />
       <div className="detailArea">
         {addCart ? (
           <ViewCart
@@ -117,14 +143,39 @@ const ProductDetail = () => {
         ) : null}
         <section className="mainArea">
           {data[0] && data[0].is_new ? <NewTag /> : null}
-          <div className="sildeContainer">
+          <div className="slideContainer">
             <div className="dumy" />
-            <Slider
-              imgList={imgList}
-              setImgList={setImgList}
-              originalImg={originalImg}
-              originalSize={originalSize}
-            />
+            <div className="slideBackground">
+              <div className="slideBox">
+                {imgList.map((e, i) => {
+                  return (
+                    <div
+                      className="slideList"
+                      key={i}
+                      style={{ transform: `translateX(${x}px)` }}
+                    >
+                      <img src={e} alt="slideImg" />
+                    </div>
+                  );
+                })}
+              </div>
+              {/* <div className="dot">
+        {originalImg.map((e, i) => {
+          return <DotSlide key={i} num={i} />;
+        })}
+      </div> */}
+              <button id="goLeft" onClick={goLeft} />
+              <button id="goRight" onClick={goRight} />
+            </div>
+
+            {/* {imgList && (
+              <Slider
+                imgList={imgList}
+                setImgList={setImgList}
+                originalImg={originalImg}
+                originalSize={originalSize}
+              />
+            )} */}
           </div>
           <div className="productDetailArea">
             <div className="detailHeading">

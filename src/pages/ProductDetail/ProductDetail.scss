@@ -68,7 +68,7 @@
           width: 150px;
         }
       }
-      .sildeContainer {
+      .slideContainer {
         display: flex;
         position: relative;
         .dumy {
@@ -89,7 +89,7 @@
             display: flex;
             width: 600px;
             height: 600px;
-            overflow: hidden;
+            // overflow: hidden;
             position: relative;
             top: 150px;
             left: 100px;
