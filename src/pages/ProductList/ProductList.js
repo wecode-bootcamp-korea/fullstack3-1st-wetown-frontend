@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 import ListSlider from "./ListComponents/ListSlider";
+import ScrollToTop from "../../components/ScrollToTop";
 
 function ProductList() {
   //GET PARAMETER FROM URL
@@ -50,7 +51,7 @@ function ProductList() {
 
   return (
     <section className="productList">
-      <HeaderNav />
+      <ScrollToTop />
       <ListSlider />
       <section className="sectionLayout">
         <section className="productSideSection">
@@ -104,7 +105,6 @@ function ProductList() {
           </section>
         </section>
       </section>
-      <Footer />
     </section>
   );
 }
