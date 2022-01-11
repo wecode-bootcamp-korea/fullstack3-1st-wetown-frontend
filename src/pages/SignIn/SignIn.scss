@@ -14,9 +14,10 @@
 }
 
 .SignIn {
-  background-color: #f2f2f2;
+  height: 100vh;
   padding-top: 125px;
   font-size: 10px;
+  background-color: #f2f2f2;
 
   .SignInContainer {
     @include flex-box(column, center, center);
