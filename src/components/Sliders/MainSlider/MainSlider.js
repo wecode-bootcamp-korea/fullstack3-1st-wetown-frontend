@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BtnSlider from "./BtnSlider";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import sliderData from "./sliderData";
 import "./MainSlider.scss";
 import { useNavigate } from "react-router-dom";
@@ -111,12 +111,23 @@ export default function MainSlider() {
                   key={obj.id}
                   alt="슬라이더 이미지"
                 />
+                <div className="mainSliderDetail">{obj.desc}</div>
               </li>
             );
           })}
         </ul>
-        <BtnSlider moveSlide={nextSlide} direction="next" />
-        <BtnSlider moveSlide={prevSlide} direction="prev" />
+        <FaChevronLeft
+          color="white"
+          size={50}
+          className="BtnSlider prev"
+          onClick={nextSlide}
+        />
+        <FaChevronRight
+          color="white"
+          size={50}
+          className="BtnSlider next"
+          onClick={prevSlide}
+        />
 
         <div className="slider-dots">
           {Array.from({ length: 7 }).map((item, index) => (

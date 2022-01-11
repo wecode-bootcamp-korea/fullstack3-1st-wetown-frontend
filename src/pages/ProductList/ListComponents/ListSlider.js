@@ -10,19 +10,27 @@ function ListSlider() {
       .then(data => setImgUrl(data));
   }, []);
 
-  const leftClick = () => {};
+  const leftClick = () => {
+    setX(prevX => prevX + 100);
+  };
   const rightClick = () => {
-    setX(prevX => prevX - 1000);
+    setX(prevX => prevX - 100);
   };
 
   return (
     <section className="carousel-wrapper">
-      <section className="leftSec">
+      <section className="arrowSection">
         <img
           className="leftArrow"
           src="http://localhost:3000/images/listSliderImg/chevron-left-solid.svg"
           alt="left-arrow"
           onClick={leftClick}
+        />
+        <img
+          className="rightArrow"
+          src="http://localhost:3000/images/listSliderImg/chevron-right-solid.svg"
+          alt="right-arrow"
+          onClick={rightClick}
         />
       </section>
       <section className="carousel">
@@ -30,24 +38,16 @@ function ListSlider() {
           <section
             key={imgUrl.discription}
             className="listSlider"
-            style={{ transform: `translateX(${x}px)` }}
+            style={{ transform: `translateX(${x}%)` }}
           >
             <img
               className="carouselImg"
               key={imgUrl.id}
               src={imgUrl.url}
-              alt={imgUrl.discription}
+              alt={imgUrl.description}
             />
           </section>
         ))}
-      </section>
-      <section className="rightSec">
-        <img
-          className="rightArrow"
-          src="http://localhost:3000/images/listSliderImg/chevron-right-solid.svg"
-          alt="right-arrow"
-          onClick={rightClick}
-        />
       </section>
     </section>
   );
