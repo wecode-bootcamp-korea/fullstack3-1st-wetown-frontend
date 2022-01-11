@@ -93,10 +93,9 @@ function ProductList() {
             </section>
             <section className="productSide">
               <ul>
-                {categoryList[0] &&
-                  categoryList.map(categoryList => (
-                    <ProductCard data={categoryList} key={categoryList.id} />
-                  ))}
+                {categoryList?.map(categoryList => (
+                  <ProductCard data={categoryList} key={categoryList.id} />
+                ))}
               </ul>
             </section>
             <section className="showMore">더보기 +</section>
