@@ -25,7 +25,6 @@
           font-size: 15px;
           font-weight: 100;
           line-height: 30px;
-          color: black;
 
           .logoutButton {
             padding: 5px;
@@ -97,11 +96,15 @@
               ul {
                 display: flex;
                 gap: 2rem;
+                .mainNavMenu {
+                  color: inherit;
+                }
 
                 a {
                   font-size: 20px;
                   text-decoration: none;
-                  color: black;
+                  // color: black;
+                  color: white;
                   position: relative;
                   z-index: 2;
                 }
@@ -114,7 +117,6 @@
                   .petTitle {
                     font-size: 20px;
                     text-decoration: none;
-                    color: black;
                     position: relative;
                     z-index: 2;
 
@@ -153,6 +155,7 @@
                     opacity: 0;
                     visibility: hidden;
                     transition: opacity 200ms ease-in-out;
+                    color: inherit;
 
                     li {
                       list-style: none;
@@ -160,6 +163,7 @@
                       transition: background-color 200ms ease-in-out;
                       position: relative;
                       z-index: 20;
+                      color: inherit;
 
                       &:hover,
                       &:focus {
@@ -184,6 +188,7 @@
                         vertical-align: middle;
                         padding: 10px 0px;
                         z-index: 3;
+                        color: inherit;
 
                         .smallCircle {
                           position: absolute;
@@ -204,10 +209,12 @@
                 .productMenu {
                   list-style: none;
                   cursor: pointer;
+                  color: inherit;
 
                   .productTitle {
                     position: relative;
                     padding-bottom: 10px;
+                    color: inherit;
 
                     &:hover .circle {
                       opacity: 1;
@@ -244,6 +251,7 @@
                     opacity: 0;
                     visibility: hidden;
                     transition: opacity 200ms ease-in-out;
+                    color: inherit;
 
                     li {
                       list-style: none;
@@ -251,12 +259,14 @@
                       transition: background-color 200ms ease-in-out;
                       position: relative;
                       z-index: 20;
+                      color: inherit;
 
                       a {
                         position: relative;
                         vertical-align: middle;
                         padding: 10px 0px 10px 0px;
                         z-index: 3;
+                        color: inherit;
 
                         .smallCircle {
                           position: absolute;
@@ -293,6 +303,7 @@
             .headerLogo {
               margin: 0 auto;
               margin-left: 130px;
+              color: inherit;
 
               img {
                 width: 64px;
@@ -306,8 +317,13 @@
                   float: left;
                   margin-left: 3.5rem;
 
-                  img {
-                    width: 36px;
+                  .userMenuButtons {
+                    font-size: 2rem;
+
+                    &:visited {
+                      text-decoration: none;
+                      color: inherit;
+                    }
                   }
                 }
               }
