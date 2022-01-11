@@ -50,28 +50,44 @@
       transform: rotate(90deg);
       position: absolute;
       top: 165px;
-      left: -10px;
+      left: -15px;
       font-weight: bolder;
       letter-spacing: 2px;
       color: #ffffff;
     }
-    .slider-dots {
-      position: relative;
-      bottom: -50%;
-      display: flex;
-      justify-content: center;
-      cursor: pointer;
+  }
 
-      .dot {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        margin: 0 5px;
-        background: rgb(250, 212, 162);
-      }
-      .dot.active {
-        background: rgb(32, 32, 32);
-      }
+  .BtnSlider {
+    position: absolute;
+    top: 75%;
+    cursor: pointer;
+  }
+
+  .prev {
+    left: -100px;
+  }
+
+  .next {
+    margin-left: 800px;
+    right: -70px;
+  }
+
+  .slider-dots {
+    position: relative;
+    bottom: -50%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background: rgb(250, 212, 162);
+    }
+    .dot.active {
+      background: rgb(32, 32, 32);
     }
   }
 }
