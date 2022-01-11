@@ -1,5 +1,6 @@
 .ProductDetail {
   letter-spacing: 2px;
+  background-color: white;
   .detailArea {
     padding-top: 150px;
     height: auto;
@@ -89,7 +90,7 @@
             display: flex;
             width: 600px;
             height: 600px;
-            // overflow: hidden;
+            overflow: hidden;
             position: relative;
             top: 150px;
             left: 100px;

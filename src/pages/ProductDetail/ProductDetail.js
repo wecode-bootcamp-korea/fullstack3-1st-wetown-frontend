@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Slider } from "./compo/slider";
+import { Slider } from "./compo/Slider";
 import { PolicyBox } from "./compo/PolicyBox";
 import { ViewCart } from "./compo/ViewCart";
 import { NewTag, PopUp, Price, TopBottom } from "./compo/MiniCopo";
@@ -20,7 +20,6 @@ const ProductDetail = () => {
   const [noticeNum, setNoticeNum] = useState(1);
   const userId = localStorage.getItem("token");
   const [x, setX] = useState(0);
-  const [moving, setMoving] = useState(false);
 
   useEffect(() => {
     const adTimer = setTimeout(() => {
@@ -37,17 +36,10 @@ const ProductDetail = () => {
       .then(res => res.json())
       .then(res => {
         setData(res);
-        const img = res.map(e => {
-          return e.url;
-        });
-        const newImg = [...img, ...img];
+        const newImg = [...res.url, ...res.url];
         setImgList(newImg);
         setX(-(parseInt(newImg.length / 2, 10) * 600));
-        setOriginalImg(
-          res.map(e => {
-            return e.url;
-          })
-        );
+        setOriginalImg(res.url);
       });
 
     return () => {
@@ -57,11 +49,9 @@ const ProductDetail = () => {
 
   const priceObject = (isSale, quantity) => {
     if (isSale) {
-      return Math.round(
-        data[0].price * (1 - data[0].sale_rate / 100) * quantity
-      );
+      return Math.round(data.price * (1 - data.sale_rate / 100) * quantity);
     } else {
-      return Math.round(data[0].price * quantity);
+      return Math.round(data.price * quantity);
     }
   };
 
@@ -72,7 +62,7 @@ const ProductDetail = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         user_id: userId,
-        product_id: data[0].id,
+        product_id: data.id,
         cart_quantity: quantity,
       }),
     })
@@ -84,7 +74,6 @@ const ProductDetail = () => {
       })
       .catch(err => alert("로그인 해주세요."));
   };
-
   const pickColor = cate => {
     switch (cate) {
       case "dog":
@@ -106,76 +95,28 @@ const ProductDetail = () => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  const goLeft = () => {
-    if (moving) return;
-    setX(prevX => prevX + 600);
-    setMoving(true);
-    setTimeout(() => {
-      const lastImg = imgList.pop();
-      setImgList([lastImg, ...imgList]);
-      setX(prevX => prevX - 600);
-      setMoving(false);
-    }, 500);
-  };
-
-  const goRight = () => {
-    if (moving) return;
-    setX(prevX => prevX - 600);
-    setMoving(true);
-    setTimeout(() => {
-      const lastImg = imgList.shift();
-      setImgList([...imgList, lastImg]);
-      setX(prevX => prevX + 600);
-      setMoving(false);
-    }, 500);
-  };
-
   return (
     <div className="ProductDetail">
       <ScrollToTop />
       <div className="detailArea">
         {addCart ? (
           <ViewCart
-            cate={data[0].cate_name}
+            cate={data.cate_name}
             setAddCart={setAddCart}
             navigate={navigate}
           />
         ) : null}
         <section className="mainArea">
-          {data[0] && data[0].is_new ? <NewTag /> : null}
+          {data.is_new ? <NewTag /> : null}
           <div className="slideContainer">
             <div className="dumy" />
-            <div className="slideBackground">
-              <div className="slideBox">
-                {imgList.map((e, i) => {
-                  return (
-                    <div
-                      className="slideList"
-                      key={i}
-                      style={{ transform: `translateX(${x}px)` }}
-                    >
-                      <img src={e} alt="slideImg" />
-                    </div>
-                  );
-                })}
-              </div>
-              {/* <div className="dot">
-        {originalImg.map((e, i) => {
-          return <DotSlide key={i} num={i} />;
-        })}
-      </div> */}
-              <button id="goLeft" onClick={goLeft} />
-              <button id="goRight" onClick={goRight} />
-            </div>
-
-            {/* {imgList && (
-              <Slider
-                imgList={imgList}
-                setImgList={setImgList}
-                originalImg={originalImg}
-                originalSize={originalSize}
-              />
-            )} */}
+            <Slider
+              x={x}
+              setX={setX}
+              imgList={imgList}
+              setImgList={setImgList}
+              originalImg={originalImg}
+            />
           </div>
           <div className="productDetailArea">
             <div className="detailHeading">
@@ -208,7 +149,7 @@ const ProductDetail = () => {
               {originalImg.map((e, i) => {
                 return (
                   <div className="productImg" key={i}>
-                    <img src={e} alt="productImg" />
+                    <img src={e.image} alt="productImg" />
                   </div>
                 );
               })}
@@ -219,16 +160,14 @@ const ProductDetail = () => {
         <section className="sidebarArea">
           <div className="sideHeading">
             <div className="subCateName">
-              {data[0] && data[0].subcate_name.toUpperCase()}
+              {data.subcate_name?.toUpperCase()}
             </div>
-            <div className="productName">
-              {data[0] && data[0].eng_name.toUpperCase()}
-            </div>
+            <div className="productName">{data.eng_name?.toUpperCase()}</div>
             <div className="productPrice">
-              {data[0] && data[0].sale_rate ? (
-                <Price sale={data[0].sale_rate} price={data[0].price} />
+              {data.sale_rate ? (
+                <Price sale={data.sale_rate} price={data.price} />
               ) : (
-                `₩ ` + (data[0] && toComma(priceObject(false, 1)))
+                `₩ ` + toComma(priceObject(false, 1))
               )}
               <span className="shareIcon">
                 <img src="/images/shareIcon.png" alt="shareIcon" />
@@ -250,9 +189,7 @@ const ProductDetail = () => {
               <li className="beforeHover">추가적립금</li>
             </ul>
             <ul className="savedValue">
-              <li>
-                0.5% ({data[0] && Math.round(data[0].price * 0.005) + ` P`})
-              </li>
+              <li>0.5% ({Math.round(data.price * 0.005) + ` P`})</li>
               <li className="beforeHover">PINK SILVER 기본적립금 +0.2%</li>
               <li className="beforeHover">PINK GOLD 기본적립금 +0.5%</li>
             </ul>
@@ -268,9 +205,7 @@ const ProductDetail = () => {
             불가합니다. 신중한 구매 부탁 드립니다.
           </div>
           <div className="quantityArea">
-            <div className="quantityName">
-              {data[0] && data[0].eng_name.toUpperCase()}
-            </div>
+            <div className="quantityName">{data.eng_name?.toUpperCase()}</div>
             <div className="quantityBox">
               <div className="quantityBtn">
                 <button
@@ -297,9 +232,9 @@ const ProductDetail = () => {
               </div>
               <span>
                 {`₩ ` +
-                  (data[0] && data[0].sale_rate
+                  (data.sale_rate
                     ? toComma(priceObject(true, quantity))
-                    : data[0] && toComma(priceObject(false, quantity)))}
+                    : toComma(priceObject(false, quantity)))}
               </span>
             </div>
           </div>
@@ -308,18 +243,15 @@ const ProductDetail = () => {
             <div>
               <span className="totalPrice">
                 {`₩ ` +
-                  (data[0] && data[0].sale_rate
+                  (data.sale_rate
                     ? toComma(priceObject(true, quantity))
-                    : data[0] && toComma(priceObject(false, quantity)))}
+                    : toComma(priceObject(false, quantity)))}
               </span>
               <span className="totalQuantity">({quantity + `개`})</span>
             </div>
           </div>
           <div className="orderArea">
-            <button
-              className="orderBtn"
-              style={data[0] && pickColor(data[0].cate_name)}
-            >
+            <button className="orderBtn" style={pickColor(data.cate_name)}>
               바로 구매하기
             </button>
             <div className="btnBox">
@@ -336,7 +268,7 @@ const ProductDetail = () => {
           </div>
         </section>
         <TopBottom />
-        {ad && data[0].quantity <= 10 ? <PopUp setAd={setAd} /> : null}
+        {ad && data.quantity <= 10 ? <PopUp setAd={setAd} /> : null}
       </div>
     </div>
   );
