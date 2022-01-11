@@ -111,6 +111,7 @@ export default function MainSlider() {
                   key={obj.id}
                   alt="슬라이더 이미지"
                 />
+                <div className="mainSliderDetail">{obj.desc}</div>
               </li>
             );
           })}
