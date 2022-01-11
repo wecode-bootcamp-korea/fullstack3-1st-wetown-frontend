@@ -17,9 +17,9 @@
     justify-content: space-between;
     align-items: center;
     &.checkAllWrapper {
-      font-size: 1rem;
       padding-bottom: 15px;
       border-bottom: 1px solid #f0f0f0;
+      font-size: 1rem;
     }
   }
   .policyType {
@@ -38,9 +38,9 @@
       max-height: 300px;
       margin: 20px 0;
       padding: 20px;
-      overflow: auto;
       color: #a0a0a0;
       text-align: justify;
+      overflow: auto;
 
       article + article h5 {
         margin-top: 15px;

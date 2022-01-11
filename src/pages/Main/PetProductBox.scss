@@ -41,14 +41,18 @@
       .productBoxList {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
 
         li {
-          width: 200px;
+          width: 19%;
+
           .circleBox {
+            width: 200px;
             height: 200px;
             border-radius: 50%;
+            margin: 0 auto;
 
             .circleText {
               position: relative;

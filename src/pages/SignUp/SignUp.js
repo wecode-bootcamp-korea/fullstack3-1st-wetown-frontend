@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import Footer from "../../components/Footer/Footer";
 import CircleButton from "../../components/CircleButton/CircleButton";
+import ScrollToTop from "../../components/ScrollToTop";
 import Policy from "./Policy";
 import "./SignUp.scss";
 
 const SignUp = () => {
-  //첫 렌더링 때 불러올 카테고리
   useEffect(() => {
-    fetch("/data/mockCategory.json")
+    fetch(`${process.env.REACT_APP_BASE_URL}/categories`)
       .then(res => res.json())
-      .then(data => setCategoryList(data));
+      .then(data => {
+        setCategoryList([...data.categories]);
+      });
   }, []);
 
   const [categoryList, setCategoryList] = useState([]);
   const [validSignUp, setValidSignUp] = useState(false);
   const [userInput, setUserInput] = useState({
-    //필수항목은 db저장 초기값
     nameInput: "",
     nicknameInput: "",
     passwordInput: "",
     pwCheckInput: "",
     emailInput: "",
     policiesInput: {},
-    //선택항목
     genderInput: "",
     phoneNumInput: "010-1234-5678",
-    petCategoryInput: {}, // 선택해서 값 저장만
-    bdayInput: "", // db항목 없고 나이 유효성 검사만
+    petCategoryInput: {},
+    bdayInput: "",
   });
 
   const {
@@ -49,7 +47,7 @@ const SignUp = () => {
     let { name, value } = e.target;
 
     if (name === "petCategoryInput") {
-      const [petChoice] = categoryList.filter(pet => pet.category === value);
+      const [petChoice] = categoryList.filter(pet => pet.name === value);
       value = { ...petChoice };
     } else if (name === "bdayInput") {
       value = Date.parse(value);
@@ -59,12 +57,6 @@ const SignUp = () => {
   };
 
   const checkOptionalPolicy = value => {
-    //Array로 선택 저장..
-    // const choicesArray = Object.values(value);
-    // console.log(choicesArray);
-    // setUserInput({ ...userInput, policiesInput: choicesArray });
-
-    //객체로 약관동의 선택 저장
     setUserInput({ ...userInput, policiesInput: value });
   };
 
@@ -141,13 +133,8 @@ const SignUp = () => {
   }
 
   return (
-    <div
-      className="SignUp"
-      // 개발 과정에서 유효성 검사 작동 확인을 위해 배경화면 스타일 적용
-      // 추후 스타일 어트리뷰트는 삭제
-      style={{ backgroundColor: validSignUp ? "green" : "orange" }}
-    >
-      <HeaderNav />
+    <div className="SignUp">
+      <ScrollToTop />
       <div className="SignUpContainer">
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
@@ -354,14 +341,12 @@ const SignUp = () => {
                   key={pet.id}
                   type="radio"
                   name="petCategoryInput"
-                  value={pet.category}
+                  value={pet.name}
                   style={{
                     width: "120px",
                     height: "120px",
                     backgroundColor:
-                      petCategoryInput.category === pet.category
-                        ? petCategoryInput.color
-                        : "",
+                      petCategoryInput.name === pet.name ? pet.color : "",
                   }}
                   onClick={e => handleInput(e)}
                 />
@@ -381,7 +366,6 @@ const SignUp = () => {
           </section>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };
