@@ -69,8 +69,9 @@
 
                 &:hover {
                   background-color: rgb(187, 186, 186);
-                  Link {
+                  a {
                     color: white;
+                    font-weight: 600;
                   }
                 }
               }
