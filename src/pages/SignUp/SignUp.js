@@ -6,16 +6,9 @@ import Policy from "./Policy";
 import "./SignUp.scss";
 
 const SignUp = () => {
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/categories`)
-      .then(res => res.json())
-      .then(data => {
-        setCategoryList([...data.categories]);
-      });
-  }, []);
-
+  const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState([]);
-  const [validSignUp, setValidSignUp] = useState(false);
+  const [isValidSignUp, setValidSignUp] = useState(false);
   const [userInput, setUserInput] = useState({
     nameInput: "",
     nicknameInput: "",
@@ -25,34 +18,62 @@ const SignUp = () => {
     policiesInput: {},
     genderInput: "",
     phoneNumInput: "010-1234-5678",
-    petCategoryInput: {},
+    petCategoryInput: "",
     bdayInput: "",
   });
+  useEffect(() => {
+    async function getCategories() {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/category`
+      );
+      const data = await response.json();
+      setCategoryList([...data]);
+    }
 
-  const {
-    nameInput,
-    nicknameInput,
-    passwordInput,
-    pwCheckInput,
-    emailInput,
-    policiesInput,
-    genderInput,
-    phoneNumInput,
-    petCategoryInput,
-    bdayInput,
-  } = userInput;
+    getCategories();
+  }, []);
+
+  const selectedStyle = name => {
+    return {
+      width: "120px",
+      height: "120px",
+      backgroundColor: changeColor(name),
+      color: "#fffff",
+      opacity: "1",
+    };
+  };
+  const pickStyle = () => {
+    return {
+      width: "120px",
+      height: "120px",
+      backgroundColor: "transparent",
+      color: "#000000",
+      opacity: "0.3",
+    };
+  };
+  const changeColor = category => {
+    switch (category) {
+      case "dog":
+        return "#fccf1d";
+      case "cat":
+        return "#c81a20";
+      case "turtle":
+        return "#016ad5";
+      case "hamster":
+        return "#cda5e0";
+      case "bird":
+        return "#d8e22d";
+      default:
+        return "#3d435f";
+    }
+  };
 
   const handleInput = e => {
     e.preventDefault();
     let { name, value } = e.target;
-
-    if (name === "petCategoryInput") {
-      const [petChoice] = categoryList.filter(pet => pet.name === value);
-      value = { ...petChoice };
-    } else if (name === "bdayInput") {
+    if (name === "bdayInput") {
       value = Date.parse(value);
     }
-
     setUserInput({ ...userInput, [name]: value });
   };
 
@@ -61,6 +82,16 @@ const SignUp = () => {
   };
 
   useEffect(() => {
+    const {
+      nameInput,
+      nicknameInput,
+      passwordInput,
+      pwCheckInput,
+      emailInput,
+      policiesInput,
+      bdayInput,
+    } = userInput;
+
     const validateName = nameInput;
     const validateNickname = nicknameInput.length > 3;
     const validateEmail = emailInput.includes("@");
@@ -73,8 +104,8 @@ const SignUp = () => {
 
     const validateRequiredPolicies =
       policiesInput?.userAgmt &&
-      policiesInput.privacy &&
-      policiesInput.ageFourteen;
+      policiesInput?.privacy &&
+      policiesInput?.ageFourteen;
 
     if (
       validateName &&
@@ -88,20 +119,19 @@ const SignUp = () => {
     } else {
       setValidSignUp(false);
     }
-  }, [
-    nameInput,
-    nicknameInput,
-    emailInput,
-    passwordInput,
-    pwCheckInput,
-    bdayInput,
-    policiesInput,
-  ]);
-
-  const navigate = useNavigate();
+  }, [userInput]);
 
   async function goSignUp(e) {
     e.preventDefault();
+    const {
+      nameInput,
+      nicknameInput,
+      emailInput,
+      passwordInput,
+      policiesInput,
+      genderInput,
+      phoneNumInput,
+    } = userInput;
 
     const response = await fetch(
       `${process.env.REACT_APP_BASE_URL}/user/signup`,
@@ -156,7 +186,7 @@ const SignUp = () => {
                       width: "100px",
                       height: "25px",
                       borderRadius: "25px",
-                      backgroundColor: "",
+                      color: "#3d435f",
                     }}
                     onClick={() => {
                       alert("본인이 맞습니까?");
@@ -202,10 +232,11 @@ const SignUp = () => {
                     height: "25px",
                     borderRadius: "25px",
                     backgroundColor:
-                      genderInput === "남자"
-                        ? petCategoryInput?.color || "black"
+                      userInput.genderInput === "남자"
+                        ? "black"
                         : "transparent",
-                    color: genderInput === "남자" ? "white" : "black",
+                    color: userInput.genderInput === "남자" ? "white" : "black",
+                    opacity: userInput.genderInput === "여자" ? "1" : "",
                   }}
                   onClick={e => handleInput(e)}
                 />
@@ -220,10 +251,11 @@ const SignUp = () => {
                     height: "25px",
                     borderRadius: "25px",
                     backgroundColor:
-                      genderInput === "여자"
-                        ? petCategoryInput?.color || "black"
+                      userInput.genderInput === "여자"
+                        ? "black"
                         : "transparent",
-                    color: genderInput === "여자" ? "white" : "black",
+                    color: userInput.genderInput === "여자" ? "white" : "black",
+                    opacity: userInput.genderInput === "여자" ? "1" : "",
                   }}
                   onClick={e => handleInput(e)}
                 />
@@ -341,14 +373,13 @@ const SignUp = () => {
                   key={pet.id}
                   type="radio"
                   name="petCategoryInput"
-                  value={pet.name}
-                  style={{
-                    width: "120px",
-                    height: "120px",
-                    backgroundColor:
-                      petCategoryInput.name === pet.name ? pet.color : "",
-                  }}
+                  value={pet.name.toUpperCase()}
                   onClick={e => handleInput(e)}
+                  style={
+                    userInput.petCategoryInput === pet.name.toUpperCase()
+                      ? selectedStyle(pet.name)
+                      : pickStyle()
+                  }
                 />
               ))}
             </article>
@@ -360,7 +391,18 @@ const SignUp = () => {
                 CANCEL
               </Link>
             </button>
-            <button onClick={goSignUp} disabled={!validSignUp}>
+            <button
+              onClick={goSignUp}
+              disabled={!isValidSignUp}
+              className={
+                "signupButton " + (isValidSignUp ? "valid" : "invalid")
+              }
+              style={{
+                backgroundColor: userInput.petCategoryInput
+                  ? changeColor(userInput.petCategoryInput)
+                  : "#3d435f",
+              }}
+            >
               <span className="buttonText">JOIN</span>
             </button>
           </section>

@@ -107,12 +107,15 @@ const SignIn = () => {
               onClick={goSignIn}
               // 개발과정에서 유효성 검사 진행확인 위해 색 표시
               // 추후 style 어트리뷰트는 삭제
-              style={{ backgroundColor: validLogin ? "blue" : "red" }}
+              style={{
+                backgroundColor: "#3d435f",
+                color: "#ffffff",
+                opacity: validLogin ? "1" : "0.8",
+              }}
               disabled={!validLogin}
             >
               LOGIN
             </button>
-
             <Link
               to="/signup"
               style={{ width: "100%", textDecoration: "none" }}
