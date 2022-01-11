@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import HeaderNav from "../../components/HeaderNav/HeaderNav";
-import FooterNav from "../../components/Footer/Footer";
 import ProductCard from "../../components/ProductCard";
 import "./ProductList.scss";
 import ListSlider from "./ListComponents/ListSlider";
+import ScrollToTop from "../../components/ScrollToTop";
 
 function SubProductList() {
   //GET PARAMETER FROM URL
@@ -43,9 +42,9 @@ function SubProductList() {
 
   return (
     <section className="productList">
-      <HeaderNav />
+      <ScrollToTop />
+      <ListSlider />
       <section className="sectionLayout">
-        <ListSlider />
         <section className="productSideSection">
           <section className="sideSection">
             <nav className="petSide">
@@ -100,7 +99,6 @@ function SubProductList() {
           </section>
         </section>
       </section>
-      <FooterNav />
     </section>
   );
 }
