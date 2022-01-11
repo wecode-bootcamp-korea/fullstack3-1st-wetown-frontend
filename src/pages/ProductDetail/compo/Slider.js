@@ -32,8 +32,12 @@ const Slider = ({ x, setX, imgList, setImgList, originalImg }) => {
 
   const DotSlide = ({ num }) => {
     return (
-      <span className={count % originalImg.length === num ? "on" : undefined}>
-        ▫️
+      <span className="dotList">
+        {count % originalImg.length === num ? (
+          <button className="on" />
+        ) : (
+          <button className="off" />
+        )}
       </span>
     );
   };
@@ -53,7 +57,7 @@ const Slider = ({ x, setX, imgList, setImgList, originalImg }) => {
           );
         })}
       </div>
-      <div className="dot">
+      <div className="dotBox">
         {originalImg.map((e, i) => {
           return <DotSlide key={i} num={i} />;
         })}
