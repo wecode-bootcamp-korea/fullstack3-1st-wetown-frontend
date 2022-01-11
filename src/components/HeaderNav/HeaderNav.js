@@ -123,7 +123,7 @@ export default function HeaderNav() {
                   onClick={logout}
                   style={{ display: loginState ? "block" : "none" }}
                 >
-                  logout
+                  LOGOUT
                 </li>
                 <li className="globalStore">
                   <Link to="#">KOR</Link>
@@ -227,15 +227,14 @@ export default function HeaderNav() {
                     </li>
                   </ul>
                 </div>
-                <div className="headerLogo">
-                  <Link to="/">
-                    <MdPets
-                      size={fix ? "3rem" : "5rem"}
-                      className="userMenubuttons"
-                      style={headerStyles}
-                    />
-                  </Link>
-                </div>
+                <Link to="/" className="headerLogo">
+                  <MdPets
+                    size={fix ? "3rem" : "5rem"}
+                    id="wetownLogo"
+                    className="userMenubuttons"
+                    style={headerStyles}
+                  />
+                </Link>
                 <div className="userMenu">
                   <ul>
                     <li>
