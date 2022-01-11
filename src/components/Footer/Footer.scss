@@ -1,21 +1,23 @@
 .footerSection {
   position: sticky;
   bottom: 0;
-  z-index: -1;
-  background-color: rgba(45, 49, 67);
   color: white;
+  background-color: rgba(45, 49, 67);
   font-family: "Noto Sans KR", sans-serif;
+  z-index: -1;
+
   .bodySection {
     width: 1200px;
     height: 485px;
     margin: 0 auto;
 
     header {
-      height: 60px;
-      padding: 20px 0 0 0;
       display: flex;
       justify-content: space-between;
+      height: 60px;
+      padding: 20px 0 0 0;
       font-size: 14px;
+
       .leftNav {
         span {
           padding-right: 30px;
@@ -26,21 +28,22 @@
         span {
           padding-right: 30px;
         }
+
         select {
-          background: url("http://localhost:3000/images/arrow-down.svg")
-            no-repeat right 4px center;
-          appearance: none;
           margin-top: -3px;
           padding-right: 30px;
+          border: none;
+          color: white;
+          background: url("http://localhost:3000/images/arrow-down.svg")
+            no-repeat right 4px center;
           background-color: rgba(34, 36, 52);
           font-size: 14px;
-          // font-weight: 400;
-          color: white;
-          border: none;
           font-family: "Noto Sans KR", sans-serif;
+          appearance: none;
           vertical-align: top;
           cursor: pointer;
         }
+
         select:focus {
           outline: none;
         }
@@ -48,63 +51,78 @@
     }
 
     .mainBanner {
+      margin: 50px auto;
       text-align: center;
       font-size: 3rem;
       font-weight: 600;
-      margin: 50px auto;
     }
 
     .companyInfo {
       font-size: 14px;
+
       .infoKey {
         color: grey;
         text-align: left;
       }
+
       .infoValue {
         margin: 0 30px 0 5px;
       }
+
       .firstInfoSection {
         padding: 10px 0 10px 0;
       }
+
       .secondInfoSection {
         padding: 10px 0 10px 0;
       }
+
       .lastInfoSection {
         padding: 10px 0 10px 0;
+
         img {
           width: 13px;
           margin-left: -25px;
           cursor: pointer;
         }
       }
+
       .protectFromRaw {
         padding: 40px 0 40px 0;
       }
     }
+
     .iconLinkSection {
       display: flex;
       justify-content: space-between;
+
       img {
         margin: 0 40px 0 0;
       }
+
       .facebook {
         width: 15px;
       }
+
       .twitter {
         width: 27px;
       }
+
       .youtube {
         width: 32px;
       }
+
       .instagram {
         width: 25px;
       }
+
       .sideBorder {
         margin: 0 40px 0 0;
-        font-size: 25px;
         border-right: solid 1px;
         border-color: grey;
+        font-size: 25px;
       }
+
       .apple {
         width: 24px;
       }
@@ -112,8 +130,8 @@
 
     .helpedPeople {
       span {
-        font-size: 30px;
         color: grey;
+        font-size: 30px;
         font-weight: 700;
         word-spacing: 2rem;
       }

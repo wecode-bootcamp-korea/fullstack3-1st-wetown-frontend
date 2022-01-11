@@ -2,51 +2,58 @@
 
 //Product List Style
 .productList {
-  background-color: white;
   position: relative;
+  background-color: white;
+
   .carousel-wrapper {
-    width: 1905px;
-    object-fit: cover;
     position: relative;
     display: flex;
+    object-fit: cover;
+    width: 1905px;
 
     .arrowSection {
-      margin: 300px auto;
       position: absolute;
-      z-index: 1;
       display: flex;
       justify-content: space-between;
       width: 100%;
+      margin: 300px auto;
+      z-index: 1;
+
       .leftArrow {
-        margin-left: 20px;
         width: 30px;
         height: 100px;
+        margin-left: 20px;
         cursor: pointer;
       }
+
       .rightArrow {
-        margin-right: 20px;
         width: 30px;
         height: 100px;
+        margin-right: 20px;
         cursor: pointer;
       }
     }
+
     .carousel {
       display: flex;
       overflow: hidden;
     }
+
     .listSlider {
+      display: flex;
       width: 1905px;
       height: 700px;
-      display: flex;
+
       .carouselImg {
         object-fit: cover;
-        width: 1905px;
         object-position: center bottom;
+        width: 1905px;
       }
     }
 
     .rightSec {
       position: absolute;
+
       .rightArrow {
         // margin: 125px 0 125px 1800px;
         width: 50px;
@@ -55,31 +62,30 @@
       }
     }
   }
+
   .sectionLayout {
     width: 1200px;
     margin: 0 auto;
 
     .productSideSection {
-      // background-color: palevioletred;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       margin-top: 5rem;
 
       .sideSection {
-        // background-color: orange;
-
         .petMainSide {
-          font-size: 1.5rem;
-          border-bottom: 0.2rem solid;
           width: 200px;
           padding-bottom: 0.5rem;
+          border-bottom: 0.2rem solid;
+          font-size: 1.5rem;
         }
 
         .petSubSide {
           li {
-            font-size: 1.2rem;
             padding-top: 1rem;
+            font-size: 1.2rem;
+
             a {
               color: black;
               text-decoration: none;
@@ -89,49 +95,53 @@
       }
 
       .productSection {
-        // background-color: yellow;
-        margin-left: 60px;
         width: 940px;
+        margin-left: 60px;
+
         .filter {
+          display: flex;
+          justify-content: right;
+
           select:focus {
             outline: none;
           }
+
           .selectFilter {
-            font-size: 0.9rem;
             border: 0;
             border-radius: 0;
+            font-size: 0.9rem;
           }
-          // background-color: cadetblue;
-          display: flex;
-          justify-content: right;
         }
+
         .productSide > ul {
           display: flex;
           flex-wrap: wrap;
 
           li {
+            position: relative;
             width: 298px;
             margin: 20px 0 0 15px;
-            position: relative;
+
             .isNew {
-              border-top-right-radius: 1rem;
-              border-bottom-right-radius: 1rem;
-              color: white;
-              font-size: 0.8rem;
-              background-color: cadetblue;
               position: absolute;
               width: 40px;
               height: 20px;
               margin-top: 1rem;
               padding: 0.1rem 0 0 0.3rem;
+              border-top-right-radius: 1rem;
+              border-bottom-right-radius: 1rem;
+              color: white;
+              background-color: cadetblue;
+              font-size: 0.8rem;
             }
 
             .imgSection {
               width: 298px;
               height: 402px;
               background-color: #f2f2f2;
+
               .listImg {
-                object-fit: cover;
+                object-fit: contain;
                 width: 298px;
                 height: 302px;
                 margin: 50px auto;
@@ -141,6 +151,7 @@
 
             .productDescription {
               width: 100%;
+
               .cateName {
                 margin: 10px 0 5px 0;
                 color: lightgray;
@@ -166,25 +177,30 @@
 
               .priceInfo {
                 margin: 0.5rem auto;
+
                 .discountPrice {
-                  font-size: 1rem;
                   display: flex;
                   justify-content: space-between;
+                  font-size: 1rem;
+
                   .afterDiscountPrice {
                     width: 35%;
                   }
+
                   .price {
                     width: 35%;
-                    text-decoration: line-through;
-                    color: grey;
                     margin-left: 10px;
+                    color: grey;
+                    text-decoration: line-through;
                   }
+
                   .saleRate {
                     width: 30%;
-                    color: red;
                     margin-right: 20px;
+                    color: red;
                   }
                 }
+
                 .price {
                   font-size: 1rem;
                 }
@@ -194,12 +210,12 @@
         }
 
         .showMore {
-          cursor: pointer;
           border-top: solid black 1px;
           margin: 3rem auto;
           padding-top: 15px;
           font-size: 1rem;
           text-align: center;
+          cursor: pointer;
         }
       }
     }
