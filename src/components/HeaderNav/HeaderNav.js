@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { MdPets } from "react-icons/md";
+import { BiUser } from "react-icons/bi";
+import { FaSistrix } from "react-icons/fa";
+import { BsBag } from "react-icons/bs";
+import { IoBookmarksOutline } from "react-icons/io5";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
@@ -9,7 +14,8 @@ export default function HeaderNav() {
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
   const heightChange = hovered !== false ? "360px" : "40px";
-  // const textColorChange = hovered !== false ? "black" : "white";
+  const textColorChange = hovered !== false ? "black" : "white";
+  const headerStyles = { color: textColorChange, cursor: "pointer" };
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
 
@@ -61,7 +67,7 @@ export default function HeaderNav() {
   };
 
   return (
-    <header className="HeaderNav">
+    <header className="HeaderNav" style={headerStyles}>
       <div
         className="topBox"
         style={{
@@ -78,17 +84,17 @@ export default function HeaderNav() {
             >
               <ul>
                 <li style={{ display: loginState ? "none" : "block" }}>
-                  <Link to="/signin">Login</Link>
+                  <Link to="/signin">LOGIN</Link>
                 </li>
                 <li style={{ display: loginState ? "none" : "block" }}>
-                  <Link to="/signup">Join</Link>
+                  <Link to="/signup">JOIN</Link>
                 </li>
                 <li
                   className="logoutButton"
                   onClick={logout}
                   style={{ display: loginState ? "block" : "none" }}
                 >
-                  Logout
+                  logout
                 </li>
                 <li className="globalStore">
                   <Link to="#">KOR</Link>
@@ -117,10 +123,11 @@ export default function HeaderNav() {
                   className="headerMenu"
                   onMouseEnter={toggleHover}
                   onMouseLeave={toggleHover}
+                  style={headerStyles}
                 >
                   <ul>
                     <li className="petMenu">
-                      <Link to="/category/dog" className="petTitle">
+                      <Link to="/category/dog" className="petTitle mainNavMenu">
                         PET
                         <span className="circle" />
                       </Link>
@@ -172,7 +179,7 @@ export default function HeaderNav() {
                         </li>
                       </ul>
                     </li>
-                    <li className="productMenu">
+                    <li className="productMenu mainNavMenu">
                       <Link to="#" className="productTitle">
                         PRODUCT
                         <span className="circle" />
@@ -205,50 +212,62 @@ export default function HeaderNav() {
                       </ul>
                     </li>
                     <li>
-                      <Link to="#">P!CK</Link>
+                      <Link to="#" className="mainNavMenu">
+                        P!CK
+                      </Link>
                     </li>
                     <li>
-                      <Link to="#">EVENT</Link>
+                      <Link to="#" className="mainNavMenu">
+                        EVENT
+                      </Link>
                     </li>
                     <li>
-                      <Link to="#">BRAND</Link>
+                      <Link to="#" className="mainNavMenu">
+                        BRAND
+                      </Link>
                     </li>
                   </ul>
                 </div>
                 <div className="headerLogo">
                   <Link to="/">
-                    <img src="/icons/main/mainIcon.svg" alt="mainIcon" />
+                    <MdPets
+                      size="5rem"
+                      className="userMenubuttons"
+                      style={headerStyles}
+                    />
                   </Link>
                 </div>
                 <div className="userMenu">
                   <ul>
                     <li>
-                      <img
-                        className="userButton"
-                        style={{ cursor: "pointer" }}
+                      <BiUser
+                        className="userButton userMenuButtons"
                         onClick={goToSignInPage}
-                        tabIndex="0"
-                        role="button"
-                        src="/icons/main/person.svg"
-                        alt="person"
+                        style={headerStyles}
                       />
                     </li>
                     <li>
                       <Link to="#">
-                        <img src="/icons/main/search.svg" alt="search" />
+                        <FaSistrix
+                          className="userMenuButtons"
+                          style={headerStyles}
+                        />
                       </Link>
                     </li>
                     <li>
                       <Link to="/cart">
-                        <img
-                          src="/icons/main/shopping_cart.svg"
-                          alt="shopping_cart"
+                        <BsBag
+                          className="userMenuButtons"
+                          style={headerStyles}
                         />
                       </Link>
                     </li>
                     <li>
                       <Link to="#">
-                        <img src="/icons/main/bookmarks.svg" alt="bookmarks" />
+                        <IoBookmarksOutline
+                          className="userMenuButtons"
+                          style={headerStyles}
+                        />
                       </Link>
                     </li>
                   </ul>
