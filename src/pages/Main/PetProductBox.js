@@ -6,7 +6,6 @@ export default function PetProductBox() {
   const [numb, setNumb] = useState(0);
   const [color, setColor] = useState("#fccf1d");
   const [categoryArr, setCategoryArr] = useState([]);
-  // const categoryArr = ["dog", "cat", "turtle", "hamster", "bird"];
   const [pics, setPics] = useState([]);
   const linkAddress = "/category/";
   const changeColor = () => {
@@ -27,12 +26,6 @@ export default function PetProductBox() {
       return categoryArr[numb];
     }
   };
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/category")
-  //     .then(res => res.json())
-  //     .then(data => setCategoryArr(data));
-  // }, []);
 
   useEffect(() => {
     changeColor();
