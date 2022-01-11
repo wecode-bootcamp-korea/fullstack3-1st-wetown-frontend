@@ -13,15 +13,44 @@ export default function HeaderNav() {
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
   const colorChange = hovered !== false ? "#fbeff1" : "transparent";
-  const heightChange = hovered !== false ? "360px" : "40px";
+  const heightChange = hovered !== false ? "400px" : "40px";
   const textColorChange = hovered !== false ? "black" : "white";
   const headerStyles = { color: textColorChange, cursor: "pointer" };
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    async function getCategories() {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/category`
+      );
+      const data = await response.json();
+      setCategoryList([...data]);
+    }
+    getCategories();
+  }, []);
+
+  const getCategoryColor = category => {
+    switch (category) {
+      case "dog":
+        return { backgroundColor: "#fccf1d" };
+      case "cat":
+        return { backgroundColor: "#c81a20" };
+      case "turtle":
+        return { backgroundColor: "#016ad5" };
+      case "hamster":
+        return { backgroundColor: "#cda5e0" };
+      case "bird":
+        return { backgroundColor: "#d8e22d" };
+      default:
+        return { backgroundColor: "#3d435f" };
+    }
+  };
 
   const scrollWatch = () => {
     setScrollY(window.pageYOffset);
-    if (scrollY > 50) {
+    if (scrollY > 100) {
       setFix(true);
       setHovered(false);
     } else {
@@ -127,56 +156,26 @@ export default function HeaderNav() {
                 >
                   <ul>
                     <li className="petMenu">
-                      <Link to="/category/dog" className="petTitle mainNavMenu">
+                      <Link to="#" className="petTitle mainNavMenu">
                         PET
                         <span className="circle" />
                       </Link>
                       <ul className="petsList">
-                        <li>
-                          <Link to="/category/dog" className="petsListLink">
-                            DOG
-                            <span
-                              className="smallCircle"
-                              style={{ backgroundColor: "#fccf1d" }}
-                            />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/category/cat" className="petsListLink">
-                            CAT
-                            <span
-                              className="smallCircle"
-                              style={{ backgroundColor: "#c81a20" }}
-                            />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/category/turtle" className="petsListLink">
-                            TURTLE
-                            <span
-                              className="smallCircle"
-                              style={{ backgroundColor: "#016ad5" }}
-                            />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/category/hamster" className="petsListLink">
-                            HAMSTER
-                            <span
-                              className="smallCircle"
-                              style={{ backgroundColor: "#cda5e0" }}
-                            />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/category/bird" className="petsListLink">
-                            BIRD
-                            <span
-                              className="smallCircle"
-                              style={{ backgroundColor: "#d8e22d" }}
-                            />
-                          </Link>
-                        </li>
+                        {categoryList &&
+                          categoryList.map(pet => (
+                            <li key={pet.id}>
+                              <Link
+                                to={"/category/" + pet.name}
+                                className="petsListLink"
+                              >
+                                {pet.name.toUpperCase()}
+                                <span
+                                  className="smallCircle"
+                                  style={getCategoryColor(pet.name)}
+                                />
+                              </Link>
+                            </li>
+                          ))}
                       </ul>
                     </li>
                     <li className="productMenu mainNavMenu">
@@ -231,7 +230,7 @@ export default function HeaderNav() {
                 <div className="headerLogo">
                   <Link to="/">
                     <MdPets
-                      size="5rem"
+                      size={fix ? "3rem" : "5rem"}
                       className="userMenubuttons"
                       style={headerStyles}
                     />
