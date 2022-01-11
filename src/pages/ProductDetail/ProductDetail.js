@@ -268,7 +268,7 @@ const ProductDetail = () => {
           </div>
         </section>
         <TopBottom />
-        {ad && data.quantity <= 10 ? <PopUp setAd={setAd} /> : null}
+        {ad && data.quantity <= 999 ? <PopUp setAd={setAd} /> : null}
       </div>
     </div>
   );
