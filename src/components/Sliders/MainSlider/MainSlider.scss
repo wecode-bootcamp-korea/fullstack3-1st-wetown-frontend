@@ -1,6 +1,6 @@
 .MainSliderWrapper {
   height: 650px;
-  margin-bottom: 10rem;
+  margin-bottom: 15rem;
 
   .MainSlider {
     width: 880px;
@@ -51,9 +51,17 @@
       position: absolute;
       top: 165px;
       left: -15px;
+      opacity: 0;
+    }
+    .mainSliderDetail.active {
+      transition: all 0.3s 0.5s;
+      position: absolute;
+      top: 165px;
+      left: -15px;
       font-weight: bolder;
       letter-spacing: 2px;
       color: #ffffff;
+      opacity: 1;
     }
   }
 
