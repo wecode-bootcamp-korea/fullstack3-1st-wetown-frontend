@@ -1,28 +1,38 @@
 const sliderData = [
   {
     id: 1,
-    title: "puppy",
-    img: "images/mainSlider/puppy_smile.jpg",
+    category: "dog",
+    img: "images/mainSlider/main_01_dog.jpg",
   },
   {
     id: 2,
-    title: "cat",
-    img: "images/mainSlider/cat.jpg",
+    category: "cat/",
+    img: "images/mainSlider/main_02_cat.jpg",
   },
   {
     id: 3,
-    title: "turtle",
-    img: "images/mainSlider/turtle.jpg",
+    category: "bird",
+    img: "images/mainSlider/main_03_bird.png",
   },
   {
     id: 4,
-    title: "hamster",
-    img: "images/mainSlider/hamster.jpg",
+    category: "dog",
+    img: "images/mainSlider/main_04_dog.jpg",
   },
   {
     id: 5,
-    title: "bird",
-    img: "images/mainSlider/bird.jpg",
+    category: "hamster",
+    img: "images/mainSlider/main_05_hamster.png",
+  },
+  {
+    id: 6,
+    category: "dog",
+    img: "images/mainSlider/main_06_dog.jpg",
+  },
+  {
+    id: 7,
+    category: "turtle",
+    img: "images/mainSlider/main_07_turtle.png",
   },
 ];
 
