@@ -98,6 +98,22 @@
 
                 .mainNavMenu {
                   color: inherit;
+                  &:hover .circle {
+                    opacity: 1;
+                    visibility: visible;
+                  }
+                  .circle {
+                    position: absolute;
+                    top: -50px;
+                    left: -12px;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    opacity: 0;
+                    background-color: #fff;
+                    z-index: -9;
+                    visibility: hidden;
+                  }
                 }
 
                 a {
@@ -338,6 +354,11 @@
           border-bottom: 1px solid #f0f0f0;
           background-color: #ffffff;
           transition: opacity 0.4s ease-in-out;
+          &:hover {
+            opacity: 1;
+            border: none;
+            background-color: #fbeff1;
+          }
 
           .headerBottomInner {
             width: 1200px;
