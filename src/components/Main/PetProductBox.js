@@ -32,7 +32,7 @@ export default function PetProductBox() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8000/pic")
+    fetch("http://localhost:8000/main/pictures")
       .then(res => res.json())
       .then(data => setPics(data));
 
