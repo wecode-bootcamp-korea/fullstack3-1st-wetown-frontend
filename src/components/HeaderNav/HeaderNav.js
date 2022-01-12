@@ -17,7 +17,6 @@ export default function HeaderNav() {
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
-  const colorChange = hovered !== false ? "#fbeff1" : "transparent";
   const heightChange = hovered !== false ? "400px" : "40px";
   const [lightMode, setLightMode] = useState(false);
 
@@ -36,7 +35,9 @@ export default function HeaderNav() {
     if (
       location.pathname === "/signin" ||
       location.pathname === "/signup" ||
-      location.pathname === "/category/"
+      location.pathname === "/category/" ||
+      location.pathname === "/cart"
+
     ) {
       setLightMode(true);
     } else if (
@@ -47,7 +48,8 @@ export default function HeaderNav() {
     } else {
       setLightMode(false);
     }
-  });
+  }, [location.pathname]);
+
   const getCategoryColor = category => {
     switch (category) {
       case "dog":
@@ -68,8 +70,10 @@ export default function HeaderNav() {
     setScrollY(window.pageYOffset);
     if (scrollY > 50) {
       setFix(true);
+      setLightMode(true);
       setHovered(false);
     } else {
+      setLightMode(false);
       setFix(false);
     }
   };
@@ -108,7 +112,6 @@ export default function HeaderNav() {
   };
 
   const hoverStyle = {
-    backgroundColor: "#fbeff1",
     height: "400px",
   };
 
@@ -135,7 +138,7 @@ export default function HeaderNav() {
         <div
           className="topBox"
           style={{
-            backgroundColor: colorChange,
+            opacity: 0.8,
             transition: "0.4s",
             height: heightChange,
           }}
@@ -263,7 +266,7 @@ export default function HeaderNav() {
                   </div>
                   <Link to="/" className="headerLogo">
                     <MdPets
-                      size={fix ? "3rem" : "5rem"}
+                      size={fix ? "3rem" : "4rem"}
                       id="wetownLogo"
                       className="userMenubuttons"
                     />
