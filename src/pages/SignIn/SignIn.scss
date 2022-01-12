@@ -14,9 +14,9 @@
 }
 
 .SignIn {
-  background-color: #f2f2f2;
   padding-top: 125px;
   font-size: 10px;
+  background-color: #f2f2f2;
 
   .SignInContainer {
     @include flex-box(column, center, center);
@@ -142,5 +142,11 @@
         }
       }
     }
+  }
+}
+.footerSection {
+  @media (min-height: 1000px) {
+    position: relative;
+    bottom: 0;
   }
 }

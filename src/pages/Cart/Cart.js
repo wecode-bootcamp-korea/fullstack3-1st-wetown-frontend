@@ -36,6 +36,30 @@ const Cart = () => {
     }, 100);
   }, [deleteOk, userId]);
 
+  const soldCompletion = () => {
+    fetch(`${process.env.REACT_APP_BASE_URL}/cart/sale-completion`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: userId,
+        product_id: data.map((e, i) => {
+          return e.product_id;
+        }),
+        quantity: productQuantity,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === "구매완료") {
+          alert(`구매가 완료되었습니다. 좋은하루 보내세요.`);
+        }
+        setDeleteOk(deleteOk + 1);
+      });
+  };
+
   const totalPrice = () => {
     let result = 0;
     let total = data.map((e, i) => {
@@ -77,6 +101,7 @@ const Cart = () => {
       setDeleteOk(deleteOk + 1);
     });
   };
+
   return (
     <div className="Cart">
       <div className="mainArea">
@@ -135,7 +160,9 @@ const Cart = () => {
             </div>
           </section>
           <section className="btnBox">
-            <button className="orderBtn">전체상품 주문</button>
+            <button className="orderBtn" onClick={soldCompletion}>
+              전체상품 주문
+            </button>
             <button>선택상품 주문</button>
             <button>🛍️ 선택상품 선물</button>
           </section>
