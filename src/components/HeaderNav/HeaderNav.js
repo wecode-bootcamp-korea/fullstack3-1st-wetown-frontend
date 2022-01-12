@@ -17,8 +17,10 @@ export default function HeaderNav() {
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
+  const colorChange = hovered !== false ? "#fbeff1" : "transparent";
   const heightChange = hovered !== false ? "400px" : "40px";
   const [lightMode, setLightMode] = useState(false);
+  const [whitePage, setWhitePage] = useState(false);
 
   useEffect(() => {
     async function getCategories() {
@@ -37,14 +39,15 @@ export default function HeaderNav() {
       location.pathname === "/signup" ||
       location.pathname === "/category/" ||
       location.pathname === "/cart"
-
     ) {
       setLightMode(true);
+      setWhitePage(true);
     } else if (
       location.pathname.includes("category") &&
       location.pathname.includes("product")
     ) {
       setLightMode(true);
+      setWhitePage(true);
     } else {
       setLightMode(false);
     }
@@ -73,7 +76,9 @@ export default function HeaderNav() {
       setLightMode(true);
       setHovered(false);
     } else {
-      setLightMode(false);
+      if (!whitePage) {
+        setLightMode(false);
+      }
       setFix(false);
     }
   };
@@ -138,7 +143,7 @@ export default function HeaderNav() {
         <div
           className="topBox"
           style={{
-            opacity: 0.8,
+            backgroundColor: colorChange,
             transition: "0.4s",
             height: heightChange,
           }}
@@ -250,16 +255,19 @@ export default function HeaderNav() {
                       <li>
                         <Link to="#" className="mainNavMenu">
                           P!CK
+                          <span className="circle" />
                         </Link>
                       </li>
                       <li>
                         <Link to="#" className="mainNavMenu">
                           EVENT
+                          <span className="circle" />
                         </Link>
                       </li>
                       <li>
                         <Link to="#" className="mainNavMenu">
                           BRAND
+                          <span className="circle" />
                         </Link>
                       </li>
                     </ul>
