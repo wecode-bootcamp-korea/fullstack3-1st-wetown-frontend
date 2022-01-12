@@ -410,6 +410,7 @@
       }
       .orderArea {
         .orderBtn {
+          cursor: pointer;
           border: none;
           color: white;
           font-size: 1.6em;
@@ -427,6 +428,7 @@
           display: flex;
           justify-content: space-between;
           .cartBtn {
+            cursor: pointer;
             border: 1px solid #b6b3b3;
             background-color: white;
             font-size: 1.4em;
@@ -439,6 +441,7 @@
             }
           }
           .wishBtn {
+            cursor: pointer;
             border: 1px solid #b6b3b3;
             background-color: white;
             font-size: 1.4em;

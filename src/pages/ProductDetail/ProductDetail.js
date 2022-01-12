@@ -5,6 +5,7 @@ import { PolicyBox } from "./compo/PolicyBox";
 import { ViewCart } from "./compo/ViewCart";
 import { NewTag, PopUp, Price, TopBottom } from "./compo/MiniCopo";
 import ScrollToTop from "../../components/ScrollToTop";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
@@ -263,7 +264,14 @@ const ProductDetail = () => {
               >
                 장바구니 담기
               </button>
-              <button className="wishBtn">위시리스트 담기</button>
+              <button
+                className="wishBtn"
+                onClick={() => {
+                  navigate(`/category/${data.cate_name}`);
+                }}
+              >
+                뒤로가기 <RiArrowGoBackFill />
+              </button>
             </div>
           </div>
           <div className="withHappyArea">
