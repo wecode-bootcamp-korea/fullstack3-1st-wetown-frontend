@@ -22,7 +22,9 @@ function ProductList() {
 
   //카테고리 입력된 값 상태 관리
   const [categoryList, setCategoryList] = useState([]);
-
+  //더보기 예외처리시 필요한 상태 관리
+  const [dataLength, setDataLength] = useState(0);
+  const [allData, setAllData] = useState([]);
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
 
@@ -40,11 +42,29 @@ function ProductList() {
   useEffect(() => {
     fetch(URL)
       .then(res => res.json())
-      .then(data => setCategoryList(data));
+      .then(data => {
+        setDataLength(data.length);
+        setAllData(data);
+        let arr = [];
+        if (data.length > 6) {
+          for (let i = 0; i < 6; i++) {
+            arr.push(data[i]);
+          }
+          setCategoryList(arr);
+        } else {
+          setCategoryList(data);
+        }
+      });
   }, [sortMethod, cate]);
 
   const sortMethodValue = num => {
     setSortMethod(num.target.value);
+  };
+
+  const moreItems = () => {
+    if (categoryList.length < allData.length) {
+      setCategoryList(allData);
+    }
   };
 
   return (
@@ -98,7 +118,13 @@ function ProductList() {
                 ))}
               </ul>
             </section>
-            <section className="showMore">더보기 +</section>
+            {dataLength === categoryList.length ? (
+              <section className="showMore"></section>
+            ) : (
+              <section className="showMore" onClick={moreItems}>
+                더보기 +
+              </section>
+            )}
           </section>
         </section>
       </section>

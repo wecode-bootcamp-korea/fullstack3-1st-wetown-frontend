@@ -16,6 +16,9 @@ function SubProductList() {
 
   //카테고리 입력된 값 상태 관리
   const [subCategoryList, setSubCategoryList] = useState([]);
+  //더보기 예외처리시 필요한 상태 관리
+  const [dataLength, setDataLength] = useState(0);
+  const [allData, setAllData] = useState([]);
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
   //Sub ProductList로 들어오는 base URL
@@ -33,11 +36,29 @@ function SubProductList() {
   useEffect(() => {
     fetch(URL)
       .then(res => res.json())
-      .then(data => setSubCategoryList(data));
+      .then(data => {
+        setDataLength(data.length);
+        setAllData(data);
+        let arr = [];
+        if (data.length > 6) {
+          for (let i = 0; i < 6; i++) {
+            arr.push(data[i]);
+          }
+          setSubCategoryList(arr);
+        } else {
+          setSubCategoryList(data);
+        }
+      });
   }, [params, sortMethod]);
 
   const sortMethodValue = num => {
     setSortMethod(num.target.value);
+  };
+
+  const moreItems = () => {
+    if (subCategoryList.length < allData.length) {
+      setSubCategoryList(allData);
+    }
   };
 
   return (
@@ -86,16 +107,21 @@ function SubProductList() {
             </section>
             <section className="productSide">
               <ul>
-                {subCategoryList[0] &&
-                  subCategoryList.map(subCategoryList => (
-                    <ProductCard
-                      data={subCategoryList}
-                      key={subCategoryList.id}
-                    />
-                  ))}
+                {subCategoryList?.map(subCategoryList => (
+                  <ProductCard
+                    data={subCategoryList}
+                    key={subCategoryList.id}
+                  />
+                ))}
               </ul>
             </section>
-            <section className="showMore">더보기 +</section>
+            {dataLength === subCategoryList.length ? (
+              <section className="showMore"></section>
+            ) : (
+              <section className="showMore" onClick={moreItems}>
+                더보기 +
+              </section>
+            )}
           </section>
         </section>
       </section>

@@ -1,20 +1,38 @@
 import { React, useEffect, useState } from "react";
 
 function ListSlider() {
+  const [imgList, setImgList] = useState([]);
+  const [originalSize, setOriginalSize] = useState(0);
+  const [originalList, setOriginalList] = useState(0);
+  const [imgIndex, setImgIndex] = useState(0);
   const [x, setX] = useState(0);
-  const [imgUrl, setImgUrl] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/data/listSliderImg.json")
       .then(res => res.json())
-      .then(data => setImgUrl(data));
+      .then(data => {
+        setImgList(data);
+        setOriginalSize(data.length);
+      });
   }, []);
+
+  useEffect(() => {
+    const lastIndex = imgList.length - 1;
+    if (imgIndex === lastIndex) {
+      setImgList(prevList => [
+        ...prevList,
+        imgList[imgIndex - (originalSize - 1)],
+      ]);
+    }
+  }, [imgIndex, imgList.length, originalSize]);
 
   const leftClick = () => {
     setX(prevX => prevX + 1905);
+    setImgIndex(prevIndex => prevIndex - 1);
   };
   const rightClick = () => {
     setX(prevX => prevX - 1905);
+    setImgIndex(prevIndex => prevIndex + 1);
   };
 
   return (
@@ -34,17 +52,15 @@ function ListSlider() {
         />
       </section>
       <section className="carousel">
-        {imgUrl.map(imgUrl => (
+        {imgList.map(imgList => (
           <section
-            key={imgUrl.discription}
             className="listSlider"
             style={{ transform: `translateX(${x}px)` }}
           >
             <img
               className="carouselImg"
-              key={imgUrl.id}
-              src={imgUrl.url}
-              alt={imgUrl.description}
+              alt={imgList.description}
+              src={imgList.url}
             />
           </section>
         ))}
