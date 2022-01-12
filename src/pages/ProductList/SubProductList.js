@@ -32,7 +32,6 @@ function SubProductList() {
   };
 
   // 카테고리 입력값 받아오기
-  //"/product/filter/dog"
   useEffect(() => {
     fetch(URL)
       .then(res => res.json())

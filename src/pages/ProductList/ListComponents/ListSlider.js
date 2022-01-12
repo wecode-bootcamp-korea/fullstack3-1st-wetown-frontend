@@ -3,7 +3,6 @@ import { React, useEffect, useState } from "react";
 function ListSlider() {
   const [imgList, setImgList] = useState([]);
   const [originalSize, setOriginalSize] = useState(0);
-  const [originalList, setOriginalList] = useState(0);
   const [imgIndex, setImgIndex] = useState(0);
   const [x, setX] = useState(0);
 
@@ -24,14 +23,14 @@ function ListSlider() {
         imgList[imgIndex - (originalSize - 1)],
       ]);
     }
-  }, [imgIndex, imgList.length, originalSize]);
+  }, [imgIndex]);
 
   const leftClick = () => {
-    setX(prevX => prevX + 1905);
+    setX(prevX => prevX + 100);
     setImgIndex(prevIndex => prevIndex - 1);
   };
   const rightClick = () => {
-    setX(prevX => prevX - 1905);
+    setX(prevX => prevX - 100);
     setImgIndex(prevIndex => prevIndex + 1);
   };
 
