@@ -65,7 +65,9 @@ export default function PetProductBox() {
               return (
                 <ul
                   className="productBoxList"
-                  style={{ display: numb === index ? "flex" : "none" }}
+                  style={{
+                    display: numb === index ? "flex" : "none",
+                  }}
                   key={category.id}
                 >
                   <li>
@@ -93,8 +95,8 @@ export default function PetProductBox() {
                               <Link
                                 to={
                                   linkAddress +
-                                  item +
-                                  `/product/${indexInner + 1}`
+                                  item.name +
+                                  `/product/${index}${indexInner + 1}`
                                 }
                               >
                                 <img src={item.url} alt={item.eng_name} />
