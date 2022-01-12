@@ -2,7 +2,6 @@
   font-size: 16px;
   position: fixed;
   z-index: 10000;
-
   .topBox {
     width: 100%;
     position: fixed;
@@ -96,6 +95,7 @@
               ul {
                 display: flex;
                 gap: 2rem;
+
                 .mainNavMenu {
                   color: inherit;
                 }
