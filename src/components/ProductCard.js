@@ -21,7 +21,11 @@ const ProductCard = props => {
           <section />
         )}
         <section className="imgSection">
-          <img class="listImg" src={props.data.url} alt={props.data.eng_name} />
+          <img
+            className="listImg"
+            src={props.data.url}
+            alt={props.data.eng_name}
+          />
         </section>
       </Link>
       <section className="productDescription">
