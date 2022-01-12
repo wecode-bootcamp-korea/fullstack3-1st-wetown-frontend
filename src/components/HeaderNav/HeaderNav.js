@@ -37,6 +37,7 @@ export default function HeaderNav() {
       location.pathname === "/signup" ||
       location.pathname === "/category/" ||
       location.pathname === "/cart"
+
     ) {
       setLightMode(true);
     } else if (
@@ -111,7 +112,6 @@ export default function HeaderNav() {
   };
 
   const hoverStyle = {
-    backgroundColor: "#",
     height: "400px",
   };
 
