@@ -34,7 +34,7 @@ const Router = () => (
             style={{
               width: "100%",
               minWidth: "1200px",
-              height: "70vh",
+              height: "100vh",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
