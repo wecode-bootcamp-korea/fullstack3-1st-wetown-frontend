@@ -301,12 +301,10 @@
             }
             .headerLogo {
               margin: 0 auto;
-              margin-left: 130px;
-              color: inherit;
-              transform: translateX(50%);
-
-              img {
-                width: 64px;
+              #wetownLogo {
+                color: inherit;
+                margin: 0 auto;
+                transform: translateX(-50%);
               }
             }
             .userMenu {

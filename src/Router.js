@@ -27,6 +27,34 @@ const Router = () => (
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/cart" element={<Cart />} />
+      <Route
+        path="*"
+        element={
+          <main
+            style={{
+              width: "100%",
+              minWidth: "1200px",
+              height: "70vh",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#ffffff",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                textAlign: "center",
+                fontSize: "10rem",
+                padding: "250px 0",
+              }}
+            >
+              thisiswetown!
+            </div>
+          </main>
+        }
+      />
     </Routes>
     <Footer />
   </BrowserRouter>
