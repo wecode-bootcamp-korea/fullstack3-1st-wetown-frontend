@@ -1,8 +1,10 @@
 .ProductDetail {
   letter-spacing: 2px;
+  background-color: white;
   .detailArea {
-    margin-top: 50px;
+    position: relative;
     height: auto;
+    padding-top: 160px;
     .cartArea {
       width: 400px;
       height: 350px;
@@ -57,88 +59,117 @@
     justify-content: center;
     .mainArea {
       position: relative;
-      width: 900px;
+      width: 800px;
       margin-bottom: 100px;
       .newBox {
         position: absolute;
-        top: -50px;
-        left: -30px;
+        top: -5px;
+        right: -10px;
         z-index: 1000;
+        img {
+          width: 150px;
+        }
       }
-      .slideBackground {
+      .slideContainer {
+        display: flex;
         position: relative;
-        width: 900px;
-        height: 900px;
-        background-color: #ecebeb;
-        .slideBox {
-          display: flex;
-          width: 700px;
-          height: 700px;
-          overflow: hidden;
+        .dumy {
+          position: absolute;
+          left: -100%;
+          width: 800px;
+          height: 900px;
+          background-color: #f2f2f2;
+        }
+        .slideBackground {
           position: relative;
-          top: 100px;
-          left: 100px;
-          .slideList {
-            transition: 0.5s;
-            width: 700px;
-            height: 700px;
-            img {
-              width: 700px;
-              height: 700px;
-              object-fit: fill;
+          width: 800px;
+          height: 900px;
+          background-color: #f2f2f2;
+          display: flex;
+
+          .slideBox {
+            display: flex;
+            width: 600px;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+            top: 150px;
+            left: 100px;
+            .slideList {
+              transition: 0.5s;
+              width: 600px;
+              height: 600px;
+              img {
+                width: 600px;
+                height: 600px;
+                object-fit: contain;
+              }
             }
           }
-        }
-        .dot {
-          font-size: 1.4em;
-          position: absolute;
-          top: 93%;
-          left: 46%;
-          .on {
-            font-weight: 900;
+          .dotBox {
+            position: absolute;
+            top: 97%;
+            left: 46%;
+            color: #7e7b7b;
+            .dotList {
+              margin-right: 20px;
+              .on {
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                border: 1px solid #7e7b7b;
+              }
+              .off {
+                width: 10px;
+                height: 11px;
+                border-radius: 50%;
+                background-color: #a0a6b8;
+                border: none;
+              }
+            }
           }
-        }
-        #goLeft {
-          position: absolute;
-          top: 50%;
-          left: 20px;
-          background-image: url(./images/left.png);
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          border: none;
-          width: 30px;
-          height: 30px;
-          opacity: 0.4;
-          cursor: pointer;
-          &:hover {
-            opacity: 0.8;
-            transition: all 0.5s;
+          #goLeft {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            background-image: url(./images/left.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            width: 30px;
+            height: 30px;
+            opacity: 0.4;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.8;
+              transition: all 0.5s;
+            }
           }
-        }
-        #goRight {
-          position: absolute;
-          top: 50%;
-          right: 20px;
-          background-image: url(./images/right.png);
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          border: none;
-          width: 30px;
-          height: 30px;
-          opacity: 0.4;
-          cursor: pointer;
-          &:hover {
-            opacity: 0.8;
-            transition: all 0.5s;
+          #goRight {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            background-image: url(./images/right.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            width: 30px;
+            height: 30px;
+            opacity: 0.4;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.8;
+              transition: all 0.5s;
+            }
           }
         }
       }
       .productDetailArea {
         .detailHeading {
           .noticeInfo {
-            font-size: 1.6em;
+            font-size: 1.4em;
             margin-top: 70px;
             padding-top: 30px;
             border-top: 2px solid #ecebeb;
@@ -225,9 +256,11 @@
       margin-top: 50px;
       margin-left: 50px;
       width: 450px;
-      height: 500px;
+      min-width: 315px;
+      height: 1200px;
       position: sticky;
       top: 150px;
+      background-color: #ffffff;
       .sideHeading {
         .subCateName {
           font-size: 1.4em;
@@ -296,11 +329,15 @@
         }
         .savedName {
           color: #acaaaa;
+          display: inline-block;
+          width: 100px;
           .beforeHover {
             display: none;
           }
         }
         .savedValue {
+          display: inline-block;
+          width: 250px;
           .beforeHover {
             display: none;
           }
@@ -415,6 +452,46 @@
           }
         }
       }
+      .withHappyArea {
+        margin-top: 40px;
+        padding: 15px;
+        .title {
+          color: #1c0d41;
+          font-size: 1.8em;
+          font-weight: bold;
+        }
+        .happyArea {
+          margin-top: 50px;
+          display: flex;
+          justify-content: space-between;
+          .happyBox {
+            .happyBackground {
+              background-color: #f2f2f2;
+              width: 200px;
+              height: 250px;
+              text-align: center;
+              span {
+                width: 200px;
+                height: 250px;
+                img {
+                  width: 200px;
+                  height: 250px;
+                  object-fit: contain;
+                }
+              }
+            }
+            .happyName {
+              margin-top: 10px;
+              font-size: 1.2em;
+            }
+            .happyPrice {
+              margin-top: 10px;
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
     .topBottom {
       cursor: pointer;
@@ -454,26 +531,31 @@
     }
     .popUpBox {
       position: fixed;
-      top: 80%;
-      left: 3%;
-      width: 200px;
-      height: 200px;
+      width: 170px;
+      height: 170px;
       cursor: pointer;
+      top: 77%;
+      left: 3%;
+
+      @media (max-width: 1400px) {
+        display: none;
+      }
+
       .exit {
         font-size: 3em;
         color: #7e7b7b;
       }
       .background {
         box-shadow: 10px 20px 20px 5px rgb(207, 201, 201);
-        width: 200px;
-        height: 200px;
+        width: 170px;
+        height: 170px;
         background-color: #8a8484;
         border-radius: 50%;
         img {
           width: 100%;
           height: 130%;
           position: absolute;
-          top: -30px;
+          top: -16px;
           object-fit: contain;
         }
       }

@@ -111,7 +111,15 @@ export default function MainSlider() {
                   key={obj.id}
                   alt="슬라이더 이미지"
                 />
-                <div className="mainSliderDetail">{obj.desc}</div>
+                <div
+                  className={
+                    slideIndex === index + 1
+                      ? "mainSliderDetail active"
+                      : "mainSliderDetail"
+                  }
+                >
+                  {obj.desc}
+                </div>
               </li>
             );
           })}
@@ -120,13 +128,13 @@ export default function MainSlider() {
           color="white"
           size={50}
           className="BtnSlider prev"
-          onClick={nextSlide}
+          onClick={prevSlide}
         />
         <FaChevronRight
           color="white"
           size={50}
           className="BtnSlider next"
-          onClick={prevSlide}
+          onClick={nextSlide}
         />
 
         <div className="slider-dots">

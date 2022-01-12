@@ -55,7 +55,7 @@ function ListSlider() {
         {imgList.map(imgList => (
           <section
             className="listSlider"
-            style={{ transform: `translateX(${x}px)` }}
+            style={{ transform: `translateX(${x}%)` }}
           >
             <img
               className="carouselImg"

@@ -14,16 +14,16 @@
 }
 
 .SignIn {
-  background-color: #f2f2f2;
   padding-top: 125px;
   font-size: 10px;
+  background-color: #f2f2f2;
 
   .SignInContainer {
     @include flex-box(column, center, center);
     width: 100%;
+    min-width: 1200px;
     margin: 0 auto;
     padding: 0 0 160px;
-
     .pageTitle {
       margin: 50px 0;
       font-size: 2.5rem;
@@ -76,11 +76,17 @@
           width: 100%;
           margin-top: 10px;
           padding: 15px 40px;
-          background-color: #3d435f;
-          border: none;
+          background-color: transparent;
+          border: 1px solid #d8d9de;
           border-radius: 50px;
-          color: #fff;
+          color: #3d435f;
           cursor: pointer;
+
+          &:hover {
+            transform: scale(1.02);
+            transition: scale 0.5s ease-in-out;
+            opacity: 0.4;
+          }
         }
       }
       .userFind ul {
