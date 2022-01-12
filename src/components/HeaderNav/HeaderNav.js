@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { StyledHeader } from "../styles/Header.styled";
 import { MdPets } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
 import { FaSistrix } from "react-icons/fa";
@@ -12,13 +14,12 @@ export default function HeaderNav() {
   const location = useLocation();
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
-  const colorChange = hovered !== false ? "#fbeff1" : "transparent";
-  const heightChange = hovered !== false ? "400px" : "40px";
-  const textColorChange = hovered !== false ? "black" : "white";
-  const headerStyles = { color: textColorChange, cursor: "pointer" };
   const [scrollY, setScrollY] = useState(0);
   const [fix, setFix] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
+  const colorChange = hovered !== false ? "#fbeff1" : "transparent";
+  const heightChange = hovered !== false ? "400px" : "40px";
+  const [lightMode, setLightMode] = useState(false);
 
   useEffect(() => {
     async function getCategories() {
@@ -31,6 +32,22 @@ export default function HeaderNav() {
     getCategories();
   }, []);
 
+  useEffect(() => {
+    if (
+      location.pathname === "/signin" ||
+      location.pathname === "/signup" ||
+      location.pathname === "/category/"
+    ) {
+      setLightMode(true);
+    } else if (
+      location.pathname.includes("category") &&
+      location.pathname.includes("product")
+    ) {
+      setLightMode(true);
+    } else {
+      setLightMode(false);
+    }
+  });
   const getCategoryColor = category => {
     switch (category) {
       case "dog":
@@ -47,7 +64,6 @@ export default function HeaderNav() {
         return { backgroundColor: "#3d435f" };
     }
   };
-
   const scrollWatch = () => {
     setScrollY(window.pageYOffset);
     if (scrollY > 50) {
@@ -57,7 +73,6 @@ export default function HeaderNav() {
       setFix(false);
     }
   };
-
   useEffect(() => {
     const watch = () => {
       window.addEventListener("scroll", scrollWatch);
@@ -67,16 +82,13 @@ export default function HeaderNav() {
       window.removeEventListener("scroll", scrollWatch);
     };
   });
-
   const [loginState, setLoginState] = useState(false);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setLoginState(true);
     }
   }, [loginState]);
-
   const logout = e => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -95,186 +107,198 @@ export default function HeaderNav() {
     }
   };
 
+  const hoverStyle = {
+    backgroundColor: "#fbeff1",
+    height: "400px",
+  };
+
+  const darkFont = {
+    color: "#000000",
+  };
+
+  const lightFont = {
+    color: "#ffffff",
+  };
   return (
-    <header className="HeaderNav" style={headerStyles}>
-      <div
-        className="topBox"
-        style={{
-          backgroundColor: colorChange,
-          transition: "0.4s",
-          height: heightChange,
-        }}
-      >
-        <div className="topBoxInner">
-          <section>
-            <nav
-              className="headerTop"
-              style={{ display: fix ? "none" : "block" }}
-            >
-              <ul>
-                <li style={{ display: loginState ? "none" : "block" }}>
-                  <Link to="/signin">LOGIN</Link>
-                </li>
-                <li style={{ display: loginState ? "none" : "block" }}>
-                  <Link to="/signup">JOIN</Link>
-                </li>
-                <li
-                  className="logoutButton"
-                  onClick={logout}
-                  style={{ display: loginState ? "block" : "none" }}
-                >
-                  LOGOUT
-                </li>
-                <li className="globalStore">
-                  <Link to="#">KOR</Link>
-                  <ul className="globalStoreList">
-                    <li>
-                      <Link to="#">KOR</Link>
-                    </li>
-                    <li>
-                      <Link to="#">ENG</Link>
-                    </li>
-                    <li>
-                      <Link to="#">JPN</Link>
-                    </li>
-                    <li>
-                      <Link to="#">CHN</Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </section>
-          <section className="headerBottomSection">
-            <nav className={fix ? "headerBottom fixed" : "headerBottom"}>
-              <div className="headerBottomInner">
-                <div
-                  className="headerMenu"
-                  onMouseEnter={toggleHover}
-                  onMouseLeave={toggleHover}
-                  style={headerStyles}
-                >
-                  <ul>
-                    <li className="petMenu">
-                      <Link to="#" className="petTitle mainNavMenu">
-                        PET
-                        <span className="circle" />
-                      </Link>
-                      <ul className="petsList">
-                        {categoryList &&
-                          categoryList.map(pet => (
-                            <li key={pet.id}>
-                              <Link
-                                to={"/category/" + pet.name}
-                                className="petsListLink"
-                              >
-                                {pet.name.toUpperCase()}
-                                <span
-                                  className="smallCircle"
-                                  style={getCategoryColor(pet.name)}
-                                />
-                              </Link>
-                            </li>
-                          ))}
-                      </ul>
-                    </li>
-                    <li className="productMenu mainNavMenu">
-                      <Link to="#" className="productTitle">
-                        PRODUCT
-                        <span className="circle" />
-                      </Link>
-                      <ul className="productsList">
-                        <li>
-                          <Link to="#">
-                            FOOD
-                            <span className="smallCircle" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            TOY
-                            <span className="smallCircle" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            HOUSE
-                            <span className="smallCircle" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            HEALTH
-                            <span className="smallCircle" />
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <Link to="#" className="mainNavMenu">
-                        P!CK
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="mainNavMenu">
-                        EVENT
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#" className="mainNavMenu">
-                        BRAND
-                      </Link>
-                    </li>
-                  </ul>
+    <ThemeProvider
+      theme={
+        lightMode
+          ? hovered
+            ? darkFont
+            : darkFont
+          : hovered
+          ? darkFont
+          : lightFont
+      }
+    >
+      <StyledHeader className="HeaderNav" style={hoverStyle}>
+        <div
+          className="topBox"
+          style={{
+            backgroundColor: colorChange,
+            transition: "0.4s",
+            height: heightChange,
+          }}
+        >
+          <div className="topBoxInner">
+            <section>
+              <nav
+                className="headerTop"
+                style={{ display: fix ? "none" : "block" }}
+              >
+                <ul>
+                  <li style={{ display: loginState ? "none" : "block" }}>
+                    <Link to="/signin">LOGIN</Link>
+                  </li>
+                  <li style={{ display: loginState ? "none" : "block" }}>
+                    <Link to="/signup">JOIN</Link>
+                  </li>
+                  <li
+                    className="logoutButton"
+                    onClick={logout}
+                    style={{ display: loginState ? "block" : "none" }}
+                  >
+                    LOGOUT
+                  </li>
+                  <li className="globalStore">
+                    <Link to="#">KOR</Link>
+                    <ul className="globalStoreList">
+                      <li>
+                        <Link to="#">KOR</Link>
+                      </li>
+                      <li>
+                        <Link to="#">ENG</Link>
+                      </li>
+                      <li>
+                        <Link to="#">JPN</Link>
+                      </li>
+                      <li>
+                        <Link to="#">CHN</Link>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </section>
+            <section className="headerBottomSection">
+              <nav className={fix ? "headerBottom fixed" : "headerBottom"}>
+                <div className="headerBottomInner">
+                  <div
+                    className="headerMenu"
+                    onMouseEnter={toggleHover}
+                    onMouseLeave={toggleHover}
+                  >
+                    <ul>
+                      <li className="petMenu">
+                        <Link to="#" className="petTitle mainNavMenu">
+                          PET
+                          <span className="circle" />
+                        </Link>
+                        <ul className="petsList">
+                          {categoryList &&
+                            categoryList.map(pet => (
+                              <li key={pet.id}>
+                                <Link
+                                  to={"/category/" + pet.name}
+                                  className="petsListLink"
+                                >
+                                  {pet.name.toUpperCase()}
+                                  <span
+                                    className="smallCircle"
+                                    style={getCategoryColor(pet.name)}
+                                  />
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </li>
+                      <li className="productMenu">
+                        <Link to="#" className="productTitle mainNavMenu">
+                          PRODUCT
+                          <span className="circle" />
+                        </Link>
+                        <ul className="productsList">
+                          <li>
+                            <Link to="#">
+                              FOOD
+                              <span className="smallCircle" />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              TOY
+                              <span className="smallCircle" />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              HOUSE
+                              <span className="smallCircle" />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              HEALTH
+                              <span className="smallCircle" />
+                            </Link>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <Link to="#" className="mainNavMenu">
+                          P!CK
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="#" className="mainNavMenu">
+                          EVENT
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="#" className="mainNavMenu">
+                          BRAND
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <Link to="/" className="headerLogo">
+                    <MdPets
+                      size={fix ? "3rem" : "5rem"}
+                      id="wetownLogo"
+                      className="userMenubuttons"
+                    />
+                  </Link>
+                  <div className="userMenu">
+                    <ul>
+                      <li>
+                        <BiUser
+                          className="userButton userMenuButtons"
+                          onClick={goToSignInPage}
+                        />
+                      </li>
+                      <li>
+                        <Link to="#">
+                          <FaSistrix className="userMenuButtons" />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/cart">
+                          <BsBag className="userMenuButtons" />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="#">
+                          <IoBookmarksOutline className="userMenuButtons" />
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <Link to="/" className="headerLogo">
-                  <MdPets
-                    size={fix ? "3rem" : "5rem"}
-                    id="wetownLogo"
-                    className="userMenubuttons"
-                    style={headerStyles}
-                  />
-                </Link>
-                <div className="userMenu">
-                  <ul>
-                    <li>
-                      <BiUser
-                        className="userButton userMenuButtons"
-                        onClick={goToSignInPage}
-                        style={headerStyles}
-                      />
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <FaSistrix
-                          className="userMenuButtons"
-                          style={headerStyles}
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/cart">
-                        <BsBag
-                          className="userMenuButtons"
-                          style={headerStyles}
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <IoBookmarksOutline
-                          className="userMenuButtons"
-                          style={headerStyles}
-                        />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
-          </section>
+              </nav>
+            </section>
+          </div>
         </div>
-      </div>
-    </header>
+      </StyledHeader>
+    </ThemeProvider>
   );
 }
