@@ -335,8 +335,9 @@
           left: 0px;
           width: 100%;
           margin: 0 auto;
+          border-bottom: 1px solid #f0f0f0;
+          background-color: #ffffff;
           transition: opacity 0.4s ease-in-out;
-          background-color: #fbeff1e3;
 
           .headerBottomInner {
             width: 1200px;
