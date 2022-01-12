@@ -128,13 +128,13 @@ export default function MainSlider() {
           color="white"
           size={50}
           className="BtnSlider prev"
-          onClick={nextSlide}
+          onClick={prevSlide}
         />
         <FaChevronRight
           color="white"
           size={50}
           className="BtnSlider next"
-          onClick={prevSlide}
+          onClick={nextSlide}
         />
 
         <div className="slider-dots">
