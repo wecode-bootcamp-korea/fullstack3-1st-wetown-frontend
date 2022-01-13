@@ -1,104 +1,170 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import CircleButton from "../../components/CircleButton/CircleButton";
+import ScrollToTop from "../../components/ScrollToTop";
 import Policy from "./Policy";
 import "./SignUp.scss";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState([]);
-  const [validSignUp, setValidSignUp] = useState(false);
+  const [isValidSignUp, setValidSignUp] = useState(false);
   const [userInput, setUserInput] = useState({
-    //필수항목은 db저장
-    nameInput: "", //required
-    nicknameInput: "", //required
-    passwordInput: "", //required
-    pwCheckInput: "", //required
-    emailInput: "", //required
-    bdayInput: "", // required for age validation
-    //선택항목
-    phoneNumInput: "010-1234-5678", //optional
-    genderInput: "여자", //optional
-    petCategoryInput: "", // optional -> type: object
+    nameInput: "",
+    nicknameInput: "",
+    passwordInput: "",
+    pwCheckInput: "",
+    emailInput: "",
+    policiesInput: {},
+    genderInput: "",
+    phoneNumInput: "010-1234-5678",
+    petCategoryInput: "",
+    bdayInput: "",
   });
+  useEffect(() => {
+    async function getCategories() {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/category`
+      );
+      const data = await response.json();
+      setCategoryList([...data]);
+    }
 
-  const {
-    nameInput,
-    nicknameInput,
-    passwordInput,
-    pwCheckInput,
-    emailInput,
-    phoneNumInput,
-    genderInput,
-    bdayInput,
-    petCategoryInput,
-  } = userInput;
+    getCategories();
+  }, []);
+
+  const selectedStyle = name => {
+    return {
+      width: "120px",
+      height: "120px",
+      backgroundColor: changeColor(name),
+      color: "#fffff",
+      opacity: "1",
+    };
+  };
+  const pickStyle = () => {
+    return {
+      width: "120px",
+      height: "120px",
+      backgroundColor: "transparent",
+      color: "#000000",
+      opacity: "0.3",
+    };
+  };
+  const changeColor = category => {
+    switch (category) {
+      case "dog":
+        return "#fccf1d";
+      case "cat":
+        return "#c81a20";
+      case "turtle":
+        return "#016ad5";
+      case "hamster":
+        return "#cda5e0";
+      case "bird":
+        return "#d8e22d";
+      default:
+        return "#3d435f";
+    }
+  };
 
   const handleInput = e => {
     e.preventDefault();
     let { name, value } = e.target;
-
-    if (name === "petCategoryInput") {
-      const [petChoice] = categoryList.filter(pet => pet.category === value);
-      value = { ...petChoice };
-    }
-
     if (name === "bdayInput") {
       value = Date.parse(value);
     }
-
     setUserInput({ ...userInput, [name]: value });
   };
 
+  const checkOptionalPolicy = value => {
+    setUserInput({ ...userInput, policiesInput: value });
+  };
+
   useEffect(() => {
+    const {
+      nameInput,
+      nicknameInput,
+      passwordInput,
+      pwCheckInput,
+      emailInput,
+      policiesInput,
+      bdayInput,
+    } = userInput;
+
+    const validateName = nameInput;
+    const validateNickname = nicknameInput.length > 3;
     const validateEmail = emailInput.includes("@");
 
     const validatePassword =
-      passwordInput.length > 8 && passwordInput === pwCheckInput;
+      passwordInput.length > 7 && passwordInput === pwCheckInput;
 
     const fourteenYearsInSec = 14 * 365 * 24 * 60 * 60 * 1000;
     const validateAge = Date.now() - bdayInput > fourteenYearsInSec;
 
-    if (validateEmail && validatePassword && validateAge) {
+    const validateRequiredPolicies =
+      policiesInput?.userAgmt &&
+      policiesInput?.privacy &&
+      policiesInput?.ageFourteen;
+
+    if (
+      validateName &&
+      validateNickname &&
+      validateEmail &&
+      validatePassword &&
+      validateAge &&
+      validateRequiredPolicies
+    ) {
       setValidSignUp(true);
     } else {
       setValidSignUp(false);
     }
-  }, [emailInput, passwordInput, pwCheckInput, bdayInput, validSignUp]);
+  }, [userInput]);
 
-  function goSignUp(e) {
+  async function goSignUp(e) {
     e.preventDefault();
+    const {
+      nameInput,
+      nicknameInput,
+      emailInput,
+      passwordInput,
+      policiesInput,
+      genderInput,
+      phoneNumInput,
+    } = userInput;
 
-    fetch("http://localhost:8000/user/signup", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: nameInput,
-        nickname: nicknameInput,
-        password: passwordInput,
-        email: emailInput,
-        phone_number: phoneNumInput,
-        gender: genderInput,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/user/signup`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: nameInput,
+          nickname: nicknameInput,
+          password: passwordInput,
+          email: emailInput,
+          policies: policiesInput,
+          gender: genderInput,
+          phone_number: phoneNumInput,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.token);
+      alert("회원가입을 축하드립니다.");
+      navigate("/");
+    }
   }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/data/mockCategory.json")
-      .then(res => res.json())
-      .then(data => setCategoryList(data));
-  }, []);
-
   return (
-    <div
-      className="SignUp"
-      // 개발 과정에서 유효성 검사 작동 확인을 위해 배경화면 스타일 적용
-      // 추후 스타일 어트리뷰트는 삭제
-      style={{ backgroundColor: validSignUp ? "green" : "orange" }}
-    >
+    <div className="SignUp">
+      <ScrollToTop />
       <div className="SignUpContainer">
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">
@@ -110,8 +176,22 @@ const SignUp = () => {
               </label>
               <div className="verificationInputWrapper">
                 <div className="inputWrapper">
-                  <span>휴대폰 인증</span>
-                  <input type="button" id="verification" value="인증하기" />
+                  <span className="verificationInput">휴대폰 인증</span>
+                  <CircleButton
+                    type="radio"
+                    name="genderInput"
+                    value="인증하기"
+                    style={{
+                      marginBottom: "15px",
+                      width: "100px",
+                      height: "25px",
+                      borderRadius: "25px",
+                      color: "#3d435f",
+                    }}
+                    onClick={() => {
+                      alert("본인이 맞습니까?");
+                    }}
+                  />
                 </div>
                 <div>본인 명의의 휴대폰으로 본인인증을 진행합니다.</div>
               </div>
@@ -142,25 +222,43 @@ const SignUp = () => {
             </div>
             <div className="inputControl">
               <label className="label">성별</label>
-              <div>
-                <input
+              <div className="genderOptions">
+                <CircleButton
                   type="radio"
-                  id="genderMaleInput"
                   name="genderInput"
                   value="남자"
-                  onClick={handleInput}
+                  style={{
+                    width: "50px",
+                    height: "25px",
+                    borderRadius: "25px",
+                    backgroundColor:
+                      userInput.genderInput === "남자"
+                        ? "black"
+                        : "transparent",
+                    color: userInput.genderInput === "남자" ? "white" : "black",
+                    opacity: userInput.genderInput === "여자" ? "1" : "",
+                  }}
+                  onClick={e => handleInput(e)}
                 />
-                <label htmlFor="genderMaleInput">남자</label>
               </div>
-              <div>
-                <input
+              <div className="genderOptions">
+                <CircleButton
                   type="radio"
-                  id="genderFemaleInput"
                   name="genderInput"
                   value="여자"
-                  onClick={handleInput}
+                  style={{
+                    width: "50px",
+                    height: "25px",
+                    borderRadius: "25px",
+                    backgroundColor:
+                      userInput.genderInput === "여자"
+                        ? "black"
+                        : "transparent",
+                    color: userInput.genderInput === "여자" ? "white" : "black",
+                    opacity: userInput.genderInput === "여자" ? "1" : "",
+                  }}
+                  onClick={e => handleInput(e)}
                 />
-                <label htmlFor="genderFemaleInput">여자</label>
               </div>
             </div>
             <div className="inputControl requiredField">
@@ -208,14 +306,20 @@ const SignUp = () => {
               <label className="label" htmlFor="addressInput">
                 주소
               </label>
-              <input type="text" id="addressInput" name="addressInput" />
+              <input
+                tabIndex={-1}
+                type="text"
+                id="addressInput"
+                name="addressInput"
+                disabled
+              />
             </div>
             <div className="inputControl">
               <label className="label" htmlFor="phoneNumInput">
                 일반전화
               </label>
               <div className="phoneNumWrapper">
-                <select id="phoneNumInput" name="areaCode">
+                <select tabIndex={-1} className="areaCodeInput">
                   <option value="02">02</option>
                   <option value="010">010</option>
                   <option value="031">031</option>
@@ -228,8 +332,18 @@ const SignUp = () => {
                   <option value="051">051</option>
                   <option value="052">052</option>
                 </select>
-                <input type="tel" id="phoneNum1" />
-                <input type="tel" id="phoneNum2" />
+                <input
+                  tabIndex={-1}
+                  type="tel"
+                  className="phoneNumInput"
+                  disabled
+                />
+                <input
+                  tabIndex={-1}
+                  type="tel"
+                  className="phoneNumInput"
+                  disabled
+                />
               </div>
             </div>
             <div className="inputControl requiredField">
@@ -259,24 +373,38 @@ const SignUp = () => {
                   key={pet.id}
                   type="radio"
                   name="petCategoryInput"
-                  value={pet.category}
-                  style={{
-                    width: "120px",
-                    height: "120px",
-                    backgroundColor:
-                      petCategoryInput.category === pet.category
-                        ? petCategoryInput.color
-                        : "",
-                  }}
+                  value={pet.name.toUpperCase()}
                   onClick={e => handleInput(e)}
+                  style={
+                    userInput.petCategoryInput === pet.name.toUpperCase()
+                      ? selectedStyle(pet.name)
+                      : pickStyle()
+                  }
                 />
               ))}
             </article>
           </section>
-          <Policy />
+          <Policy onCheck={value => checkOptionalPolicy(value)} />
           <section className="section formButtons">
-            <button>CANCEL</button>
-            <button onClick={goSignUp}>JOIN</button>
+            <button>
+              <Link className="buttonText" to="/">
+                CANCEL
+              </Link>
+            </button>
+            <button
+              onClick={goSignUp}
+              disabled={!isValidSignUp}
+              className={
+                "signupButton " + (isValidSignUp ? "valid" : "invalid")
+              }
+              style={{
+                backgroundColor: userInput.petCategoryInput
+                  ? changeColor(userInput.petCategoryInput)
+                  : "#3d435f",
+              }}
+            >
+              <span className="buttonText">JOIN</span>
+            </button>
           </section>
         </form>
       </div>

@@ -1,13 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import "./Policy.scss";
 
-const Policy = () => {
+const Policy = ({ onCheck }) => {
+  const [checkAll, setCheckAll] = useState(false);
+  const [policyList, setPolicyList] = useState({
+    userAgmt: false,
+    privacy: false,
+    ageFourteen: false,
+    marketing: false,
+  });
+  const { userAgmt, privacy, ageFourteen, marketing } = policyList;
+
+  const handleCheckBox = e => {
+    const { name } = e.target;
+    const currentStatus = policyList[name];
+    setPolicyList({ ...policyList, [name]: !currentStatus });
+  };
+
+  const handleAllCheckBox = e => {
+    setCheckAll(!checkAll);
+    const array = Object.keys(policyList).map(key => [key, !checkAll]);
+    const object = Object.fromEntries(array);
+    setPolicyList(object);
+    passToForm();
+  };
+
+  const passToForm = () => {
+    onCheck(policyList);
+  };
+
+  //전체 체크박스를 렌더링 해줄지 캐치 해주는 useEffect
+  useEffect(() => {
+    if (userAgmt && privacy && ageFourteen && marketing) {
+      setCheckAll(true);
+    }
+    if (!userAgmt || !privacy || !ageFourteen || !marketing) {
+      setCheckAll(false);
+    }
+    passToForm();
+  }, [userAgmt, privacy, ageFourteen, marketing]);
+
   return (
     <section className="section policyAgreement">
       <h3 className="title">약관 동의</h3>
-      {/* 약관 별 박스 래퍼 컴포넌트화? */}
-      <div>아래 내용에 모두 동의합니다.</div>
+      <div className="policyCheckWrapper checkAllWrapper">
+        <h4>아래 내용에 모두 동의합니다.</h4>
+        <input
+          type="checkbox"
+          className="policyCheckBox"
+          name="checkAll"
+          checked={checkAll ? true : false}
+          onChange={handleAllCheckBox}
+        />
+      </div>
       <article className="policyType required">
-        <h4>이용약관 동의</h4>
+        <div className="policyCheckWrapper">
+          <h4>
+            이용약관 동의 <span>(필수)</span>
+          </h4>
+          <input
+            type="checkbox"
+            className="policyCheckBox"
+            name="userAgmt"
+            checked={userAgmt ? true : false}
+            onChange={handleCheckBox}
+          />
+        </div>
         <div className="textContent">
           <article>
             이 WETOWN &STORE 서비스 이용 약관은 주식회사 에스엠브랜드마케팅(이하
@@ -750,7 +808,18 @@ const Policy = () => {
         </div>
       </article>
       <article className="policyType required">
-        <h4>개인정보 수집 및 이용 동의</h4>
+        <div className="policyCheckWrapper">
+          <h4>
+            개인정보 수집 및 이용 동의 <span>(필수)</span>
+          </h4>
+          <input
+            type="checkbox"
+            className="policyCheckBox"
+            name="privacy"
+            checked={privacy ? true : false}
+            onChange={handleCheckBox}
+          />
+        </div>
         <div className="textContent">
           <article>
             <h5>수집하는 개인정보 항목 및 수집방법 </h5>
@@ -816,11 +885,33 @@ const Policy = () => {
         </div>
       </article>
       <article className="policyType required">
-        <h4>14세 이상 가입동의</h4>
+        <div className="policyCheckWrapper">
+          <h4>
+            14세 이상 가입동의 <span>(필수)</span>
+          </h4>
+          <input
+            type="checkbox"
+            className="policyCheckBox"
+            name="ageFourteen"
+            checked={ageFourteen ? true : false}
+            onChange={handleCheckBox}
+          />
+        </div>
         <div className="textContent">본인은 만 14세 이상입니다.</div>
       </article>
       <article className="policyType notRequired">
-        <h4>개인정보 제3자 제공 동의</h4>
+        <div className="policyCheckWrapper">
+          <h4>
+            개인정보 제3자 제공 동의 <span>(선택)</span>
+          </h4>
+          <input
+            type="checkbox"
+            className="policyCheckBox"
+            name="marketing"
+            checked={marketing ? true : false}
+            onChange={handleCheckBox}
+          />
+        </div>
         <div className="textContent">
           <p>
             아래 내용의 동의 여부는 회원가입에 영향을 미치지 않습니다. 단, 동의
