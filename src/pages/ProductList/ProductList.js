@@ -28,9 +28,9 @@ function ProductList() {
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
 
-  let URL = `http://localhost:8000/product/filter/${params.category}`;
+  let URL = `${process.env.REACT_APP_BASE_URL}/product/filter/${params.category}`;
   if (sortMethod) {
-    URL = `http://localhost:8000/product/filter/${params.category}/?sortMethod=${sortMethod}`;
+    URL = `${process.env.REACT_APP_BASE_URL}/product/filter/${params.category}/?sortMethod=${sortMethod}`;
   }
 
   //Link to URL

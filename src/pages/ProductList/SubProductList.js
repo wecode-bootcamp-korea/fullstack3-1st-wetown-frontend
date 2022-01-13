@@ -22,9 +22,9 @@ function SubProductList() {
   //sort 입력된 값 상태 관리
   const [sortMethod, setSortMethod] = useState("");
   //Sub ProductList로 들어오는 base URL
-  let URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=1`;
+  let URL = `${process.env.REACT_APP_BASE_URL}/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=1`;
   if (sortMethod) {
-    URL = `http://localhost:8000/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=${sortMethod}`;
+    URL = `${process.env.REACT_APP_BASE_URL}/product/filter/${params.category}/?subcategory=${params.subcategory}&sortMethod=${sortMethod}`;
   }
 
   const LINK_URL = e => {
