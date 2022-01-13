@@ -32,11 +32,11 @@ export default function PetProductBox() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8000/main/pictures")
+    fetch(`${process.env.REACT_APP_BASE_URL}/main/pictures`)
       .then(res => res.json())
       .then(data => setPics(data));
 
-    fetch("http://localhost:8000/category")
+    fetch(`${process.env.REACT_APP_BASE_URL}/category`)
       .then(res => res.json())
       .then(data => setCategoryArr(data));
   }, []);
