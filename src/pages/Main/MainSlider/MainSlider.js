@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import sliderData from "./sliderData";
+import sliderData from "./MainSliderData";
 import "./MainSlider.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -92,59 +92,61 @@ export default function MainSlider() {
         transition: "0.4s ease-in-out",
       }}
     >
-      <div className="MainSlider">
-        <ul>
-          {sliderData.map((obj, index) => {
-            return (
-              <li
-                className={`${obj.category}
+      <div className="innerWrapper">
+        <div className="MainSlider">
+          <ul>
+            {sliderData.map((obj, index) => {
+              return (
+                <li
+                  className={`${obj.category}
                   ${slideIndex === index + 1 ? "slide-active" : "slide"}
                 `}
-                onClick={() => {
-                  changePage(obj.category);
-                }}
-                key={obj.id}
-              >
-                <img
-                  src={obj.img}
-                  className={`image ${obj.category}`}
+                  onClick={() => {
+                    changePage(obj.category);
+                  }}
                   key={obj.id}
-                  alt="슬라이더 이미지"
-                />
-                <div
-                  className={
-                    slideIndex === index + 1
-                      ? "mainSliderDetail active"
-                      : "mainSliderDetail"
-                  }
                 >
-                  {obj.desc}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-        <FaChevronLeft
-          color="white"
-          size={50}
-          className="BtnSlider prev"
-          onClick={prevSlide}
-        />
-        <FaChevronRight
-          color="white"
-          size={50}
-          className="BtnSlider next"
-          onClick={nextSlide}
-        />
+                  <img
+                    src={obj.img}
+                    className={`image ${obj.category}`}
+                    key={obj.id}
+                    alt="슬라이더 이미지"
+                  />
+                  <div
+                    className={
+                      slideIndex === index + 1
+                        ? "mainSliderDetail active"
+                        : "mainSliderDetail"
+                    }
+                  >
+                    {obj.desc}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          <FaChevronLeft
+            color="white"
+            size={50}
+            className="BtnSlider prev"
+            onClick={prevSlide}
+          />
+          <FaChevronRight
+            color="white"
+            size={50}
+            className="BtnSlider next"
+            onClick={nextSlide}
+          />
 
-        <div className="slider-dots">
-          {Array.from({ length: 7 }).map((item, index) => (
-            <div
-              onClick={() => moveDot(index + 1)}
-              className={slideIndex === index + 1 ? "dot active" : "dot"}
-              key={index}
-            />
-          ))}
+          <div className="slider-dots">
+            {Array.from({ length: 7 }).map((item, index) => (
+              <div
+                onClick={() => moveDot(index + 1)}
+                className={slideIndex === index + 1 ? "dot active" : "dot"}
+                key={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
