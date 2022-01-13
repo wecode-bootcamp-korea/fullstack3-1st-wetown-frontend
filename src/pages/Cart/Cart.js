@@ -177,16 +177,16 @@ const Cart = () => {
             <button>선택상품 주문</button>
             <button>🛍️ 선택상품 선물</button>
           </section>
-          <TopBottom />
-          {ad && data[0] ? (
-            <PopUp
-              setAd={setAd}
-              title="Click Button!"
-              subtitle="지금 구매하지않으면 다음은 없어요~"
-            />
-          ) : null}
         </div>
+        <TopBottom />
       </div>
+      {ad && data[0] ? (
+        <PopUp
+          setAd={setAd}
+          title="Click Button!"
+          subtitle="지금 구매하지않으면 다음은 없어요~"
+        />
+      ) : null}
     </div>
   );
 };
