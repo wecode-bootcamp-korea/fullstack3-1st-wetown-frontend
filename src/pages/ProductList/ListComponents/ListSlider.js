@@ -39,13 +39,13 @@ function ListSlider() {
       <section className="arrowSection">
         <img
           className="leftArrow"
-          src="/images/listSliderImg/chevron-left-solid.svg"
+          src="/images/listPageSlider/chevron-left-solid.svg"
           alt="left-arrow"
           onClick={leftClick}
         />
         <img
           className="rightArrow"
-          src="/images/listSliderImg/chevron-right-solid.svg"
+          src="/images/listPageSlider/chevron-right-solid.svg"
           alt="right-arrow"
           onClick={rightClick}
         />
