@@ -12,10 +12,23 @@
 }
 
 .policyAgreement {
+  .policyCheckWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &.checkAllWrapper {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 1rem;
+    }
+  }
   .policyType {
     h4 {
       padding: 10px 0;
       font-size: 1rem;
+      span {
+        color: red;
+      }
     }
     &.notRequired .textContent {
       padding-right: 50px;
@@ -25,10 +38,9 @@
       max-height: 300px;
       margin: 20px 0;
       padding: 20px;
-      border: 1px solid #f0f0f0;
-      overflow: auto;
       color: #a0a0a0;
       text-align: justify;
+      overflow: auto;
 
       article + article h5 {
         margin-top: 15px;

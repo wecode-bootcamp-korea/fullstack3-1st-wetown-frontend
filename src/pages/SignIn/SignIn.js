@@ -1,50 +1,68 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CircleButton from "../../components/CircleButton/CircleButton";
+import ScrollToTop from "../../components/ScrollToTop";
 import "./SignIn.scss";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState(false);
   const [validLogin, setValidLogin] = useState(false);
   const [signInInput, setSignInInput] = useState({
     emailInput: "",
     passwordInput: "",
   });
-
   let { emailInput, passwordInput } = signInInput;
 
   const handleInput = e => {
     let { name, value } = e.target;
     setSignInInput({ ...signInInput, [name]: value });
+    if (errorMsg) {
+      setErrorMsg(false);
+    }
   };
 
   useEffect(() => {
     const emailCheck = emailInput.includes("@");
-    const passwordCheck = passwordInput.length > 8;
+    const passwordCheck = passwordInput.length > 7;
 
     if (emailCheck && passwordCheck) {
       setValidLogin(true);
     } else setValidLogin(false);
-  }, [emailInput, passwordInput, validLogin]);
+  }, [emailInput, passwordInput]);
 
-  function goSignIn(e) {
+  async function goSignIn(e) {
     e.preventDefault();
-    fetch("http://localhost:8000/user/signin", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => localStorage.setItem("token", data.token));
+
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/user/signin`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailInput,
+          password: passwordInput,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.token);
+      navigate("/");
+    } else if (response.status === (400 || 500)) {
+      setErrorMsg(true);
+      setValidLogin(false);
+    }
   }
+
   return (
     <div className="SignIn">
+      <ScrollToTop />
       <div className="SignInContainer">
         <h2 className="pageTitle">Login</h2>
         <section className="signInBox">
@@ -77,18 +95,27 @@ const SignIn = () => {
               />
             </div>
           </form>
+          <div
+            className="errorMsg"
+            style={{ visibility: errorMsg ? "visible" : "hidden" }}
+          >
+            이메일과 비밀번호를 확인해주세요.
+          </div>
           <section className="section formButtons">
             <button
               className="signInButton"
               onClick={goSignIn}
               // 개발과정에서 유효성 검사 진행확인 위해 색 표시
               // 추후 style 어트리뷰트는 삭제
-              style={{ backgroundColor: validLogin ? "blue" : "red" }}
-              disabled={validLogin ? false : true}
+              style={{
+                backgroundColor: "#3d435f",
+                color: "#ffffff",
+                opacity: validLogin ? "1" : "0.8",
+              }}
+              disabled={!validLogin}
             >
               LOGIN
             </button>
-
             <Link
               to="/signup"
               style={{ width: "100%", textDecoration: "none" }}

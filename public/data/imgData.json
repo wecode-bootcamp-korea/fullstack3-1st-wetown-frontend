@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "category_id": 1,
+    "url": "https://ae01.alicdn.com/kf/H4cda1c2d4acf4fc2b449f6d6298ad4b1g/-.jpg_640x640.jpg"
+  },
+  {
+    "id": 2,
+    "category_id": 1,
+    "url": "https://ae01.alicdn.com/kf/Hf8dfc2a187bb4e27b1f4290c2f8a41137/-.jpg_Q90.jpg_.webp"
+  },
+  {
+    "id": 3,
+    "category_id": 1,
+    "url": "https://ae01.alicdn.com/kf/Ha4b44ef2c6364b609b8498531d221c86O/-.jpg_Q90.jpg_.webp"
+  },
+  {
+    "id": 4,
+    "category_id": 1,
+    "url": "https://sc04.alicdn.com/kf/H9008081e97ca40f2a157519c0068c8b1S.jpg"
+  },
+  {
+    "product_id": 11,
+    "category_id": 2,
+    "url": "https://s.alicdn.com/@sc04/kf/H1c98d533d1ba4ee68c01aea21612e733O.jpg_300x300.jpg"
+  },
+  {
+    "product_id": 12,
+    "category_id": 2,
+    "url": "https://s.alicdn.com/@sc04/kf/H54f896657e3a4b0282f00fdf94efe113n.jpg_300x300.jpg"
+  },
+  {
+    "product_id": 13,
+    "category_id": 2,
+    "url": "https://s.alicdn.com/@sc04/kf/Hf41f992581ce4243bc36bb0e7f80c75fb.jpg_300x300.jpg"
+  },
+  {
+    "product_id": 14,
+    "category_id": 2,
+    "url": "https://s.alicdn.com/@sc04/kf/H04e612ed9e8f4b5dbf123d8c5b971368l.jpg_300x300.jpg"
+  }
+]

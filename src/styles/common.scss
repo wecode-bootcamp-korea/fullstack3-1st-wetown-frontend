@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 
 $color-productBackground: #f2f2f2;
 $color-dogYellow: #fccf1d;
@@ -7,7 +7,7 @@ $color-turtleBlue: #016ad5;
 $color-hamsterPurple: #cda5e0;
 $color-birdGreen: #d8e22d;
 
-$font-global: 'Noto Sans KR', sans-serif;
+$font-global: "Noto Sans KR", sans-serif;
 
 body {
   font-family: $font-global;
