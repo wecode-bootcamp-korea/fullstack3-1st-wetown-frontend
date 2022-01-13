@@ -7,7 +7,7 @@ function ListSlider() {
   const [x, setX] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:3000/data/listSliderImg.json")
+    fetch("/data/listSliderImg.json")
       .then(res => res.json())
       .then(data => {
         setImgList(data);
@@ -39,13 +39,13 @@ function ListSlider() {
       <section className="arrowSection">
         <img
           className="leftArrow"
-          src="http://localhost:3000/images/listSliderImg/chevron-left-solid.svg"
+          src="/images/listSliderImg/chevron-left-solid.svg"
           alt="left-arrow"
           onClick={leftClick}
         />
         <img
           className="rightArrow"
-          src="http://localhost:3000/images/listSliderImg/chevron-right-solid.svg"
+          src="/images/listSliderImg/chevron-right-solid.svg"
           alt="right-arrow"
           onClick={rightClick}
         />
