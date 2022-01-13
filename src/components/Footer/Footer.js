@@ -60,7 +60,7 @@ const Footer = () => {
             <img
               onClick={useInfo}
               alt="external-link"
-              src="http://localhost:3000/images/external-link-alt-solid.svg"
+              src="/images/external-link-alt-solid.svg"
             />
           </section>
           <section className="protectFromRaw">
@@ -72,29 +72,17 @@ const Footer = () => {
             <img
               className="facebook"
               alt="facebook"
-              src="http://localhost:3000/images/facebook.svg"
+              src="/images/facebook.svg"
             />
-            <img
-              className="twitter"
-              alt="twitter"
-              src="http://localhost:3000/images/twitter.svg"
-            />
-            <img
-              className="youtube"
-              alt="youtube"
-              src="http://localhost:3000/images/youtube.svg"
-            />
+            <img className="twitter" alt="twitter" src="/images/twitter.svg" />
+            <img className="youtube" alt="youtube" src="/images/youtube.svg" />
             <img
               className="instagram"
               alt="instagram"
-              src="http://localhost:3000/images/instagram.svg"
+              src="/images/instagram.svg"
             />
             <span className="sideBorder"> </span>
-            <img
-              className="apple"
-              alt="apple"
-              src="http://localhost:3000/images/apple.svg"
-            />
+            <img className="apple" alt="apple" src="/images/apple.svg" />
           </section>
           <section className="helpedPeople">
             <span>Eb Jh Hy Tj</span>
