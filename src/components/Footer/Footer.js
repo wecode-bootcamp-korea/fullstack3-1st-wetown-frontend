@@ -1,4 +1,3 @@
-// Footer
 import "./Footer.scss";
 
 const Footer = () => {
@@ -8,6 +7,9 @@ const Footer = () => {
   return (
     <footer className="footerSection">
       <section className="bodySection">
+        <section className="mainBanner">
+          <h2>WETOWN &STORE</h2>
+        </section>
         <section className="navWrapper">
           <nav className="leftNav">
             <span>제휴문의</span>
@@ -20,18 +22,14 @@ const Footer = () => {
             <span>비회원 문의</span>
             <span>주문조회</span>
             <select>
-              FAMILY SITE
               <option value="FAMILY-SITE">FAMILY SITE</option>
               <option value="IU">유애나</option>
               <option value="hyoshin">SOULTREE</option>
             </select>
           </nav>
         </section>
-        <section className="mainBanner">
-          W E T O W N &nbsp;&nbsp;&S T O R E
-        </section>
         <section className="companyInfo">
-          <section className="firstInfoSection">
+          <address className="firstInfoSection">
             <span className="infoKey">회사명</span>
             <span className="infoValue">(주)위타운만든사람들</span>
             <span className="infoKey">대표자명</span>
@@ -42,7 +40,7 @@ const Footer = () => {
             </span>
             <span className="infoKey">대표번호</span>
             <span className="infoValue">2030-3020</span>
-          </section>
+          </address>
           <section className="secondInfoSection">
             <span className="infoKey">사업자등록번호</span>
             <span className="infoValue">322-99-28210</span>
@@ -60,31 +58,44 @@ const Footer = () => {
             <img
               onClick={useInfo}
               alt="external-link"
-              src="/images/external-link-alt-solid.svg"
+              src="/images/Footer/external-link-alt-solid.svg"
             />
           </section>
           <section className="protectFromRaw">
-            WETOWN &STORE의 모든 콘텐츠는 저작권의 보호를 못받고 있습니다.
+            <small>
+              WETOWN &STORE의 모든 콘텐츠는 저작권의 보호를 못받고 있습니다.
+            </small>
           </section>
         </section>
         <section className="iconLinkSection">
           <section className="brandIcon">
             <img
-              className="facebook"
+              className="socialIcons"
               alt="facebook"
-              src="/images/facebook.svg"
+              src="/images/Footer/facebook.svg"
             />
-            <img className="twitter" alt="twitter" src="/images/twitter.svg" />
-            <img className="youtube" alt="youtube" src="/images/youtube.svg" />
             <img
-              className="instagram"
-              alt="instagram"
-              src="/images/instagram.svg"
+              className="socialIcons"
+              alt="twitter"
+              src="/images/Footer/twitter.svg"
             />
-            <span className="sideBorder"> </span>
-            <img className="apple" alt="apple" src="/images/apple.svg" />
+            <img
+              className="socialIcons"
+              alt="youtube"
+              src="/images/Footer/youtube.svg"
+            />
+            <img
+              className="socialIcons"
+              alt="instagram"
+              src="/images/Footer/instagram.svg"
+            />
+            <img
+              className="socialIcons"
+              alt="apple"
+              src="/images/Footer/apple.svg"
+            />
           </section>
-          <section className="helpedPeople">
+          <section className="contributors">
             <span>Eb Jh Hy Tj</span>
           </section>
         </section>
