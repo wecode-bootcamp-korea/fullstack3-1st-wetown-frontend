@@ -1,37 +1,37 @@
 [
   {
     "id": 1,
-    "url": "/forth.jpg",
+    "url": "/images/listSliderImg/forth.jpg",
     "description": "2022"
   },
   {
     "id": 2,
-    "url": "/second.jpg",
+    "url": "/images/listSliderImg/second.jpg",
     "description": "turtle"
   },
   {
     "id": 3,
-    "url": "/third.jpg",
+    "url": "/images/listSliderImg/third.jpg",
     "description": "dog"
   },
   {
     "id": 4,
-    "url": "/first.jpg",
+    "url": "/images/listSliderImg/first.jpg",
     "description": "seaturtle"
   },
   {
     "id": 5,
-    "url": "/fifth.jpg",
+    "url": "/images/listSliderImg/fifth.jpg",
     "description": "cat"
   },
   {
     "id": 6,
-    "url": "/sixth.jpg",
+    "url": "/images/listSliderImg/sixth.jpg",
     "description": "hamster"
   },
   {
     "id": 7,
-    "url": "/seventh.jpg",
+    "url": "/images/listSliderImg/seventh.jpg",
     "description": "bird"
   }
 ]
