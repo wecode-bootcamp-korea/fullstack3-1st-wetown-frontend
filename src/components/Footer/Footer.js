@@ -6,9 +6,9 @@ const Footer = () => {
     alert("힝 속았지?");
   };
   return (
-    <section className="footerSection">
+    <footer className="footerSection">
       <section className="bodySection">
-        <header>
+        <section className="navWrapper">
           <nav className="leftNav">
             <span>제휴문의</span>
             <span>이용약관</span>
@@ -26,7 +26,7 @@ const Footer = () => {
               <option value="hyoshin">SOULTREE</option>
             </select>
           </nav>
-        </header>
+        </section>
         <section className="mainBanner">
           W E T O W N &nbsp;&nbsp;&S T O R E
         </section>
@@ -101,7 +101,7 @@ const Footer = () => {
           </section>
         </section>
       </section>
-    </section>
+    </footer>
   );
 };
 
