@@ -25,7 +25,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const adTimer = setTimeout(() => {
       setAd(true);
-    }, 2000); // 왜 3초?
+    }, 1000);
 
     fetch(`${process.env.REACT_APP_BASE_URL}/product/${params.product}`, {
       method: "GET",
@@ -299,7 +299,13 @@ const ProductDetail = () => {
           </div>
         </section>
         <TopBottom />
-        {ad && data.quantity <= 999 ? <PopUp setAd={setAd} /> : null}
+        {ad && data.quantity <= 999 ? (
+          <PopUp
+            setAd={setAd}
+            title="Hurry Up!"
+            subtitle="수량이 얼마 남지 않았어요."
+          />
+        ) : null}
       </div>
     </div>
   );

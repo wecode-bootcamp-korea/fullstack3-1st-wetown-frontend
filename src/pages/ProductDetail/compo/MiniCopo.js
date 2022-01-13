@@ -23,7 +23,7 @@ const Price = ({ sale, price, quantity = 1 }) => {
   );
 };
 
-const PopUp = ({ setAd }) => {
+const PopUp = ({ setAd, title, subtitle }) => {
   return (
     <div
       className="popUpBox"
@@ -36,8 +36,8 @@ const PopUp = ({ setAd }) => {
         <img src="/images/cat.png" alt="popup" />
       </div>
       <div className="hurryUP">
-        <span className="title">Hurry Up!</span>
-        <span className="subTitle">수량이 얼마 남지 않았어요.</span>
+        <span className="title">{title}</span>
+        <span className="subTitle">{subtitle}</span>
       </div>
     </div>
   );

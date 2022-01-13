@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CartList } from "../ProductDetail/compo/CartList";
 import { TopBottom } from "../ProductDetail/compo/MiniCopo";
+import { PopUp } from "../ProductDetail/compo/MiniCopo";
 import "./Cart.scss";
 
 const Cart = () => {
@@ -8,6 +9,16 @@ const Cart = () => {
   const [deleteOk, setDeleteOk] = useState(1);
   const userId = localStorage.getItem("token");
   const [productQuantity, setProductQuantity] = useState([]);
+  const [ad, setAd] = useState(false);
+
+  useEffect(() => {
+    const adTimer = setTimeout(() => {
+      setAd(true);
+    }, 1000);
+    return () => {
+      clearTimeout(adTimer);
+    };
+  }, []);
 
   useEffect(() => {
     function fetchData() {
@@ -167,6 +178,13 @@ const Cart = () => {
             <button>🛍️ 선택상품 선물</button>
           </section>
           <TopBottom />
+          {ad && data[0] ? (
+            <PopUp
+              setAd={setAd}
+              title="Click Button!"
+              subtitle="지금 구매하지않으면 다음은 없어요~"
+            />
+          ) : null}
         </div>
       </div>
     </div>
