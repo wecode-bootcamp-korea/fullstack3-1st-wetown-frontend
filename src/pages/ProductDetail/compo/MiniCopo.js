@@ -60,7 +60,7 @@ const TopBottom = () => {
           window.scrollTo({ top: 10000, behavior: "smooth" });
         }}
       >
-        <img src="/images/totop.png" alt="bottom" />
+        <img src="/images/tobottom.png" alt="bottom" />
       </span>
     </div>
   );
