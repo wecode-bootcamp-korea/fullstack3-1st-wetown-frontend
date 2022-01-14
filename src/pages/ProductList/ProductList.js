@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "./ListComponents/ProductCard";
 import "./ProductList.scss";
 import ListSlider from "./ListComponents/ListSlider";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -119,7 +119,7 @@ function ProductList() {
               </ul>
             </section>
             {dataLength === categoryList.length ? (
-              <section className="showMore"></section>
+              <section className="showMore" />
             ) : (
               <section className="showMore" onClick={moreItems}>
                 더보기 +

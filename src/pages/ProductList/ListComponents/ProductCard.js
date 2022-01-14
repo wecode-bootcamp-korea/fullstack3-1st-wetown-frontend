@@ -35,7 +35,7 @@ const ProductCard = props => {
           <section className="cartIconSection">
             <img
               className="cartIcon"
-              src="/images/outline_shopping_bag_black_24dp.png"
+              src="/images/productListMain/outline_shopping_bag_black_24dp.png"
               alt="cart-icon"
             />
           </section>
