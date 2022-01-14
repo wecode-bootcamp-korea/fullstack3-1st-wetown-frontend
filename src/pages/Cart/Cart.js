@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { CartList } from "../ProductDetail/compo/CartList";
-import { TopBottom } from "../ProductDetail/compo/MiniCopo";
-import { PopUp } from "../ProductDetail/compo/MiniCopo";
+import { CartList } from "../ProductDetail/DetailComponents/CartList";
+import { TopBottom } from "../ProductDetail/DetailComponents/MiniComponents";
+import { PopUp } from "../ProductDetail/DetailComponents/MiniComponents";
 import "./Cart.scss";
 
 const Cart = () => {

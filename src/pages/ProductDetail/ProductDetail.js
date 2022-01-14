@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Slider } from "./compo/Slider";
-import { PolicyBox } from "./compo/PolicyBox";
-import { ViewCart } from "./compo/ViewCart";
-import { NewTag, PopUp, Price, TopBottom } from "./compo/MiniCopo";
+import { Slider } from "./DetailComponents/Slider";
+import { PolicyBox } from "./DetailComponents/PolicyBox";
+import { ViewCart } from "./DetailComponents/ViewCart";
+import {
+  NewTag,
+  PopUp,
+  Price,
+  TopBottom,
+} from "./DetailComponents/MiniComponents";
 import ScrollToTop from "../../components/ScrollToTop";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { RiArrowGoBackFill, RiShareLine } from "react-icons/ri";

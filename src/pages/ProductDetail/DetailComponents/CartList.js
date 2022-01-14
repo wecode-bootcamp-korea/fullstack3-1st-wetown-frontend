@@ -1,4 +1,4 @@
-import { Price } from "./MiniCopo";
+import { Price } from "./MiniComponents";
 import { Link } from "react-router-dom";
 
 const CartList = ({
@@ -63,7 +63,7 @@ const CartList = ({
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         )}
       </div>
-      <div className="prodictSelect">
+      <div className="productSelect">
         <button
           onClick={() => {
             deleteCart(product_id);
