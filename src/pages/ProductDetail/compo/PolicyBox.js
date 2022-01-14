@@ -31,15 +31,15 @@ const PolicyBox = ({ noticeNum, setNoticeNum }) => {
 const SelectNotice = ({ num }) => {
   switch (num) {
     case 1:
-      return <img src="/images/info.png" alt="info" />;
+      return <img src="/images/selectNotice/info.png" alt="info" />;
     case 2:
-      return <img src="/images/delivery.png" alt="delivery" />;
+      return <img src="/images/selectNotice/delivery.png" alt="delivery" />;
     case 3:
-      return <img src="/images/change.png" alt="change" />;
+      return <img src="/images/selectNotice/change.png" alt="change" />;
     case 4:
-      return <img src="/images/quality.png" alt="quality" />;
+      return <img src="/images/selectNotice/quality.png" alt="quality" />;
     default:
-      return <img src="/images/info.png" alt="info" />;
+      return <img src="/images/selectNotice/info.png" alt="info" />;
   }
 };
 

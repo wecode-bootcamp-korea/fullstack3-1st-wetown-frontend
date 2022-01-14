@@ -5,7 +5,8 @@ import { PolicyBox } from "./compo/PolicyBox";
 import { ViewCart } from "./compo/ViewCart";
 import { NewTag, PopUp, Price, TopBottom } from "./compo/MiniCopo";
 import ScrollToTop from "../../components/ScrollToTop";
-import { RiArrowGoBackFill } from "react-icons/ri";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { RiArrowGoBackFill, RiShareLine } from "react-icons/ri";
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {
@@ -139,10 +140,13 @@ const ProductDetail = () => {
               </div>
               <div className="noticeImg">
                 <div className="ad">
-                  <img src="/images/ad.png" alt="ad" />
+                  <img src="/images/productDetailPage/ad.png" alt="ad" />
                 </div>
                 <div className="corona">
-                  <img src="/images/corona.png" alt="corona" />
+                  <img
+                    src="/images/productDetailPage/corona.png"
+                    alt="corona"
+                  />
                 </div>
               </div>
             </div>
@@ -171,7 +175,7 @@ const ProductDetail = () => {
                 `₩ ` + toComma(priceObject(false, 1))
               )}
               <span className="shareIcon">
-                <img src="/images/shareIcon.png" alt="shareIcon" />
+                <RiShareLine />
               </span>
             </div>
           </div>
@@ -194,12 +198,7 @@ const ProductDetail = () => {
               <li className="beforeHover">PINK SILVER 기본적립금 +0.2%</li>
               <li className="beforeHover">PINK GOLD 기본적립금 +0.5%</li>
             </ul>
-            <span>
-              <img
-                src={!isOpen ? "/images/open.png" : "/images/close.png"}
-                alt="open"
-              />
-            </span>
+            <span>{!isOpen ? <BsChevronDown /> : <BsChevronUp />}</span>
           </div>
           <div className="sideInfo">
             * 주문 제작으로 만들어지는 상품으로 단순변심에 의한 교환 및 환불이
@@ -280,7 +279,7 @@ const ProductDetail = () => {
               <div className="happyBox">
                 <div className="happyBackground">
                   <span>
-                    <img src="/images/cat12.png" alt="cat" />
+                    <img src="/images/productDetailPage/cat12.png" alt="cat" />
                   </span>
                 </div>
                 <div className="happyName">SUPER PRETTY CAT TOWER</div>
@@ -289,7 +288,7 @@ const ProductDetail = () => {
               <div className="happyBox">
                 <div className="happyBackground">
                   <span>
-                    <img src="/images/cat13.png" alt="cat" />
+                    <img src="/images/productDetailPage/cat13.png" alt="cat" />
                   </span>
                 </div>
                 <div className="happyName">LUXURIOUS CAT CUSHION</div>
