@@ -3,35 +3,19 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { StyledHeader } from "../styles/Header.styled";
 import { MdPets } from "react-icons/md";
-import { BiUser } from "react-icons/bi";
+import { BiChevronDown, BiChevronUp, BiUser } from "react-icons/bi";
 import { FaSistrix } from "react-icons/fa";
 import { BsBag } from "react-icons/bs";
 import { IoBookmarksOutline } from "react-icons/io5";
+import HoveredHeader from "./HeaderNavComponents/HoveredHeader";
 import "./HeaderNav.scss";
 
 export default function HeaderNav() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [hovered, setHovered] = useState(false);
-  const toggleHover = () => setHovered(!hovered);
-  const [scrollY, setScrollY] = useState(0);
-  const [fix, setFix] = useState(false);
-  const [categoryList, setCategoryList] = useState([]);
-  const colorChange = hovered !== false ? "#fbeff1" : "transparent";
-  const heightChange = hovered !== false ? "400px" : "40px";
+  const [isFixed, setIsFixed] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [lightMode, setLightMode] = useState(false);
-  const [whitePage, setWhitePage] = useState(false);
-
-  useEffect(() => {
-    async function getCategories() {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/category`
-      );
-      const data = await response.json();
-      setCategoryList([...data]);
-    }
-    getCategories();
-  }, []);
 
   useEffect(() => {
     if (
@@ -41,63 +25,30 @@ export default function HeaderNav() {
       location.pathname === "/cart"
     ) {
       setLightMode(true);
-      setWhitePage(true);
     } else if (
       location.pathname.includes("category") &&
       location.pathname.includes("product")
     ) {
       setLightMode(true);
-      setWhitePage(true);
     } else {
       setLightMode(false);
     }
   }, [location.pathname]);
 
-  const getCategoryColor = category => {
-    switch (category) {
-      case "dog":
-        return { backgroundColor: "#fccf1d" };
-      case "cat":
-        return { backgroundColor: "#c81a20" };
-      case "turtle":
-        return { backgroundColor: "#016ad5" };
-      case "hamster":
-        return { backgroundColor: "#cda5e0" };
-      case "bird":
-        return { backgroundColor: "#d8e22d" };
-      default:
-        return { backgroundColor: "#3d435f" };
-    }
-  };
-  const scrollWatch = () => {
-    setScrollY(window.pageYOffset);
-    if (scrollY > 50) {
-      setFix(true);
-      setLightMode(true);
-      setHovered(false);
-    } else {
-      if (!whitePage) {
-        setLightMode(false);
-      }
-      setFix(false);
-    }
-  };
-  useEffect(() => {
-    const watch = () => {
-      window.addEventListener("scroll", scrollWatch);
-    };
-    watch();
-    return () => {
-      window.removeEventListener("scroll", scrollWatch);
-    };
-  });
-  const [loginState, setLoginState] = useState(false);
-  useEffect(() => {
+  const authenticateUser = () => {
     const token = localStorage.getItem("token");
-    if (token) {
-      setLoginState(true);
-    }
-  }, [loginState]);
+    return !token ? false : true;
+  };
+
+  const [loginState, setLoginState] = useState(() => {
+    const initialState = authenticateUser();
+    return initialState;
+  });
+
+  useEffect(() => {
+    setLoginState(authenticateUser());
+  }, []);
+
   const logout = e => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -116,199 +67,143 @@ export default function HeaderNav() {
     }
   };
 
-  const hoverStyle = {
-    height: "400px",
+  const scrollWatch = () => {
+    let scrollY = window.pageYOffset;
+    if (scrollY > 50) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
   };
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", scrollWatch);
+    };
+    watch();
+    return () => {
+      window.removeEventListener("scroll", scrollWatch);
+    };
+  });
 
   const darkFont = {
     color: "#000000",
   };
 
-  const lightFont = {
-    color: "#ffffff",
-  };
+  const lightFont =
+    isFixed || isHovered
+      ? {
+          color: "#000000",
+        }
+      : {
+          color: "#ffffff",
+        };
+
   return (
-    <ThemeProvider
-      theme={
-        lightMode
-          ? hovered
-            ? darkFont
-            : darkFont
-          : hovered
-          ? darkFont
-          : lightFont
-      }
-    >
-      <StyledHeader className="HeaderNav" style={hoverStyle}>
-        <div
-          className="topBox"
-          style={{
-            backgroundColor: colorChange,
-            transition: "0.4s",
-            height: heightChange,
-          }}
+    <ThemeProvider theme={lightMode ? darkFont : lightFont}>
+      <StyledHeader className="HeaderNav">
+        {isHovered ? (
+          <HoveredHeader
+            style={{ color: "#000000" }}
+            onMouseLeave={() => setIsHovered(false)}
+          />
+        ) : null}
+        <section
+          className={
+            isFixed ? "headerBottomSection fixed" : "headerBottomSection"
+          }
         >
-          <div className="topBoxInner">
-            <section>
-              <nav
-                className="headerTop"
-                style={{ display: fix ? "none" : "block" }}
+          <div className="headerBottomWrapper">
+            <Link to="/" className="headerLogoLink">
+              <h1 className="visuallyHidden">WETOWN &STORE</h1>
+              <MdPets className="userMenubuttons wetownLogo" />
+            </Link>
+            <nav className="mainMenuNav">
+              <ul
+                className="mainNavListWrapper"
+                onMouseEnter={() => setIsHovered(true)}
               >
-                <ul>
-                  <li style={{ display: loginState ? "none" : "block" }}>
-                    <Link to="/signin">LOGIN</Link>
-                  </li>
-                  <li style={{ display: loginState ? "none" : "block" }}>
-                    <Link to="/signup">JOIN</Link>
-                  </li>
-                  <li
-                    className="logoutButton"
-                    onClick={logout}
-                    style={{ display: loginState ? "block" : "none" }}
-                  >
-                    LOGOUT
-                  </li>
-                  <li className="globalStore">
-                    <Link to="#">KOR</Link>
-                    <ul className="globalStoreList">
-                      <li>
-                        <Link to="#">KOR</Link>
-                      </li>
-                      <li>
-                        <Link to="#">ENG</Link>
-                      </li>
-                      <li>
-                        <Link to="#">JPN</Link>
-                      </li>
-                      <li>
-                        <Link to="#">CHN</Link>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
-            </section>
-            <section className="headerBottomSection">
-              <nav className={fix ? "headerBottom fixed" : "headerBottom"}>
-                <div className="headerBottomInner">
-                  <div
-                    className="headerMenu"
-                    onMouseEnter={toggleHover}
-                    onMouseLeave={toggleHover}
-                  >
-                    <ul>
-                      <li className="petMenu">
-                        <Link to="#" className="petTitle mainNavMenu">
-                          PET
-                          <span className="circle" />
-                        </Link>
-                        <ul className="petsList">
-                          {categoryList &&
-                            categoryList.map(pet => (
-                              <li key={pet.id}>
-                                <Link
-                                  to={"/category/" + pet.name}
-                                  className="petsListLink"
-                                >
-                                  {pet.name.toUpperCase()}
-                                  <span
-                                    className="smallCircle"
-                                    style={getCategoryColor(pet.name)}
-                                  />
-                                </Link>
-                              </li>
-                            ))}
-                        </ul>
-                      </li>
-                      <li className="productMenu">
-                        <Link to="#" className="productTitle mainNavMenu">
-                          PRODUCT
-                          <span className="circle" />
-                        </Link>
-                        <ul className="productsList">
-                          <li>
-                            <Link to="#">
-                              FOOD
-                              <span className="smallCircle" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="#">
-                              TOY
-                              <span className="smallCircle" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="#">
-                              HOUSE
-                              <span className="smallCircle" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="#">
-                              HEALTH
-                              <span className="smallCircle" />
-                            </Link>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <Link to="#" className="mainNavMenu">
-                          P!CK
-                          <span className="circle" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" className="mainNavMenu">
-                          EVENT
-                          <span className="circle" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" className="mainNavMenu">
-                          BRAND
-                          <span className="circle" />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <Link to="/" className="headerLogo">
-                    <MdPets
-                      size={fix ? "3rem" : "4rem"}
-                      id="wetownLogo"
-                      className="userMenubuttons"
-                    />
+                <li>
+                  <Link to="#">PET</Link>
+                </li>
+                <li>
+                  <Link to="#">PRODUCT</Link>
+                </li>
+                <li>
+                  <Link to="#">&P!CK</Link>
+                </li>
+                <li>
+                  <Link to="#">EVENT</Link>
+                </li>
+                <li>
+                  <Link to="#">BRAND</Link>
+                </li>
+              </ul>
+            </nav>
+            <nav className="userMenuNav">
+              <ul className="userNavListWrapper">
+                <li>
+                  <BiUser
+                    className="userButton userMenuButtons"
+                    onClick={goToSignInPage}
+                  />
+                </li>
+                <li>
+                  <Link to="#">
+                    <FaSistrix className="userMenuButtons" />
                   </Link>
-                  <div className="userMenu">
-                    <ul>
-                      <li>
-                        <BiUser
-                          className="userButton userMenuButtons"
-                          onClick={goToSignInPage}
-                        />
-                      </li>
-                      <li>
-                        <Link to="#">
-                          <FaSistrix className="userMenuButtons" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/cart">
-                          <BsBag className="userMenuButtons" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#">
-                          <IoBookmarksOutline className="userMenuButtons" />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-            </section>
+                </li>
+                <li>
+                  <Link to="/cart">
+                    <BsBag className="userMenuButtons" />
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <IoBookmarksOutline className="userMenuButtons" />
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
-        </div>
+        </section>
+        <section className="headerTopMemberSection">
+          <nav
+            className="headerTop innerWrapper"
+            // style={{ display: fix ? "none" : "block" }}
+          >
+            <ul className="userService">
+              <li style={{ display: loginState ? "none" : "block" }}>
+                <Link to="/signin" className="userServiceButtons">
+                  LOGIN
+                </Link>
+              </li>
+              <li style={{ display: loginState ? "none" : "block" }}>
+                <Link to="/signup" className="userServiceButtons">
+                  JOIN
+                </Link>
+              </li>
+              <li
+                className="userServiceButtons"
+                onClick={logout}
+                style={{ display: loginState ? "block" : "none" }}
+              >
+                LOGOUT
+              </li>
+              <li className="globalStore">
+                KOR <BiChevronDown />
+                <ul className="globalStoreList">
+                  <li>
+                    KOR <BiChevronUp color="black" />
+                  </li>
+                  <li>ENG</li>
+                  <li>JPN</li>
+                  <li>CHN</li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </section>
       </StyledHeader>
     </ThemeProvider>
   );

@@ -1,391 +1,196 @@
-.HeaderNav {
-  font-size: 16px;
-  position: fixed;
-  z-index: 10000;
-  .topBox {
-    width: 100%;
-    position: fixed;
-    z-index: 100;
+@mixin flex-box(
+  $direction: column,
+  $justifyContent: center,
+  $alignItems: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
 
-    .topBoxInner {
+.HeaderNav {
+  @include flex-box(column, row, -items);
+  position: sticky;
+  width: 100%;
+  top: -30px;
+  height: 120px;
+  font-size: 1.6rem;
+  z-index: 1;
+  transition: all 400ms ease-in-out;
+  color: #000000;
+  //-----------------------------------------------------------------TOP SECTION
+  .headerTopMemberSection {
+    height: 30px;
+    order: -1;
+    z-index: 1;
+
+    .headerTop.innerWrapper {
+      position: relative;
+      margin: 0 auto;
+      width: 1200px;
+
+      .userService {
+        @include flex-box(row, flex-end, center);
+        gap: 2rem;
+        letter-spacing: 0.5px;
+        font-size: 11px;
+        font-weight: 100;
+        line-height: 30px;
+
+        .logoutButton {
+          padding: 5px;
+          cursor: pointer;
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .globalStore {
+          position: relative;
+          list-style: none;
+          cursor: pointer;
+
+          &:hover {
+            visibility: none;
+          }
+          &:hover .globalStoreList {
+            opacity: 1;
+            display: block;
+          }
+
+          .globalStoreList {
+            @include flex-box(column, center, flex-start);
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120%;
+            background-color: #ffffff;
+            display: none;
+            transition: opacity 200ms ease-in-out;
+
+            li {
+              font-size: 10px;
+              color: #000000;
+              text-align: left;
+              list-style: none;
+              padding-left: 8px;
+              transition: background-color 200ms ease-in-out;
+
+              &:hover {
+                background-color: rgb(187, 186, 186);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //-----------------------------------------------------------------BOTTOM SECTION
+  .headerBottomSection {
+    position: relative;
+    position: sticky;
+    top: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 90px;
+    line-height: 100%;
+    font-size: 16px;
+
+    .headerBottomWrapper {
+      @include flex-box(row, space-between, center);
       position: relative;
       width: 1200px;
+      height: 100%;
       margin: 0 auto;
 
-      .headerTop {
-        padding: 7px 0;
+      //place logo in the middle
+      .headerLogoLink {
+        position: relative;
+        position: absolute;
+        margin: 0 auto;
+        left: 50%;
+        padding: 10px;
+        transform: translate(-50%, 0%);
 
-        ul {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          gap: 2rem;
-          letter-spacing: 0.5px;
-          font-size: 15px;
-          font-weight: 100;
-          line-height: 30px;
+        .wetownLogo {
+          position: absolute;
+          top: 50%;
+          font-size: 5rem;
+          color: inherit;
+          transform: translate(-50%, -50%);
+          transition: font-size 400ms ease-in-out;
+          transition: opacity 200ms ease-in-out;
+          transition: height 400ms ease-in-out;
+          z-index: 10;
+        }
+      }
 
-          .logoutButton {
-            padding: 5px;
-            cursor: pointer;
-          }
+      .mainMenuNav,
+      .userMenuNav {
+        width: 45%;
+        height: 100%;
+        line-height: 100%;
 
-          a {
-            text-decoration: none;
-            color: inherit;
-          }
-
-          .globalStore {
-            list-style: none;
-            cursor: pointer;
-            position: relative;
-            z-index: 10;
-
-            &:hover .globalStoreList {
-              opacity: 1;
-              visibility: visible;
-            }
-
-            .globalStoreList {
-              position: absolute;
-              width: 40px;
-              top: -7px;
-              right: -7px;
-              background-color: antiquewhite;
-              gap: 0.5rem;
-              box-shadow: 0 0 10px #e1e5ee;
-              display: flex;
-              flex-direction: column;
-              opacity: 0;
-              visibility: hidden;
-              transition: opacity 200ms ease-in-out;
-
-              li {
-                list-style: none;
-                padding: 8px 10px;
-                transition: background-color 200ms ease-in-out;
-
-                &:hover {
-                  background-color: rgb(187, 186, 186);
-                  a {
-                    color: white;
-                    font-weight: 600;
-                  }
-                }
-              }
+        .mainNavListWrapper {
+          @include flex-box(row, flex-start, center);
+          > li {
+            &:hover {
+              font-weight: bolder;
+              color: inherit;
+              color: #000000;
             }
           }
         }
-      }
-      .headerBottomSection {
-        width: 100%;
-        .headerBottom {
-          width: 1200px;
 
-          .headerBottomInner {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            height: 70px;
-            align-items: center;
-            position: relative;
+        .userNavListWrapper {
+          @include flex-box(row, flex-end, center);
+        }
+        .mainNavListWrapper,
+        .userNavListWrapper {
+          gap: 3rem;
+          height: 100%;
 
-            .headerMenu {
-              ul {
-                display: flex;
-                gap: 2rem;
+          li {
+            @include flex-box(row, flex-start, center);
 
-                .mainNavMenu {
-                  color: inherit;
-                  &:hover .circle {
-                    opacity: 1;
-                    visibility: visible;
-                  }
-                  .circle {
-                    position: absolute;
-                    top: -50px;
-                    left: -12px;
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    opacity: 0;
-                    background-color: #fff;
-                    z-index: -9;
-                    visibility: hidden;
-                  }
-                }
+            .userMenuButtons {
+              display: block;
+              font-size: 2rem;
+              z-index: 10;
 
-                a {
-                  font-size: 20px;
-                  text-decoration: none;
-                  color: white;
-                  position: relative;
-                  z-index: 2;
-                }
-
-                .petMenu {
-                  list-style: none;
-                  cursor: pointer;
-                  padding-bottom: 13px;
-
-                  .petTitle {
-                    font-size: 20px;
-                    text-decoration: none;
-                    position: relative;
-                    z-index: 2;
-
-                    &:hover .circle {
-                      opacity: 1;
-                      visibility: visible;
-                    }
-                    .circle {
-                      position: absolute;
-                      top: -50px;
-                      left: -12px;
-                      width: 80px;
-                      height: 80px;
-                      border-radius: 50%;
-                      opacity: 0;
-                      background-color: #fff;
-                      z-index: -9;
-                      visibility: hidden;
-                    }
-                  }
-
-                  &:hover ul {
-                    opacity: 1;
-                    visibility: visible;
-                  }
-
-                  .petsList {
-                    position: absolute;
-                    padding-bottom: 3px;
-                    width: 100px;
-                    top: 50px;
-                    left: -10px;
-                    gap: 0.5rem;
-                    display: flex;
-                    flex-direction: column;
-                    opacity: 0;
-                    visibility: hidden;
-                    transition: opacity 200ms ease-in-out;
-                    color: inherit;
-
-                    li {
-                      list-style: none;
-                      padding: 10px 10px;
-                      transition: background-color 200ms ease-in-out;
-                      position: relative;
-                      z-index: 20;
-                      color: inherit;
-
-                      &:hover,
-                      &:focus {
-                        position: relative;
-                        z-index: 3;
-                        &:hover .smallCircle {
-                          opacity: 1;
-                          visibility: visible;
-                        }
-                        &__a {
-                          position: relative;
-                          z-index: 4;
-                          font-weight: 600;
-                        }
-                      }
-                      &:hover .smallCircle {
-                        opacity: 0.3;
-                        visibility: visible;
-                      }
-                      .petsListLink {
-                        position: relative;
-                        vertical-align: middle;
-                        padding: 10px 0px;
-                        z-index: 3;
-                        color: inherit;
-
-                        .smallCircle {
-                          position: absolute;
-                          top: 0px;
-                          left: 30px;
-                          width: 40px;
-                          height: 40px;
-                          border-radius: 50%;
-                          opacity: 1;
-                          background-color: #fff;
-                          z-index: -10;
-                          visibility: hidden;
-                        }
-                      }
-                    }
-                  }
-                }
-                .productMenu {
-                  list-style: none;
-                  cursor: pointer;
-                  color: inherit;
-
-                  .productTitle {
-                    position: relative;
-                    padding-bottom: 10px;
-                    color: inherit;
-
-                    &:hover .circle {
-                      opacity: 1;
-                      visibility: visible;
-                    }
-                    .circle {
-                      position: absolute;
-                      top: -50px;
-                      left: -12px;
-                      width: 80px;
-                      height: 80px;
-                      border-radius: 50%;
-                      opacity: 0;
-                      background-color: #fff;
-                      z-index: -9;
-                      visibility: hidden;
-                    }
-                  }
-
-                  &:hover ul {
-                    opacity: 1;
-                    visibility: visible;
-                  }
-
-                  .productsList {
-                    position: absolute;
-                    padding-bottom: 3px;
-                    width: 100px;
-                    top: 60px;
-                    left: 60px;
-                    gap: 0.5rem;
-                    display: flex;
-                    flex-direction: column;
-                    opacity: 0;
-                    visibility: hidden;
-                    transition: opacity 200ms ease-in-out;
-                    color: inherit;
-
-                    li {
-                      list-style: none;
-                      padding: 10px 10px;
-                      transition: background-color 200ms ease-in-out;
-                      position: relative;
-                      z-index: 20;
-                      color: inherit;
-
-                      a {
-                        position: relative;
-                        vertical-align: middle;
-                        padding: 10px 0px 10px 0px;
-                        z-index: 3;
-                        color: inherit;
-
-                        .smallCircle {
-                          position: absolute;
-                          top: 0px;
-                          right: -20px;
-                          width: 40px;
-                          height: 40px;
-                          border-radius: 50%;
-                          opacity: 1;
-                          background-color: #fff;
-                          z-index: -10;
-                          visibility: hidden;
-                        }
-                      }
-                    }
-                    li:hover,
-                    li:focus {
-                      position: relative;
-                      z-index: 3;
-                      &:hover .smallCircle {
-                        opacity: 1;
-                        visibility: visible;
-                      }
-                      &__a {
-                        position: relative;
-                        z-index: 4;
-                        font-weight: 600;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            .headerLogo {
-              margin: 0 auto;
-              #wetownLogo {
+              &:visited {
+                text-decoration: none;
                 color: inherit;
-                margin: 0 auto;
-                transform: translateX(-50%);
-              }
-            }
-            .userMenu {
-              display: flex;
-              gap: 4rem;
-              ul {
-                li {
-                  float: left;
-                  margin-left: 3.5rem;
-
-                  .userMenuButtons {
-                    font-size: 2rem;
-
-                    &:visited {
-                      text-decoration: none;
-                      color: inherit;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .headerBottom.fixed {
-          position: fixed;
-          top: -10px;
-          left: 0px;
-          width: 100%;
-          margin: 0 auto;
-          border-bottom: 1px solid #f0f0f0;
-          background-color: #ffffff;
-          transition: opacity 0.4s ease-in-out;
-          &:hover {
-            opacity: 1;
-            border: none;
-            background-color: #fbeff1;
-          }
-
-          .headerBottomInner {
-            width: 1200px;
-            position: relative;
-            margin: 0 auto;
-            top: 5px;
-            display: flex;
-            justify-content: center;
-            margin: 0 auto;
-
-            .userMenu {
-              display: flex;
-              gap: 4rem;
-              ul {
-                li {
-                  float: left;
-                  margin-left: 3.5rem;
-
-                  img {
-                    width: 36px;
-                  }
-                }
               }
             }
           }
         }
       }
+    }
+  }
+
+  //SCROLL MENU EFFECT
+  .headerBottomSection.fixed {
+    width: 100%;
+    height: 70px;
+    line-height: 100%;
+    top: 0;
+    opacity: 0.9;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.4s ease;
+    border-bottom: 1px solid #e2e2e2;
+
+    .headerLogoLink > .wetownLogo {
+      transform: translate(-50%, -50%);
+      font-size: 4rem;
+      transition: all 0.4s ease;
+      z-index: 10;
     }
   }
 }
