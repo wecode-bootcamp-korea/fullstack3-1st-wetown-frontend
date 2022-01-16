@@ -1,0 +1,408 @@
+@mixin flex-box(
+  $direction: column,
+  $justifyContent: center,
+  $alignItems: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+@keyframes openMenu {
+  0% {
+    width: 30px;
+    height: 30px;
+    background: #fbeff1;
+    transform: translate(-50%, -50%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  20% {
+    width: 100px;
+    height: 100px;
+    background: #fbeff1;
+    transform: translate(-50%, -40%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  40% {
+    width: 100px;
+    height: 200px;
+    background: #fbeff1;
+    transform: translate(-50%, -30%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  60% {
+    width: 300px;
+    height: 300px;
+    background: #fbeff1;
+    transform: translate(-50%, -20%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  70% {
+    width: 400px;
+    height: 400px;
+    background: #fbeff1;
+    transform: translate(-50%, -10%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  80% {
+    width: 500px;
+    height: 500px;
+    background: #fbeff1;
+    transform: translate(-50%, 0%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  90% {
+    width: 600px;
+    height: 600px;
+    background: #fbeff1;
+    transform: translate(-50%, -50%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  100% {
+    width: 5000px;
+    height: 1000px;
+    border-radius: 500px;
+    background: #fbeff1;
+    transform: translate(-50%, -50%);
+    left: 200px;
+    border-radius: 100px;
+  }
+}
+@keyframes closeMenu {
+  0% {
+    width: 5000px;
+    height: 1000px;
+    border-radius: 500px;
+    background: #fbeff1;
+    transform: translate(-50%, -50%);
+    left: 200px;
+    border-radius: 100px;
+  }
+  20% {
+    width: 600px;
+    height: 600px;
+    background: #fbeff1;
+    transform: translate(-50%, -50%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  40% {
+    width: 500px;
+    height: 500px;
+    background: #fbeff1;
+    transform: translate(-50%, 0%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  60% {
+    width: 400px;
+    height: 400px;
+    background: #fbeff1;
+    transform: translate(-50%, -10%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  70% {
+    width: 300px;
+    height: 300px;
+    background: #fbeff1;
+    transform: translate(-50%, -20%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  80% {
+    width: 100px;
+    height: 200px;
+    background: #fbeff1;
+    transform: translate(-50%, -30%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  90% {
+    width: 100px;
+    height: 100px;
+    background: #fbeff1;
+    transform: translate(-50%, -40%);
+    left: 200px;
+    border-radius: 50%;
+  }
+  100% {
+    width: 30px;
+    height: 30px;
+    background: #fbeff1;
+    transform: translate(-50%, -50%);
+    left: 200px;
+    border-radius: 50%;
+  }
+}
+
+.HoveredHeader {
+  position: relative;
+  .openCircle {
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    animation: openMenu 400ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  .hoverHeaderContainer {
+    @include flex-box(column, row, -items);
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    height: 450px;
+    font-size: 1.6rem;
+    color: #000000;
+    z-index: 1000;
+    transition: all 400ms ease-in-out;
+    // background-color: #fbeff1;
+
+    //-----------------------------------------------------------------TOP SECTION
+    .hoveredTop {
+      height: 30px;
+      order: -1;
+      color: #000000;
+      z-index: 1000;
+      visibility: none;
+
+      .hoveredTopNav.innerWrapper {
+        position: relative;
+        margin: 0 auto;
+        width: 1200px;
+        color: #000000;
+
+        .hoveredUserService {
+          @include flex-box(row, flex-end, center);
+          gap: 2rem;
+          letter-spacing: 0.5px;
+          font-size: 11px;
+          font-weight: 100;
+          line-height: 30px;
+          color: #000000;
+
+          .logoutButton {
+            padding: 5px;
+            cursor: pointer;
+            color: #000000;
+          }
+
+          a {
+            text-decoration: none;
+            color: inherit;
+            color: #000000;
+          }
+
+          .globalStore {
+            position: relative;
+            list-style: none;
+            cursor: pointer;
+            color: #000000;
+
+            &:hover {
+              visibility: none;
+            }
+            &:hover .globalStoreList {
+              opacity: 1;
+              display: block;
+            }
+
+            .globalStoreList {
+              @include flex-box(column, center, flex-start);
+              display: inline-block;
+              display: none;
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 120%;
+              background-color: #ffffff;
+              color: #000000;
+              transition: opacity 200ms ease-in-out;
+
+              li {
+                font-size: 10px;
+                color: #000000;
+                text-align: left;
+                list-style: none;
+                padding-left: 8px;
+                transition: background-color 200ms ease-in-out;
+
+                &:hover {
+                  background-color: rgb(187, 186, 186);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //-----------------------------------------------------------------BOTTOM SECTION
+    .hoveredBottom {
+      @include flex-box(row, space-between, center);
+      position: sticky;
+      position: relative;
+      // top: ;
+      width: 1200px;
+      height: 90px;
+      margin: 0 auto;
+      font-size: 16px;
+      color: #000000;
+      z-index: 1000;
+
+      .headerLogoLink {
+        position: relative;
+        position: absolute;
+        margin: 0 auto;
+        left: 50%;
+        padding: 10px;
+        color: #000000;
+        transform: translate(-50%, 0%);
+
+        .wetownLogo {
+          position: absolute;
+          top: 50%;
+          font-size: 5rem;
+          color: #000000;
+          transform: translate(-50%, -50%);
+          transition: font-size 400ms ease-in-out;
+          transition: opacity 200ms ease-in-out;
+          transition: height 400ms ease-in-out;
+          z-index: 10;
+        }
+      }
+      .hoveredMainNav > .mainMenuContainer {
+        @include flex-box(row, flex-start, center);
+        gap: 3rem;
+        position: relative;
+        width: 45%;
+        height: 90px;
+        line-height: 100%;
+        color: #000000;
+
+        .hoveredMainNavItem,
+        .hoverMenuItem > h3 {
+          position: relative;
+          width: 100%;
+          color: #000000;
+          .menuText {
+            width: 100%;
+            height: 100%;
+            padding: 25px 0;
+            color: #000000;
+          }
+          &:hover .circle {
+            opacity: 1;
+            visibility: visible;
+          }
+          .circle {
+            position: absolute;
+            top: -50px;
+            left: -12px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            opacity: 0;
+            background-color: #fff;
+            z-index: -9;
+            visibility: hidden;
+          }
+
+          .dropDownMenu.opened {
+            color: #000000;
+            display: none;
+
+            .dropDownList {
+              @include flex-box(column, flex-start, flex-start);
+              row-gap: 1.5rem;
+              position: absolute;
+              height: 400px;
+              top: 50px;
+              font-weight: normal;
+              color: #000000;
+
+              > li,
+              .petList {
+                position: relative;
+                color: #000000;
+
+                .smallCircle {
+                  position: absolute;
+                  top: 0;
+                  left: 100%;
+                  width: 50px;
+                  height: 50px;
+                  transform: translate(-35%, -40%);
+                  border-radius: 50%;
+                  opacity: 1;
+                  background-color: #fff;
+                  z-index: -10;
+                  color: #000000;
+                  visibility: hidden;
+                }
+                &:hover {
+                  font-weight: bolder;
+                  color: inherit;
+                  color: #000000;
+                }
+                &:hover .smallCircle {
+                  visibility: visible;
+                }
+              }
+            }
+          }
+
+          &:hover {
+            font-weight: bolder;
+          }
+
+          &:hover .dropDownMenu.opened {
+            display: block;
+            color: #000000;
+          }
+        }
+      }
+
+      .hoveredUserNav {
+        width: 45%;
+        color: #000000;
+        ul {
+          @include flex-box(row, flex-end, center);
+          gap: 3rem;
+          height: 100%;
+          color: #000000;
+
+          li {
+            @include flex-box(row, flex-end, center);
+            color: #000000;
+
+            .hoverUserMenuButtons {
+              display: block;
+              font-size: 2rem;
+              fill: #000000;
+              color: #000000;
+              z-index: 10;
+
+              &:visited {
+                text-decoration: none;
+                color: #000000;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
