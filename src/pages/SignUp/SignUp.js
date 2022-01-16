@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CircleButton from "../../components/CircleButton/CircleButton";
-import ScrollToTop from "../../components/ScrollToTop";
 import Policy from "./Policy";
 import "./SignUp.scss";
 
@@ -164,7 +163,6 @@ const SignUp = () => {
 
   return (
     <div className="SignUp">
-      <ScrollToTop />
       <div className="SignUpContainer">
         <h2 className="pageTitle">Join Us</h2>
         <form className="form " action="#">

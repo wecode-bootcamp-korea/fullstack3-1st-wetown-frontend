@@ -10,10 +10,12 @@ import Cart from "./pages/Cart/Cart";
 import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Footer from "./components/Footer/Footer";
 import CircleButton from "./components/CircleButton/CircleButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Router = () => (
   <BrowserRouter>
     <HeaderNav />
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Main />} />
       <Route

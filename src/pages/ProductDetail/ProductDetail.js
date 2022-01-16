@@ -9,7 +9,6 @@ import {
   Price,
   TopBottom,
 } from "./DetailComponents/MiniComponents";
-import ScrollToTop from "../../components/ScrollToTop";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { RiArrowGoBackFill, RiShareLine } from "react-icons/ri";
 import "./ProductDetail.scss";
@@ -104,7 +103,6 @@ const ProductDetail = () => {
 
   return (
     <div className="ProductDetail">
-      <ScrollToTop />
       <div className="detailArea">
         {addCart ? (
           <ViewCart

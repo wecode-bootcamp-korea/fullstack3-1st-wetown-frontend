@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import ProductCard from "./ListComponents/ProductCard";
 import "./ProductList.scss";
 import ListSlider from "./ListComponents/ListSlider";
-import ScrollToTop from "../../components/ScrollToTop";
 
 function SubProductList() {
   //GET PARAMETER FROM URL
@@ -62,7 +61,6 @@ function SubProductList() {
 
   return (
     <section className="productList">
-      <ScrollToTop />
       <ListSlider />
       <section className="sectionLayout">
         <section className="productSideSection">
