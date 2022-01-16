@@ -10,6 +10,17 @@ $color-birdGreen: #d8e22d;
 $font-global: "Noto Sans KR", sans-serif;
 
 body {
+  background-color: #ffffff;
   font-family: $font-global;
-  font-size: 12px;
+  font-size: 10px;
+}
+
+.visuallyHidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
