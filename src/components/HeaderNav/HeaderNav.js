@@ -97,7 +97,7 @@ export default function HeaderNav() {
     if (token) {
       setLoginState(true);
     }
-  }, [loginState]);
+  }, [location.pathname]);
   const logout = e => {
     e.preventDefault();
     localStorage.removeItem("token");
